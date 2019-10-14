@@ -30,7 +30,7 @@ public class JDBCUtility {
 	public void createSTB(STB box) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "INSERT INTO TABLE_NAME VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO STB VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, box.getStb_id());
 		ps.setString(2, box.getStb_type());
@@ -54,7 +54,7 @@ public class JDBCUtility {
 	public void viewSTB(int id) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "SELECT * FROM TABLE_NAME WHERE stb_id = ?";
+		String sql = "SELECT * FROM STB WHERE stb_id = ?";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, id);
 		rs = ps.executeQuery();
@@ -62,6 +62,7 @@ public class JDBCUtility {
 		while(rs.next())
 		{
 			STB temp = new STB(id, rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getDouble(7), rs.getDouble(8), rs.getDouble(9), rs.getDouble(10), rs.getString(11), rs.getDouble(12), rs.getInt(13));
+			System.out.println(temp);
 		}
 		rs.close();
 		ps.close();
@@ -70,7 +71,7 @@ public class JDBCUtility {
 	public void updateSTB(STB box) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "UPDATE TABLE_NAME SET stb_type=?, stb_features=?, stb_length=?, stb_breadth=?, stb_width=?, stb_price=?, stb_installation_charges=?, stb_upgradation=?, stb_discount=?, stb_billing_type=?, stb_refundable_amount=? WHERE stb_id=?";
+		String sql = "UPDATE STB SET stb_type=?, stb_features=?, stb_length=?, stb_breath=?, stb_width=?, stb_price=?, stb_installation_charge=?, stb_upgradation_charge=?, stb_discount=?, stb_billing_type=?, stb_refundable_deposit_amount=? WHERE stb_id=?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, box.getStb_type());
 		ps.setString(2, box.getStb_features());
@@ -93,7 +94,7 @@ public class JDBCUtility {
 	public void deleteSTB(int id) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "DELETE TABLE_NAME WHERE stb_id = ?";
+		String sql = "DELETE STB WHERE stb_id = ?";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, id);
 		int i = ps.executeUpdate();
@@ -104,7 +105,7 @@ public class JDBCUtility {
 	public void createSTB_Inventory(STB_Inventory box) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "INSERT INTO TABLE_NAME VALUES(?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO stb_inventory VALUES(?,?,?,?,?,?,?)";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, box.getStb_inventory_id());
 		ps.setString(2, box.getStb_type());
@@ -122,7 +123,7 @@ public class JDBCUtility {
 	public void viewSTB_Inventory(int id) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "SELECT * FROM TABLE_NAME WHERE stb_id = ?";
+		String sql = "SELECT * FROM stb_inventory WHERE stb_inventory_id = ?";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, id);
 		rs = ps.executeQuery();
@@ -139,7 +140,7 @@ public class JDBCUtility {
 	public void updateSTB_Inventory(STB_Inventory box) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "UPDATE TABLE_NAME SET stb_type=?, stb_serial_number=?, stb_mac_id=?, remote_asset_id=?, dish_asset_id=?, status=? WHERE stb_id=?";
+		String sql = "UPDATE stb_inventory SET stb_type=?, stb_serial_number=?, stb_mac_id=?, remote_asset_id=?, dish_asset_id=?, stb_status=? WHERE stb_inventory_id=?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, box.getStb_type());
 		ps.setInt(2, box.getStb_serial_number());
@@ -157,7 +158,7 @@ public class JDBCUtility {
 	public void deleteSTB_Inventory(int id) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "DELETE TABLE_NAME WHERE stb_inventory_id = ?";
+		String sql = "DELETE stb_inventory WHERE stb_inventory_id = ?";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, id);
 		int i = ps.executeUpdate();
@@ -168,7 +169,7 @@ public class JDBCUtility {
 	public void createChannel(Channel c) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "INSERT INTO TABLE_NAME VALUES(?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO channel VALUES(?,?,?,?,?,?,?,?)";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, c.getChannel_id());
 		ps.setString(2, c.getChannel_name());
@@ -187,7 +188,7 @@ public class JDBCUtility {
 	public void viewChannel(int id) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "SELECT * FROM TABLE_NAME WHERE channel_id = ?";
+		String sql = "SELECT * FROM channel WHERE channel_id = ?";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, id);
 		rs = ps.executeQuery();
@@ -204,7 +205,7 @@ public class JDBCUtility {
 	public void updateChannel(Channel c) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "UPDATE TABLE_NAME SET channel_name=?, channel_band=?, channel_vcf=?, channel_acf=?, channel_change_type=?, channel_transmission_type=?, channel_change=? WHERE channel_id=?";
+		String sql = "UPDATE channel SET channel_name=?, channel_band=?, channel_vcf=?, channel_acf=?, channel_change_type=?, channel_transmission_type=?, channel_change=? WHERE channel_id=?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, c.getChannel_name());
 		ps.setInt(2, c.getChannel_band());
@@ -223,7 +224,7 @@ public class JDBCUtility {
 	public void deleteChannel(int id) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "DELETE TABLE_NAME WHERE channel_id = ?";
+		String sql = "DELETE channel WHERE channel_id = ?";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, id);
 		int i = ps.executeUpdate();
@@ -233,7 +234,7 @@ public class JDBCUtility {
 	}public void createChannelPackage(Package cp) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "INSERT INTO TABLE_NAME VALUES(?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO package VALUES(?,?,?,?,?,?,?,?,?,?)";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, cp.getPackage_id());
 		ps.setString(2, cp.getPackage_name());
@@ -241,8 +242,8 @@ public class JDBCUtility {
 		ps.setString(4, cp.getPackage_charging_type());
 		ps.setString(5, cp.getTransmission_type());
 		ps.setDouble(6, cp.getPackage_cost());
-		ps.setDate(7, Date.valueOf(cp.getPackage_available_from()));
-		ps.setDate(8, Date.valueOf(cp.getPackage_available_to()));
+		ps.setDate(7, java.sql.Date.valueOf(cp.getPackage_available_from()));
+		ps.setDate(8, java.sql.Date.valueOf(cp.getPackage_available_to()));
 		ps.setString(9, cp.getPackage_default());
 		ps.setInt(10, cp.getChannel_id());
 
@@ -254,7 +255,7 @@ public class JDBCUtility {
 	public void viewChannelPackage(int id) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "SELECT * FROM TABLE_NAME WHERE package_id = ?";
+		String sql = "SELECT * FROM package WHERE package_id = ?";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, id);
 		rs = ps.executeQuery();
@@ -271,7 +272,7 @@ public class JDBCUtility {
 	public void updateChannelPackage(Package cp) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "UPDATE TABLE_NAME SET package_name=?, package_category=?, package_charging_type=?, transmission_type=?, package_cost=?, package_available_from=?, package_available_to=?, package_default=? WHERE package_id = ?";
+		String sql = "UPDATE package SET package_name=?, package_category=?, package_charging_type=?, transmission_type=?, package_cost=?, package_available_from=?, package_available_to=?, package_default=? WHERE package_id = ?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, cp.getPackage_name());
 		ps.setString(2, cp.getPackage_category());
@@ -291,7 +292,7 @@ public class JDBCUtility {
 	public void deleteChannelPackage(int id) throws SQLException
 	{
 		conn = DriverManager.getConnection(URL, uname, pwd);
-		String sql = "DELETE TABLE_NAME WHERE package_id = ?";
+		String sql = "DELETE package WHERE package_id = ?";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, id);
 		int i = ps.executeUpdate();
