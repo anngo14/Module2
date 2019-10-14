@@ -1,6 +1,7 @@
 package JDBC;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -238,8 +239,8 @@ public class JDBCUtility {
 		ps.setString(4, cp.getPackage_charging_type());
 		ps.setString(5, cp.getTransmission_type());
 		ps.setDouble(6, cp.getPackage_cost());
-		ps.setString(7, cp.getPackage_available_from());
-		ps.setString(8, cp.getPackage_available_to());
+		ps.setDate(7, Date.valueOf(cp.getPackage_available_from()));
+		ps.setDate(8, Date.valueOf(cp.getPackage_available_to()));
 		ps.setString(9, cp.getPackage_default());
 		ps.setInt(10, cp.getChannel_id());
 
@@ -274,8 +275,8 @@ public class JDBCUtility {
 		ps.setString(3, cp.getPackage_charging_type());
 		ps.setString(4, cp.getTransmission_type());
 		ps.setDouble(5, cp.getPackage_cost());
-		ps.setString(6, cp.getPackage_available_from());
-		ps.setString(7, cp.getPackage_available_to());
+		ps.setDate(6, Date.valueOf(cp.getPackage_available_from()));
+		ps.setDate(7, Date.valueOf(cp.getPackage_available_to()));
 		ps.setString(8, cp.getPackage_default());
 		ps.setInt(9, cp.getPackage_id());
 
