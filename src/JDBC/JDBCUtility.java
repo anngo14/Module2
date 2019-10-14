@@ -130,6 +130,7 @@ public class JDBCUtility {
 		while(rs.next())
 		{
 			STB_Inventory temp = new STB_Inventory(id, rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getString(7));
+			System.out.println(temp);
 		}
 		rs.close();
 		ps.close();
@@ -194,6 +195,7 @@ public class JDBCUtility {
 		while(rs.next())
 		{
 			Channel temp = new Channel(id, rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5), rs.getString(6), rs.getString(7), rs.getDouble(8));
+			System.out.println(temp);
 		}
 		rs.close();
 		ps.close();
@@ -260,6 +262,7 @@ public class JDBCUtility {
 		while(rs.next())
 		{
 			Package temp = new Package(id, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10));
+			System.out.println(temp);
 		}
 		rs.close();
 		ps.close();
