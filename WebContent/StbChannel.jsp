@@ -16,15 +16,10 @@
      ACF: <input type="text" name="channel_acf"> <br>
      Charge Type: <input type="text" name="channel_chargetype"> <br>
      Transmission type: <input type="text" name="channel_transmission_type"> <br>
-     charge: <input type="text" name="channel_charge"> <br>
-     
-    Available to date : <input type="text" name="package_available_to date"> <br>
-    Package Default: <input type="text" name="package_default varchar"> <br>
-    Channel Id: <input type="text" name="channel_id"><br>
-     
+     charge: <input type="text" name="channel_change"> <br>
      
     <input type="submit" value="Submit">
-    <input type="hidden" name="option" value="channel">
+    <input type="hidden" name="option" value="StbChannel">
 </form>
     
 

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="MainServlet" method="post" value ="hidden">
+<form action="MainServlet" method="post">
      Inventory ID: <input type="text" name="stb_inventory_id"><br>
      Type: <input type="text" name="stb_type"><br>
      Serial Number: <input type="text" name="stb_serial_number"> <br>
@@ -18,7 +18,7 @@
      Status: <input type="text" name="stb_status"> <br>
          
     <input type="submit" value="Submit">
-    <input type="hidden" name="option" value="STB">
+    <input type="hidden" name="option" value="StbInventory">
 </form>
 </body>
 </html>
