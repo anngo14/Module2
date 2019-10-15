@@ -376,4 +376,24 @@ public class MainLogic {
 		
 		return i;
 	}
+	public int addFeature(String s, STB box) throws ClassNotFoundException, SQLException
+	{
+		conn = JDBCUtility.getConnection();
+		//sql query depends on how the feature relates to the STB
+		String sql = "INSERT INTO Feature VALUES(?,?,?)";
+		ps = conn.prepareStatement(sql);
+		int i = ps.executeUpdate();
+		
+		return i;
+	}
+	public int addCategory(String s, Package p) throws ClassNotFoundException, SQLException
+	{
+		conn = JDBCUtility.getConnection();
+		//sql query depends on how the channel relates to the Customer
+		String sql = "INSERT INTO Category VALUES(?,?,?)";
+		ps = conn.prepareStatement(sql);
+		int i = ps.executeUpdate();
+		
+		return i;
+	}
 }
