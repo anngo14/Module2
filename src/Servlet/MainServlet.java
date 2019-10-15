@@ -78,7 +78,7 @@ public class MainServlet extends HttpServlet {
 			double stb_refundable_deposit_amount=Double.parseDouble(request.getParameter("stb_refundable_deposit_amount"));
 			int stb_inventory_id=Integer.parseInt(request.getParameter("stb_inventory_id"));
 			
-			STB stb=new STB(stb_inventory_id, stb_billing_type, stb_billing_type, stb_inventory_id, stb_inventory_id, stb_inventory_id, stb_refundable_deposit_amount, stb_refundable_deposit_amount, stb_refundable_deposit_amount, stb_refundable_deposit_amount, stb_billing_type, stb_refundable_deposit_amount, stb_inventory_id);
+			STB stb=new STB(stb_id, stb_type, stb_features, stb_length, stb_breadth, stb_width, stb_price, stb_installation_charges, stb_upgradation_charge, stb_discount, stb_billing_type, stb_refundable_deposit_amount, stb_inventory_id);
 			try {
 				jdbcUtility.createSTB(stb);
 			} catch (SQLException e) {
