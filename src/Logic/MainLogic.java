@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import JDBC.JDBCUtility;
 import POJO.Channel;
@@ -65,6 +66,27 @@ public class MainLogic {
 		ps.close();
 		conn.close();
 		return null;
+	}
+	public ArrayList<STB> viewAllSTB() throws ClassNotFoundException, SQLException
+	{
+		ArrayList<STB> list = new ArrayList<STB>();
+		conn = JDBCUtility.getConnection();
+		String sql = "SELECT * FROM STB";
+		ps = conn.prepareStatement(sql);
+		rs = ps.executeQuery();
+		
+		while(rs.next())
+		{
+			STB temp = new STB(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getDouble(7), rs.getDouble(8), rs.getDouble(9), rs.getDouble(10), rs.getString(11), rs.getDouble(12), rs.getInt(13));
+			list.add(temp);
+			rs.close();
+			ps.close();
+			conn.close();
+		}
+		rs.close();
+		ps.close();
+		conn.close();
+		return list;
 	}
 	public int updateSTB(STB box) throws SQLException
 	{
@@ -143,6 +165,28 @@ public class MainLogic {
 		conn.close();
 		return null;
 	}
+	public ArrayList<STB_Inventory> viewAllSTB_Inventory() throws SQLException, ClassNotFoundException
+	{
+		ArrayList<STB_Inventory> list = new ArrayList<STB_Inventory>();
+		conn = JDBCUtility.getConnection();
+		String sql = "SELECT * FROM stb_inventory";
+		ps = conn.prepareStatement(sql);
+		rs = ps.executeQuery();
+		
+		while(rs.next())
+		{
+			STB_Inventory temp = new STB_Inventory(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getString(7));
+			System.out.println(temp);
+			list.add(temp);
+			rs.close();
+			ps.close();
+			conn.close();
+		}
+		rs.close();
+		ps.close();
+		conn.close();
+		return list;
+	}
 	public int updateSTB_Inventory(STB_Inventory box) throws SQLException, ClassNotFoundException
 	{
 		conn = JDBCUtility.getConnection();
@@ -215,6 +259,28 @@ public class MainLogic {
 		ps.close();
 		conn.close();
 		return null;
+	}
+	public ArrayList<Channel> viewAllChannel() throws SQLException, ClassNotFoundException
+	{
+		ArrayList<Channel> list = new ArrayList<Channel>();
+		conn = JDBCUtility.getConnection();
+		String sql = "SELECT * FROM channel";
+		ps = conn.prepareStatement(sql);
+		rs = ps.executeQuery();
+		
+		while(rs.next())
+		{
+			Channel temp = new Channel(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5), rs.getString(6), rs.getString(7), rs.getDouble(8));
+			System.out.println(temp);
+			list.add(temp);
+			rs.close();
+			ps.close();
+			conn.close();
+		}
+		rs.close();
+		ps.close();
+		conn.close();
+		return list;
 	}
 	public int updateChannel(Channel c) throws SQLException, ClassNotFoundException
 	{
@@ -304,6 +370,28 @@ public class MainLogic {
 		ps.close();
 		conn.close();
 		return null;
+	}
+	public ArrayList<Package> viewChannelPackage() throws SQLException, ClassNotFoundException
+	{
+		ArrayList<Package> list = new ArrayList<Package>();
+		conn = JDBCUtility.getConnection();
+		String sql = "SELECT * FROM package WHERE package_id = ?";
+		ps = conn.prepareStatement(sql);
+		rs = ps.executeQuery();
+		
+		while(rs.next())
+		{
+			Package temp = new Package(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10));
+			System.out.println(temp);
+			list.add(temp);
+			rs.close();
+			ps.close();
+			conn.close();
+		}
+		rs.close();
+		ps.close();
+		conn.close();
+		return list;
 	}
 	public int updateChannelPackage(Package cp) throws SQLException, ClassNotFoundException
 	{
