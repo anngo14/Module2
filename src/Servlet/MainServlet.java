@@ -1,6 +1,8 @@
 package Servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +13,8 @@ import POJO.Channel;
 import POJO.STB;
 import POJO.STB_Inventory;
 import POJO.Package;
+
+import JDBC.JDBCUtility;
 
 
 @WebServlet("/MainServlet")
@@ -31,9 +35,16 @@ public class MainServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String hidden=request.getParameter("hidden");
+		String option=request.getParameter("option");
+		JDBCUtility jdbcUtility = null;
+		try {
+			jdbcUtility = new JDBCUtility();
+		} catch (ClassNotFoundException | SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
-		if(hidden.contentEquals("STB_Inventory"))
+		if(option.contentEquals("STB_Inventory"))
 		{
 			String stb_inventory_id=request.getParameter("stb_inventory_id");
 			int stb_type=Integer.parseInt(request.getParameter("stb_type"));
@@ -41,12 +52,17 @@ public class MainServlet extends HttpServlet {
 			int stb_mac_id=Integer.parseInt(request.getParameter("stb_mac_id"));
 			int remote_asset_id=Integer.parseInt(request.getParameter("remote_asset_id"));
 			int dish_asset_id=Integer.parseInt(request.getParameter("dish_asset_id"));
-			String status=request.getParameter("dish_asset_id");
+			String status=request.getParameter("stb_status");
 			
 			STB_Inventory stbInventory=new STB_Inventory(stb_type, stb_inventory_id, stb_serial_number, stb_mac_id, remote_asset_id, dish_asset_id, status);
-			
+			try {
+				jdbcUtility.createSTB_Inventory(stbInventory);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		else if(hidden.contentEquals("STB"))
+		else if(option.contentEquals("STB"))
 		{
 			int stb_id=Integer.parseInt(request.getParameter("stb_id"));
 			String stb_type=request.getParameter("stb_type");
@@ -63,27 +79,39 @@ public class MainServlet extends HttpServlet {
 			int stb_inventory_id=Integer.parseInt(request.getParameter("stb_inventory_id"));
 			
 			STB stb=new STB(stb_inventory_id, stb_billing_type, stb_billing_type, stb_inventory_id, stb_inventory_id, stb_inventory_id, stb_refundable_deposit_amount, stb_refundable_deposit_amount, stb_refundable_deposit_amount, stb_refundable_deposit_amount, stb_billing_type, stb_refundable_deposit_amount, stb_inventory_id);
+			try {
+				jdbcUtility.createSTB(stb);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		else if(hidden.contentEquals("channel"))
+		else if(option.contentEquals("channel"))
 		{
 			int channel_id=Integer.parseInt(request.getParameter("channel_id"));
 			String channel_name=request.getParameter("channel_name");
 			int channel_band=Integer.parseInt(request.getParameter("channel_band"));;
 			double channel_vcf=Double.parseDouble(request.getParameter("channel_vcf"));
 			double channel_acf=Double.parseDouble(request.getParameter("channel_acf"));
-			String channel_change_type=request.getParameter("channel_change_type");
-			String transmission_type=request.getParameter("transmission_type");
+			String channel_chargetype=request.getParameter("channel_chargetype");
+			String channel_transmission_type=request.getParameter("channel_transmission_type");
 			double channel_change=Double.parseDouble(request.getParameter("channel_change"));
 			
-			Channel channel=new Channel(channel_band, transmission_type, channel_band, channel_change, channel_change, transmission_type, transmission_type, channel_change);
+			Channel channel=new Channel(channel_id, channel_name, channel_band, channel_vcf, channel_acf, channel_chargetype, channel_transmission_type, channel_change);
+			try {
+				jdbcUtility.createChannel(channel);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		else if(hidden.contentEquals("package"))
+		else if(option.contentEquals("StbPackage"))
 		{
 			int package_id=Integer.parseInt(request.getParameter("package_id"));
 			String package_name=request.getParameter("package_name");
 			String package_category=request.getParameter("package_category");
 			String package_charging_type=request.getParameter("package_charging_type");
-			String transmission_type=request.getParameter("transmission_type");
+			String package_transmission_type=request.getParameter("package_transmission_type");
 			double package_cost=Double.parseDouble(request.getParameter("package_cost"));
 			String package_available_from=request.getParameter("package_available_from");
 			String package_available_to=request.getParameter("package_available_to");
@@ -91,7 +119,13 @@ public class MainServlet extends HttpServlet {
 			int channel_id=Integer.parseInt(request.getParameter("channel_id"));
 			
 			Package pkg=new Package(package_id, package_name, package_category, package_charging_type, 
-					transmission_type, package_cost, package_available_from, package_available_to, package_default, channel_id);
+					package_transmission_type, package_cost, package_available_from, package_available_to, package_default, channel_id);
+			try {
+				jdbcUtility.createChannelPackage(pkg);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

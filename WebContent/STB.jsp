@@ -15,8 +15,8 @@
      Breath: <input type="text" name="stb_breath"> <br>
      Width: <input type="text" name="stb_width"> <br>
      Price: <input type="text" name="stb_price"> <br>
-     Installation charge: <input type="text" name="stb_installation_charge"> <br>
-     Upgrade charge: <input type="text" name="stb_upgrade_charge"> <br>
+     Installation charge: <input type="text" name="stb_installation_charges"> <br>
+     Upgrade charge: <input type="text" name="stb_upgradation_charge"> <br>
      Discount: <input type="text" name="stb_discount"> <br>
      Billing type: <input type="text" name="stb_billing_type"> <br>
      Refundable deposit amount: <input type="text" name="stb_refundable_deposit_amount"> <br>
