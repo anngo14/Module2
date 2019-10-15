@@ -356,4 +356,24 @@ public class MainLogic {
 		conn.close();
 		return cost;
 	}
+	public int selectPackage(int cid, Package p) throws ClassNotFoundException, SQLException
+	{
+		conn = JDBCUtility.getConnection();
+		//sql query depends on how the package relates to the Customer
+		String sql = "";
+		ps = conn.prepareStatement(sql);
+		int i = ps.executeUpdate();
+		
+		return i;
+	}
+	public int selectChannel(int cid, Channel c) throws ClassNotFoundException, SQLException
+	{
+		conn = JDBCUtility.getConnection();
+		//sql query depends on how the channel relates to the Customer
+		String sql = "";
+		ps = conn.prepareStatement(sql);
+		int i = ps.executeUpdate();
+		
+		return i;
+	}
 }
