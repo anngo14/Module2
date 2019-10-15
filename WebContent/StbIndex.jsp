@@ -11,11 +11,12 @@
 <table style="with: 60%">
 
             <tr>
-                <td>Enter STB ID</td>
+                <td>Enter Channel ID</td>
                 <td><input type="text" name="stb_id" /></td><br>
             </tr>
 </table>
 </form>
+    <input type="hidden" name="option" value="STB"> <BR>
     <input type="hidden" name="option" value="STB"> <BR>
     <a href = "StbForm.jsp"> Create the setup box</a><BR>
     <a href ="StbView.jsp"> view setup box</a><BR>
@@ -23,6 +24,7 @@
     <a href ="StbDelete.jsp">Delete setup box</a><br><br>
     To view all
     <a href ="StbViewAll.jsp"> viewAll setup box</a><BR>
+    
     
 </body>
 </html>

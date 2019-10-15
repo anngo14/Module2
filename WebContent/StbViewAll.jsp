@@ -12,8 +12,8 @@ border : 1px solid black;
 <title>Insert title here</title>
 </head>
 <body>
-<table style="with: 60%">
 
+<table style="with: 60%">
             <tr>
                 <th>ID</th>
                  <th>Type</th>
@@ -46,7 +46,8 @@ border : 1px solid black;
           
          
             
-    </table>
+ </table>
+
     
 </body>
 </html>
