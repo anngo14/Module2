@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.navBar{
+    height: 52px;
+    width: 100%;
+    border-bottom: 0.5px solid black;
+}
+.logo{
+    float: left;
+    margin-left: 25px;
+}
+.logo h1{
+    line-height: 52px;
+}
+.navLinks{
+    float: right;
+    margin-right: 25px;
+}
+.navLinks a{
+    text-decoration: none;
+    color: black;
+    line-height: 52px;
+}
+.innerContainer{
+    border: 0.5px solid black;
+    width: 50em;
+    height: 30em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+footer{
+    height: 52px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    border-top: 0.5px solid black;
+}
+.credit{
+    text-align: right;
+}
+.credit h3{
+    margin-right: 25px;
+    line-height: 52px;
+}
