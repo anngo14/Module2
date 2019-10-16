@@ -56,7 +56,7 @@ public class MainServlet extends HttpServlet {
 			String stbId=request.getParameter("stb_id");
 			try
 			{
-				//ml.viewSTB(Integer.parseInt(stbId));
+				ml.viewSTB(Integer.parseInt(stbId));
 			}
 			catch(ClassNotFoundException | SQLException | NumberFormatException e)
 			{
