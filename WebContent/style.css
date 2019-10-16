@@ -25,11 +25,64 @@
 }
 .innerContainer{
     border: 0.5px solid black;
-    width: 50em;
-    height: 30em;
+    width: 50%;
+    height: 600px;
     position: absolute;
     left: 50%;
     top: 50%;
+    transform: translate(-50%, -50%);
+}
+.innerHeading{
+    width: 100%;
+    height: 50px;
+    border-bottom: 0.5px solid black;
+}
+.innerHeadingLogo{
+    float: left;
+}
+.innerHeadingLogo h2{
+    line-height: 50px;
+    margin-left: 20px;
+}
+.innerHeadingLink{
+    float:right;
+}
+.innerHeadingLink a{
+    line-height: 50px;
+    margin-right: 20px;
+}
+.searchContainer{
+    height: 40px;
+    position: relative;
+}
+.searchContainer form{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+}
+.innerList{
+    height: 510px;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.innerList::-webkit-scrollbar{
+    display:none;
+}
+.innerListItem{
+    border: 0.5px solid black;
+    width: 95%;
+    margin-top: 15px;
+    margin-left: 20px;
+}
+.innerForm form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
 }
 footer{
@@ -45,4 +98,28 @@ footer{
 .credit h3{
     margin-right: 25px;
     line-height: 52px;
+}
+@media(max-height: 720px){
+    .innerContainer{
+        height: 500px;
+    }
+    .innerList{
+        height: 410px;
+    }
+}
+@media(max-height: 620px){
+    .innerContainer{
+        height: 400px;
+    }
+    .innerList{
+        height: 310px;
+    }
+}
+@media(max-height: 520px){
+    .innerContainer{
+        height: 300px;
+    }
+    .innerList{
+        height: 210px;
+    }
 }
