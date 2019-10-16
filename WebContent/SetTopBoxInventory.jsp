@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="POJO.STB_Inventory" %>
+<%! ArrayList<STB_Inventory> s = session.getAttribute("") %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,33 +43,17 @@
                 </form>
             </div>
             <div class="innerList">
+            <% for(int i = 0; i < s.size(); i++) { %>
                 <div class="innerListItem">
-                    <h3>ID: </h3>
-                    <h3>Type: </h3>
-                    <h3>Serial Number: </h3>
-                    <h3>MAC ID: </h3>
-                    <h3>Remote Asset ID: </h3>
-                    <h3>Dish Asset ID: </h3>
-                    <h3>Status: </h3>
+                    <h3>ID: </h3><%= s[i].id %>
+                    <h3>Type: </h3><%= s[i].id %>
+                    <h3>Serial Number: </h3><%= s[i].id %>
+                    <h3>MAC ID: </h3><%= s[i].id %>
+                    <h3>Remote Asset ID: </h3><%= s[i].id %>
+                    <h3>Dish Asset ID: </h3><%= s[i].id %>
+                    <h3>Status: </h3><%= s[i].id %>
                 </div>
-                <div class="innerListItem">
-                    <h3>ID: </h3>
-                    <h3>Type: </h3>
-                    <h3>Serial Number: </h3>
-                    <h3>MAC ID: </h3>
-                    <h3>Remote Asset ID: </h3>
-                    <h3>Dish Asset ID: </h3>
-                    <h3>Status: </h3>
-                </div>
-                <div class="innerListItem">
-                    <h3>ID: </h3>
-                    <h3>Type: </h3>
-                    <h3>Serial Number: </h3>
-                    <h3>MAC ID: </h3>
-                    <h3>Remote Asset ID: </h3>
-                    <h3>Dish Asset ID: </h3>
-                    <h3>Status: </h3>
-                </div>
+            <% } %>
             </div>
         </div>
     </div>
