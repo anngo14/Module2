@@ -79,19 +79,147 @@ public class MainServlet extends HttpServlet {
 				//do something
 			}
 		}
+		else if(operation.contentEquals("searchChannel"))
+		{
+			String channelId=request.getParameter("channel_id");
+			try
+			{
+				Channel channel=ml.viewChannel(Integer.parseInt(channelId));
+				HttpSession session=request.getSession();
+				session.setAttribute("channel", channel);
+				session.setAttribute("operation", "searchChannel");
+				getServletContext().setAttribute("session", session);
+				getServletContext().getRequestDispatcher("Channel.jsp").forward(request, response);
+			}
+			catch(ClassNotFoundException | SQLException | NumberFormatException e)
+			{
+				//do something
+			}
+		}
+		else if(operation.contentEquals("editChannel"))
+		{
+			String channelId=request.getParameter("channel_id");
+			try
+			{
+				ml.viewChannel(Integer.parseInt(channelId));
+			}
+			catch(ClassNotFoundException | SQLException | NumberFormatException e)
+			{
+				//do something
+			}
+		}
+		else if(operation.contentEquals("deleteChannel"))
+		{
+			String channelId=request.getParameter("channel_id");
+			try
+			{
+				ml.deleteChannel(Integer.parseInt(channelId));
+				HttpSession session=request.getSession();
+				session.setAttribute("operation", "viewAll");
+				getServletContext().setAttribute("session", session);
+				getServletContext().getRequestDispatcher("Channel.jsp").forward(request, response);
+			}
+			catch(ClassNotFoundException | SQLException | NumberFormatException e)
+			{
+				//do something
+			}
+		}
+		else if(operation.contentEquals("searchPkg"))
+		{
+			String pkgId=request.getParameter("pkg_id");
+			try
+			{
+				Package pkg=ml.viewChannelPackage(Integer.parseInt(pkgId));
+				HttpSession session=request.getSession();
+				session.setAttribute("pkg", pkg);
+				session.setAttribute("operation", "searchPkg");
+				getServletContext().setAttribute("session", session);
+				getServletContext().getRequestDispatcher("Package.jsp").forward(request, response);
+			}
+			catch(ClassNotFoundException | SQLException | NumberFormatException e)
+			{
+				//do something
+			}
+		}
+		else if(operation.contentEquals("editPkg"))
+		{
+			String pkgId=request.getParameter("pkg_id");
+			try
+			{
+				ml.viewSTB(Integer.parseInt(pkgId));
+			}
+			catch(ClassNotFoundException | SQLException | NumberFormatException e)
+			{
+				//do something
+			}
+		}
+		else if(operation.contentEquals("deletePkg"))
+		{
+			String pkgId=request.getParameter("pkg_id");
+			try
+			{
+				ml.deleteChannelPackage(Integer.parseInt(pkgId));
+				HttpSession session=request.getSession();
+				session.setAttribute("operation", "deletePkg");
+				getServletContext().setAttribute("session", session);
+				getServletContext().getRequestDispatcher("Package.jsp").forward(request, response);
+			}
+			catch(ClassNotFoundException | SQLException | NumberFormatException e)
+			{
+				//do something
+			}
+		}
+		else if(operation.contentEquals("searchSTBInventory"))
+		{
+			String inventoryId=request.getParameter("inventory_id");
+			try
+			{
+				STB_Inventory stbInventory =ml.viewSTB_Inventory(Integer.parseInt(inventoryId));
+				HttpSession session=request.getSession();
+				session.setAttribute("stbInventory", stbInventory);
+				session.setAttribute("operation", "searchInventory");
+				getServletContext().setAttribute("session", session);
+				getServletContext().getRequestDispatcher("SetTopBoxInventory.jsp").forward(request, response);
+			}
+			catch(ClassNotFoundException | SQLException | NumberFormatException e)
+			{
+				//do something
+			}
+		}
+		else if(operation.contentEquals("editSTBInventory"))
+		{
+			String inventoryId=request.getParameter("inventory_id");
+			try
+			{
+				ml.viewSTB_Inventory(Integer.parseInt(inventoryId));
+			}
+			catch(ClassNotFoundException | SQLException | NumberFormatException e)
+			{
+				//do something
+			}
+		}
+		else if(operation.contentEquals("deleteSTBInventory"))
+		{
+			String inventoryId=request.getParameter("inventory_id");
+			try
+			{
+				ml.deleteChannelPackage(Integer.parseInt(inventoryId));
+				HttpSession session=request.getSession();
+				session.setAttribute("operation", "deleteInventory");
+				getServletContext().setAttribute("session", session);
+				getServletContext().getRequestDispatcher("SetTopBoxInventory.jsp").forward(request, response);
+			}
+			catch(ClassNotFoundException | SQLException | NumberFormatException e)
+			{
+				//do something
+			}
+		}
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String option=request.getParameter("option");
-		JDBCUtility jdbcUtility = null;
-		try {
-			jdbcUtility = new JDBCUtility();
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		
 		if(option.contentEquals("STB_Inventory"))
 		{
@@ -105,8 +233,8 @@ public class MainServlet extends HttpServlet {
 			
 			STB_Inventory stbInventory=new STB_Inventory(stb_type, stb_inventory_id, stb_serial_number, stb_mac_id, remote_asset_id, dish_asset_id, status);
 			try {
-				jdbcUtility.createSTB_Inventory(stbInventory);
-			} catch (SQLException e) {
+				ml.createSTB_Inventory(stbInventory);
+			} catch (SQLException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -129,8 +257,8 @@ public class MainServlet extends HttpServlet {
 			
 			STB stb=new STB(stb_id, stb_type, stb_features, stb_length, stb_breadth, stb_width, stb_price, stb_installation_charges, stb_upgradation_charge, stb_discount, stb_billing_type, stb_refundable_deposit_amount, stb_inventory_id);
 			try {
-				jdbcUtility.createSTB(stb);
-			} catch (SQLException e) {
+				ml.createSTB(stb);
+			} catch (SQLException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -148,8 +276,8 @@ public class MainServlet extends HttpServlet {
 			
 			Channel channel=new Channel(channel_id, channel_name, channel_band, channel_vcf, channel_acf, channel_chargetype, channel_transmission_type, channel_change);
 			try {
-				jdbcUtility.createChannel(channel);
-			} catch (SQLException e) {
+				ml.createChannel(channel);
+			} catch (SQLException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -170,8 +298,8 @@ public class MainServlet extends HttpServlet {
 			Package pkg=new Package(package_id, package_name, package_category, package_charging_type, 
 					package_transmission_type, package_cost, package_available_from, package_available_to, package_default, channel_id);
 			try {
-				jdbcUtility.createChannelPackage(pkg);
-			} catch (SQLException e) {
+				ml.createChannelPackage(pkg);
+			} catch (SQLException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
