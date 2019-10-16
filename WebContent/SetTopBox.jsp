@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="POJO.STB" %>
+<%! ArrayList<STB> a = session.getAttribute("") %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,48 +43,22 @@
                 </form>
             </div>
             <div class="innerList">
+                <% for(int i = 0; i < a.size(); i++) { %>
                 <div class="innerListItem">
-                    <h3>ID: </h3>
-                    <h3>Features: </h3>
-                    <h4>Length: </h4>
-                    <h4>Breadth: </h4>
-                    <h4>Width: </h4>
-                    <h3>Price: </h3>
-                    <h3>Installation Charge: </h3>
-                    <h3>Upgrade Charge: </h3>
-                    <h3>Discount: </h3>
-                    <h3>Billing Type: </h3>
-                    <h3>Refundable Deposit Amount: </h3>
-                    <h3>Inventory ID: </h3>
+                    <h3>ID: </h3><%= a[i].id %>
+                    <h3>Features: </h3><%= a[i].id %>
+                    <h4>Length: </h4><%= a[i].id %>
+                    <h4>Breadth: </h4><%= a[i].id %>
+                    <h4>Width: </h4><%= a[i].id %>
+                    <h3>Price: </h3><%= a[i].id %>
+                    <h3>Installation Charge: </h3><%= a[i].id %>
+                    <h3>Upgrade Charge: </h3><%= a[i].id %>
+                    <h3>Discount: </h3><%= a[i].id %>
+                    <h3>Billing Type: </h3><%= a[i].id %>
+                    <h3>Refundable Deposit Amount: </h3><%= a[i].id %>
+                    <h3>Inventory ID: </h3><%= a[i].id %>
                 </div>
-                <div class="innerListItem">
-                    <h3>ID: </h3>
-                    <h3>Features: </h3>
-                    <h4>Length: </h4>
-                    <h4>Breadth: </h4>
-                    <h4>Width: </h4>
-                    <h3>Price: </h3>
-                    <h3>Installation Charge: </h3>
-                    <h3>Upgrade Charge: </h3>
-                    <h3>Discount: </h3>
-                    <h3>Billing Type: </h3>
-                    <h3>Refundable Deposit Amount: </h3>
-                    <h3>Inventory ID: </h3>
-                </div>
-                <div class="innerListItem">
-                        <h3>ID: </h3>
-                        <h3>Features: </h3>
-                        <h4>Length: </h4>
-                        <h4>Breadth: </h4>
-                        <h4>Width: </h4>
-                        <h3>Price: </h3>
-                        <h3>Installation Charge: </h3>
-                        <h3>Upgrade Charge: </h3>
-                        <h3>Discount: </h3>
-                        <h3>Billing Type: </h3>
-                        <h3>Refundable Deposit Amount: </h3>
-                        <h3>Inventory ID: </h3>
-                </div>
+                <% } %>
             </div>
         </div>
     </div>
