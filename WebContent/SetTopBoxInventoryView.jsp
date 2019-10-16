@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="POJO.Package" %>
-<%! ArrayList<Package> p = session.getAttribute("") %>
+<%@ page import="POJO.STB_Inventory" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <title>Package Management</title>
+    <title>Set Top Box Management</title>
 </head>
 <body>
     <div class="navBar">
@@ -28,35 +27,30 @@
         <div class="innerContainer">
             <div class="innerHeading">
                 <div class="innerHeadingLogo">
-                    <h2>Packages</h2>
+                    <h2>Set Top Box Inventory</h2>
                 </div>
                 <div class="innerHeadingLink">
-                    <a href="PackageDetails.html">Add a Package</a>
+                    <a href="SetTopBoxDetails.html">Add a STB</a>
                 </div>
             </div>
             <div class="searchContainer">
                 <form action="MainServlet" method="get">
-                    <span>Package ID: </span><input type="text">
-                    <input type="submit" value="Search">
-                    <input type="submit" value="Edit">
-                    <input type="submit" value="Delete">
+                    <span>STB ID: </span><input type="text">
+                    <input type="submit" value="Search" disabled>
+                    <input type="submit" value="Edit" disabled>
+                    <input type="submit" value="Delete" disabled>
                 </form>
             </div>
             <div class="innerList">
-            <% for(int i = 0; i < p.size(); i++) { %>
                 <div class="innerListItem">
-                    <h3>ID: </h3><%! p[i].id %>
-                    <h3>Name: </h3><%! p[i].id %>
-                    <h3>Category: </h3><%! p[i].id %>
-                    <h3>Charging Type: </h3><%! p[i].id %>
-                    <h3>Transmission TYpe: </h3><%! p[i].id %>
-                    <h3>Cost: </h3><%! p[i].id %>
-                    <h3>Available From: </h3><%! p[i].id %>
-                    <h3>Available To: </h3><%! p[i].id %>
-                    <h3>Package default: </h3><%! p[i].id %>
-                    <h3>Channel Id</h3><%! p[i].id %>
+                    <h3>ID: </h3><%=  %>
+                    <h3>Type: </h3><%=  %>
+                    <h3>Serial Number: </h3><%=  %>
+                    <h3>MAC ID: </h3><%=  %>
+                    <h3>Remote Asset ID: </h3><%=  %>
+                    <h3>Dish Asset ID: </h3><%=  %>
+                    <h3>Status: </h3><%=  %>
                 </div>
-             <% } %>
             </div>
         </div>
     </div>

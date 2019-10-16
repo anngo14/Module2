@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="POJO.Package" %>
+<%@ page import="POJO.STB_Inventory" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,24 +23,21 @@
         <div class="innerContainer">
             <div class="innerHeading">
                 <div class="innerHeadingLogo">
-                    <h2>Package Details</h2>
+                    <h2>Set Top Box Inventory Details</h2>
                 </div>
             </div>
             <div class="innerForm">
-                <form action="MainServlet" method="post" value ="hidden">
-                    ID: <input type="text" name="package_id"><br>
-                    Name: <input type="text" name="package_name"><br>
-                    Category: <input type="text" name="package_category"> <br>
-                    Charging Type: <input type="text" name="package_charging_type"> <br>
-                    Transmission Type: <input type="text" name="package_transmission_type"> <br>
-                    Cost: <input type="text" name="package_cost"> <br>
-                    Available From: <input type="text" name="package_available_from"> <br>
-                    Available To: <input type="text" name="package_available_to"> <br>
-                    Package Default: <input type="text" name="package_default"> <br>
-                    Channel Id: <input type="text" name="channel_id"><br>
-                           
+                <form action="MainServlet" method="post">
+                    Inventory ID: <input type="text" name="stb_inventory_id"><br>
+                    Type: <input type="text" name="stb_type"><br>
+                    Serial Number: <input type="text" name="stb_serial_number"> <br>
+                    MAC ID: <input type="text" name="stb_mac_id"> <br>
+                    Remote Asset ID: <input type="text" name="remote_asset_id"> <br>
+                    Dish Asset ID: <input type="text" name="dish_asset_id"> <br>
+                    Status: <input type="text" name="stb_status"> <br>
+                                
                     <input type="submit" value="Submit">
-                   <input type="hidden" name="option" value="StbPackage">
+                   <input type="hidden" name="option" value="StbInventory">
                </form>
             </div>
         </div>

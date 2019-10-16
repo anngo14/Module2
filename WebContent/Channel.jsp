@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="POJO.Channel" %>
+<%! ArrayList<Channel> c = session.getAttribute(); %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,36 +43,18 @@
                 </form>
             </div>
             <div class="innerList">
+            <% for(int i = 0; i < c.size(); i++) { %>
                 <div class="innerListItem">
-                    <h3>ID: </h3>
-                    <h3>Name: </h3>
-                    <h3>Band: </h3>
-                    <h3>VCF: </h3>
-                    <h3>ACF: </h3>
-                    <h3>Charge Type: </h3>
-                    <h3>Transmission Type: </h3>
-                    <h3>Charge: </h3>
+                    <h3>ID: </h3><%= c[i].id %>
+                    <h3>Name: </h3> <%= c[i].id %>
+                    <h3>Band: </h3> <%= c[i].id %>
+                    <h3>VCF: </h3> <%= c[i].id %>
+                    <h3>ACF: </h3> <%= c[i].id %>
+                    <h3>Charge Type: </h3> <%= c[i].id %>
+                    <h3>Transmission Type: </h3> <%= c[i].id %>
+                    <h3>Charge: </h3> <%= c[i].id %>
                 </div>
-                <div class="innerListItem">
-                    <h3>ID: </h3>
-                    <h3>Name: </h3>
-                    <h3>Band: </h3>
-                    <h3>VCF: </h3>
-                    <h3>ACF: </h3>
-                    <h3>Charge Type: </h3>
-                    <h3>Transmission Type: </h3>
-                    <h3>Charge: </h3>
-                </div>
-                <div class="innerListItem">
-                    <h3>ID: </h3>
-                    <h3>Name: </h3>
-                    <h3>Band: </h3>
-                    <h3>VCF: </h3>
-                    <h3>ACF: </h3>
-                    <h3>Charge Type: </h3>
-                    <h3>Transmission Type: </h3>
-                    <h3>Charge: </h3>
-                </div>
+            <% } %>
             </div>
         </div>
     </div>

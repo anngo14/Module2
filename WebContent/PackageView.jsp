@@ -2,7 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="POJO.Package" %>
-<%! ArrayList<Package> p = session.getAttribute("") %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,26 +36,24 @@
             <div class="searchContainer">
                 <form action="MainServlet" method="get">
                     <span>Package ID: </span><input type="text">
-                    <input type="submit" value="Search">
-                    <input type="submit" value="Edit">
-                    <input type="submit" value="Delete">
+                    <input type="submit" value="Search" disabled>
+                    <input type="submit" value="Edit" disabled>
+                    <input type="submit" value="Delete" disabled>
                 </form>
             </div>
             <div class="innerList">
-            <% for(int i = 0; i < p.size(); i++) { %>
                 <div class="innerListItem">
-                    <h3>ID: </h3><%! p[i].id %>
-                    <h3>Name: </h3><%! p[i].id %>
-                    <h3>Category: </h3><%! p[i].id %>
-                    <h3>Charging Type: </h3><%! p[i].id %>
-                    <h3>Transmission TYpe: </h3><%! p[i].id %>
-                    <h3>Cost: </h3><%! p[i].id %>
-                    <h3>Available From: </h3><%! p[i].id %>
-                    <h3>Available To: </h3><%! p[i].id %>
-                    <h3>Package default: </h3><%! p[i].id %>
-                    <h3>Channel Id</h3><%! p[i].id %>
+                    <h3>ID: </h3><%=  %>
+                    <h3>Name: </h3><%=  %>
+                    <h3>Category: </h3><%=  %>
+                    <h3>Charging Type: </h3><%=  %>
+                    <h3>Transmission TYpe: </h3><%=  %>
+                    <h3>Cost: </h3><%=  %>
+                    <h3>Available From: </h3><%=  %>
+                    <h3>Available To: </h3><%=  %>
+                    <h3>Package default: </h3><%=  %>
+                    <h3>Channel Id</h3><%=  %>
                 </div>
-             <% } %>
             </div>
         </div>
     </div>
