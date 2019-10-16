@@ -376,7 +376,7 @@ public class MainLogic {
 	{
 		ArrayList<Package> list = new ArrayList<Package>();
 		conn = JDBCUtility.getConnection();
-		String sql = "SELECT * FROM package WHERE package_id = ?";
+		String sql = "SELECT * FROM package";
 		ps = conn.prepareStatement(sql);
 		rs = ps.executeQuery();
 		
