@@ -13,9 +13,9 @@
             <h1>Infinity</h1>
         </div>
         <div class="navLinks">
-            <a href="SetTopBox.html">Set Top Box</a> | 
-            <a href="Package.html">Packages</a> |
-            <a href="Channel.html">Channels</a> | 
+            <a href="#">Set Top Box</a> | 
+            <a href="#">Packages</a> |
+            <a href="#">Channels</a> | 
             <a href="#">Logout</a>
         </div>
     </div>
