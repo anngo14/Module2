@@ -1,4 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="POJO.Package" %>
@@ -19,10 +18,10 @@
             <h1>Infinity</h1>
         </div>
         <div class="navLinks">
-            <a href="SetTopBox.html">Set Top Box</a> |
-            <a href="Channel.html">Channel</a> |
-            <a href="Package.html">Packages</a> |
-            <a href="homepage.html">Logout</a>
+            <a href="SetTopBox.jsp">Set Top Box</a> |
+            <a href="Channel.jsp">Channel</a> |
+            <a href="Package.jsp">Packages</a> |
+            <a href="homepage.jsp">Logout</a>
         </div>
     </div>
     <div class="mainConatiner">
@@ -32,7 +31,7 @@
                     <h2>Packages</h2>
                 </div>
                 <div class="innerHeadingLink">
-                    <a href="PackageDetails.html">Add a Package</a>
+                    <a href="PackageDetails.jsp">Add a Package</a>
                 </div>
             </div>
             <div class="searchContainer">
@@ -48,8 +47,9 @@
             MainLogic ml=new MainLogic();
             ServletContext sc=request.getServletContext();
         	HttpSession sess=(HttpSession) sc.getAttribute("session");
-			String operation=(String)sess.getAttribute("operation");
-            if(operation.equals("") || operation.equals("viewAll") || operation ==null)
+			//String operation=(String)sess.getAttribute("operation");
+			session.setAttribute("operation", "");
+            if(session.getAttribute("operation").equals("") || session.getAttribute("operation").equals("viewAll") || session.getAttribute("operation") ==null)
             {
             ArrayList<Package> result=ml.viewChannelPackage();
             for(int i=0;i<result.size();i++)

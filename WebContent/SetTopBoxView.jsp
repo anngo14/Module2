@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="POJO.STB" %>
-<%! STB s = session.getAttribute("") %>
+<%@ page import="POJO.STB, Logic.MainLogic" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,10 +17,10 @@
             <h1>Infinity</h1>
         </div>
         <div class="navLinks">
-            <a href="SetTopBox.html">Set Top Box</a> |
-            <a href="Channel.html">Channel</a> |
-            <a href="Package.html">Packages</a> |
-            <a href="homepage.html">Logout</a>
+            <a href="SetTopBox.jsp">Set Top Box</a> |
+            <a href="Channel.jsp">Channel</a> |
+            <a href="Package.jsp">Packages</a> |
+            <a href="homepage.jsp">Logout</a>
         </div>
     </div>
     <div class="mainConatiner">
@@ -43,20 +42,30 @@
                 </form>
             </div>
             <div class="innerList">
+            <%! MainLogic m1 = new MainLogic(); %>
+              <%
+            ServletContext sc=request.getServletContext();
+        	HttpSession sess=(HttpSession) sc.getAttribute("session");
+			String operation=(String)sess.getAttribute("operation");
+            if(operation.equals("searchSTB"))
+            {
+            	STB s = m1.viewSTB(Integer.parseInt(request.getParameter("stb_id")));
+            %>
                 <div class="innerListItem">
-                    <h3>ID: </h3><%= s.id %>
-                    <h3>Features: </h3><%= s.id %>
-                    <h4>Length: </h4><%= s.id %>
-                    <h4>Breadth: </h4><%= s.id %>
-                    <h4>Width: </h4><%= s.id %>
-                    <h3>Price: </h3><%= s.id %>
-                    <h3>Installation Charge: </h3><%= s.id %>
-                    <h3>Upgrade Charge: </h3><%= s.id %>
-                    <h3>Discount: </h3><%= s.id %>
-                    <h3>Billing Type: </h3><%= s.id %>
-                    <h3>Refundable Deposit Amount: </h3><%= s.id %>
-                    <h3>Inventory ID: </h3><%= s.id %>
+                    <h3>ID: </h3><%= s.getStb_id() %>
+                    <h3>Features: </h3><%= s.getStb_features() %>
+                    <h4>Length: </h4><%= s.getStb_length() %>
+                    <h4>Breadth: </h4><%= s.getStb_breadth() %>
+                    <h4>Width: </h4><%= s.getStb_width() %>
+                    <h3>Price: </h3><%= s.getStb_price() %>
+                    <h3>Installation Charge: </h3><%= s.getStb_installation_charges() %>
+                    <h3>Upgrade Charge: </h3><%= s.getStb_upgradation_charge() %>
+                    <h3>Discount: </h3><%= s.getStb_discount() %>
+                    <h3>Billing Type: </h3><%= s.getStb_billing_type() %>
+                    <h3>Refundable Deposit Amount: </h3><%= s.getStb_refundable_deposit_amount() %>
+                    <h3>Inventory ID: </h3><%= s.getStb_inventory_id() %>
                 </div>
+                <% } %>
             </div>
         </div>
     </div>

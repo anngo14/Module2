@@ -16,7 +16,7 @@
             <h1>Infinity</h1>
         </div>
         <div class="navLinks">
-            <a href="SetTopBox.html">Set Top Box</a>
+            <a href="SetTopBox.jsp">Set Top Box</a>
         </div>
     </div>
     <div class="mainContainer">
@@ -32,7 +32,7 @@
                     Select box type: <input type="text" name="stb_type"><br>
                     Features: <input type="text" name="stb_features"> <br>
                     Length: <input type="text" name="stb_length"> <br>
-                    Breadth: <input type="text" name="stb_breath"> <br>
+                    Breadth: <input type="text" name="stb_breadth"> <br>
                     Width: <input type="text" name="stb_width"> <br>
                     Price: <input type="text" name="stb_price"> <br>
                     Installation charge: <input type="text" name="stb_installation_charges"> <br>

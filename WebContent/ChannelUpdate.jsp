@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="POJO.Channel" %>
+<%@ page import="Logic.MainLogic" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,7 @@
             <h1>Infinity</h1>
         </div>
         <div class="navLinks">
-            <a href="Channel.html">Channel</a>
+            <a href="Channel.jsp">Channel</a>
         </div>
     </div>
     <div class="mainContainer">
@@ -27,19 +28,29 @@
                 </div>
             </div>
             <div class="innerForm">
+             <%
+            MainLogic ml=new MainLogic();
+            ServletContext sc=request.getServletContext();
+        	HttpSession sess=(HttpSession) sc.getAttribute("session");
+			String operation=(String)sess.getAttribute("operation");
+            if(operation.equals("editChannel"))
+            {
+            	Channel c = m1.viewChannel(request.getParameter("channel_id"));
+            %>
                 <form action="MainServlet" method="post" value ="hidden">
-                    Id: <input type="text" name="channel_id" value=<%= %> readonly><br>
-                    Name: <input type="text" name="channel_name" value=<%= %>><br>
-                    Band: <input type="text" name="channel_band"value=<%= %>> <br>
-                    VCF: <input type="text" name="channel_vcf"value=<%= %>> <br>
-                    ACF: <input type="text" name="channel_acf"value=<%= %>> <br>
-                    Charge Type: <input type="text" name="channel_chargetype"value=<%= %>> <br>
-                    Transmission type: <input type="text" name="channel_transmission_type"value=<%= %>> <br>
-                    charge: <input type="text" name="channel_change"value=<%= %>> <br>
+                    Id: <input type="text" name="channel_id" value=<%= c.getChannel_id()%> readonly><br>
+                    Name: <input type="text" name="channel_name" value=<%= c.getChannel_name()%>><br>
+                    Band: <input type="text" name="channel_band"value=<%= c.getChannel_band()%>> <br>
+                    VCF: <input type="text" name="channel_vcf"value=<%= c.getChannel_vcf()%>> <br>
+                    ACF: <input type="text" name="channel_acf"value=<%= c.getChannel_acf()%>> <br>
+                    Charge Type: <input type="text" name="channel_chargetype"value=<%= c.getChannel_change_type()%>> <br>
+                    Transmission type: <input type="text" name="channel_transmission_type"value=<%= c.getTransmission_type()%>> <br>
+                    charge: <input type="text" name="channel_change"value=<%= c.getChannel_change()%>> <br>
                             
                     <input type="submit" value="Save">
                    <input type="hidden" name="option" value="StbChannel">
                 </form>
+               <% } %>
             </div>
         </div>
     </div>

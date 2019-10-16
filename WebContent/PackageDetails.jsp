@@ -16,7 +16,7 @@
             <h1>Infinity</h1>
         </div>
         <div class="navLinks">
-            <a href="Package.html">Package</a>
+            <a href="Package.jsp">Package</a>
         </div>
     </div>
     <div class="mainContainer">

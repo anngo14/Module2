@@ -16,7 +16,7 @@
             <h1>Infinity</h1>
         </div>
         <div class="navLinks">
-            <a href="Channel.html">Channel</a>
+            <a href="Channel.jsp">Channel</a>
         </div>
     </div>
     <div class="mainContainer">

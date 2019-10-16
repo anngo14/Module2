@@ -80,18 +80,15 @@ public class MainLogic {
 		{
 			STB temp = new STB(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getDouble(7), rs.getDouble(8), rs.getDouble(9), rs.getDouble(10), rs.getString(11), rs.getDouble(12), rs.getInt(13));
 			list.add(temp);
-			rs.close();
-			ps.close();
-			conn.close();
 		}
 		rs.close();
 		ps.close();
 		conn.close();
 		return list;
 	}
-	public int updateSTB(STB box) throws SQLException
+	public int updateSTB(STB box) throws SQLException, ClassNotFoundException
 	{
-		
+		conn = JDBCUtility.getConnection();
 		String sql = "UPDATE STB SET stb_type=?, stb_features=?, stb_length=?, stb_breath=?, stb_width=?, stb_price=?, stb_installation_charge=?, stb_upgradation_charge=?, stb_discount=?, stb_billing_type=?, stb_refundable_deposit_amount=? WHERE stb_id=?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, box.getStb_type());
@@ -179,9 +176,6 @@ public class MainLogic {
 			STB_Inventory temp = new STB_Inventory(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getString(7));
 			System.out.println(temp);
 			list.add(temp);
-			rs.close();
-			ps.close();
-			conn.close();
 		}
 		rs.close();
 		ps.close();

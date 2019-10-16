@@ -18,10 +18,10 @@
             <h1>Infinity</h1>
         </div>
         <div class="navLinks">
-            <a href="SetTopBox.html">Set Top Box</a> |
-            <a href="Channel.html">Channel</a> |
-            <a href="Package.html">Packages</a> |
-            <a href="homepage.html">Logout</a>
+            <a href="SetTopBox.jsp">Set Top Box</a> |
+            <a href="Channel.jsp">Channel</a> |
+            <a href="Package.jsp">Packages</a> |
+            <a href="homepage.jsp">Logout</a>
         </div>
     </div>
     <div class="mainConatiner">
@@ -31,15 +31,15 @@
                     <h2>Set Top Boxes</h2>
                 </div>
                 <div class="innerHeadingLink">
-                    <a href="SetTopBoxDetails.html">Add a STB</a>
+                    <a href="SetTopBoxDetails.jsp">Add a STB</a>
                 </div>
             </div>
             <div class="searchContainer">
                 <form action="MainServlet" method="get">
                     <span>STB ID: </span><input type="text" name="stb_id">
-                    <input type="submit" name="operation" value="searchSTB">
-                    <input type="submit" name="operation" value="editSTB">
-                    <input type="submit" name="opertaion" value="deleteSTB">
+                    <input type="submit" name="Operation" value="searchSTB">
+                    <input type="submit" name="Operation" value="editSTB">
+                    <input type="submit" name="Operation" value="deleteSTB">
                 </form>
             </div>
             <div class="innerList">
@@ -47,7 +47,9 @@
             MainLogic ml=new MainLogic();
             ServletContext sc=request.getServletContext();
         	HttpSession sess=(HttpSession) sc.getAttribute("session");
-			String operation=(String)sess.getAttribute("operation");
+			//String operation=(String)sess.getAttribute("operation");
+			session.setAttribute("operation", "");
+			String operation= session.getAttribute("operation").toString();
             if(operation.equals("") || operation.equals("viewAll") || operation ==null)
             {
             ArrayList<STB> result=ml.viewAllSTB();

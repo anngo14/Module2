@@ -19,10 +19,10 @@
             <h1>Infinity</h1>
         </div>
         <div class="navLinks">
-            <a href="SetTopBox.html">Set Top Box</a> |
-            <a href="Channel.html">Channel</a> |
-            <a href="Package.html">Packages</a> |
-            <a href="homepage.html">Logout</a>
+            <a href="SetTopBox.jsp">Set Top Box</a> |
+            <a href="Channel.jsp">Channel</a> |
+            <a href="Package.jsp">Packages</a> |
+            <a href="homepage.jsp">Logout</a>
         </div>
     </div>
     <div class="mainConatiner">
@@ -32,7 +32,7 @@
                     <h2>Channels</h2>
                 </div>
                 <div class="innerHeadingLink">
-                    <a href="ChannelDetails.html">Add a Channel</a>
+                    <a href="ChannelDetails.jsp">Add a Channel</a>
                 </div>
             </div>
             <div class="searchContainer">
@@ -48,7 +48,8 @@
             MainLogic ml=new MainLogic();
             ServletContext sc=request.getServletContext();
         	HttpSession sess=(HttpSession) sc.getAttribute("session");
-			String operation=(String)sess.getAttribute("operation");
+        	session.setAttribute("operation", "");
+			String operation= session.getAttribute("operation").toString();
             if(operation.equals("") || operation.equals("viewAll") || operation ==null)
             {
             ArrayList<Channel> result=ml.viewAllChannel();

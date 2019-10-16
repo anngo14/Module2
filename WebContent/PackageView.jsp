@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="POJO.Package" %>
+<%@ page import="Logic.MainLogic" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +18,10 @@
             <h1>Infinity</h1>
         </div>
         <div class="navLinks">
-            <a href="SetTopBox.html">Set Top Box</a> |
-            <a href="Channel.html">Channel</a> |
-            <a href="Package.html">Packages</a> |
-            <a href="homepage.html">Logout</a>
+            <a href="SetTopBox.jsp">Set Top Box</a> |
+            <a href="Channel.jsp">Channel</a> |
+            <a href="Package.jsp">Packages</a> |
+            <a href="homepage.jsp">Logout</a>
         </div>
     </div>
     <div class="mainConatiner">
@@ -30,7 +31,7 @@
                     <h2>Packages</h2>
                 </div>
                 <div class="innerHeadingLink">
-                    <a href="PackageDetails.html">Add a Package</a>
+                    <a href="PackageDetails.jsp">Add a Package</a>
                 </div>
             </div>
             <div class="searchContainer">
@@ -42,18 +43,28 @@
                 </form>
             </div>
             <div class="innerList">
+               <%
+            MainLogic ml=new MainLogic();
+            ServletContext sc=request.getServletContext();
+        	HttpSession sess=(HttpSession) sc.getAttribute("session");
+			String operation=(String)sess.getAttribute("operation");
+            if(operation.equals("searchPkg"))
+            {
+            	Package p = m1.viewChannelPackage(request.getParameter("pkg_id"));
+            %>
                 <div class="innerListItem">
-                    <h3>ID: </h3><%=  %>
-                    <h3>Name: </h3><%=  %>
-                    <h3>Category: </h3><%=  %>
-                    <h3>Charging Type: </h3><%=  %>
-                    <h3>Transmission TYpe: </h3><%=  %>
-                    <h3>Cost: </h3><%=  %>
-                    <h3>Available From: </h3><%=  %>
-                    <h3>Available To: </h3><%=  %>
-                    <h3>Package default: </h3><%=  %>
-                    <h3>Channel Id</h3><%=  %>
+                    <h3>ID: </h3><%= p.getPackage_id() %>
+                    <h3>Name: </h3><%= p.getPackage_name() %>
+                    <h3>Category: </h3><%= p.getPackage_category() %>
+                    <h3>Charging Type: </h3><%= p.getPackage_charging_type() %>
+                    <h3>Transmission TYpe: </h3><%= p.getTransmission_type() %>
+                    <h3>Cost: </h3><%= p.getPackage_cost() %>
+                    <h3>Available From: </h3><%= p.getPackage_available_from() %>
+                    <h3>Available To: </h3><%= p.getPackage_available_to() %>
+                    <h3>Package default: </h3><%= p.getPackage_default() %>
+                    <h3>Channel Id</h3><%= p.getChannel_id() %>
                 </div>
+               <% } %>
             </div>
         </div>
     </div>

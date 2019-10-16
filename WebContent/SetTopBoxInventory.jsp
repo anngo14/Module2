@@ -18,10 +18,10 @@
             <h1>Infinity</h1>
         </div>
         <div class="navLinks">
-            <a href="SetTopBox.html">Set Top Box</a> |
-            <a href="Channel.html">Channel</a> |
-            <a href="Package.html">Packages</a> |
-            <a href="homepage.html">Logout</a>
+            <a href="SetTopBox.jsp">Set Top Box</a> |
+            <a href="Channel.jsp">Channel</a> |
+            <a href="Package.jsp">Packages</a> |
+            <a href="homepage.jsp">Logout</a>
         </div>
     </div>
     <div class="mainConatiner">
@@ -31,7 +31,7 @@
                     <h2>Set Top Box Inventory</h2>
                 </div>
                 <div class="innerHeadingLink">
-                    <a href="SetTopBoxDetails.html">Add a STB</a>
+                    <a href="SetTopBoxDetails.jsp">Add a STB</a>
                 </div>
             </div>
             <div class="searchContainer">
@@ -47,8 +47,9 @@
             MainLogic ml=new MainLogic();
             ServletContext sc=request.getServletContext();
         	HttpSession sess=(HttpSession) sc.getAttribute("session");
-			String operation=(String)sess.getAttribute("operation");
-            if(operation.equals("") || operation.equals("viewAll") || operation ==null)
+			//String operation=(String)sess.getAttribute("operation");
+			session.setAttribute("operation", "");
+            if(session.getAttribute("operation").equals("") || session.getAttribute("operation").equals("viewAll") || session.getAttribute("operation") ==null)
             {
             ArrayList<STB_Inventory> result=ml.viewAllSTB_Inventory();
             for(int i=0;i<result.size();i++)

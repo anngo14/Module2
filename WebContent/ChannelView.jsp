@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="POJO.Channel" %>
+<%@ page import="Logic.MainLogic" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,10 +18,10 @@
             <h1>Infinity</h1>
         </div>
         <div class="navLinks">
-            <a href="SetTopBox.html">Set Top Box</a> |
-            <a href="Channel.html">Channel</a> |
-            <a href="Package.html">Packages</a> |
-            <a href="homepage.html">Logout</a>
+            <a href="SetTopBox.jsp">Set Top Box</a> |
+            <a href="Channel.jsp">Channel</a> |
+            <a href="Package.jsp">Packages</a> |
+            <a href="homepage.jsp">Logout</a>
         </div>
     </div>
     <div class="mainConatiner">
@@ -30,7 +31,7 @@
                     <h2>Channels</h2>
                 </div>
                 <div class="innerHeadingLink">
-                    <a href="ChannelDetails.html">Add a Channel</a>
+                    <a href="ChannelDetails.jsp">Add a Channel</a>
                 </div>
             </div>
             <div class="searchContainer">
@@ -42,16 +43,26 @@
                 </form>
             </div>
             <div class="innerList">
+               <%
+            MainLogic ml=new MainLogic();
+            ServletContext sc=request.getServletContext();
+        	HttpSession sess=(HttpSession) sc.getAttribute("session");
+			String operation=(String)sess.getAttribute("operation");
+            if(operation.equals("searchChannel"))
+            {
+            	Channel c = m1.viewChannel(request.getParameter("channel_id"));
+            %>
                 <div class="innerListItem">
-                    <h3>ID: </h3><%=  %>
-                    <h3>Name: </h3> <%=  %>
-                    <h3>Band: </h3> <%=  %>
-                    <h3>VCF: </h3> <%=  %>
-                    <h3>ACF: </h3> <%=  %>
-                    <h3>Charge Type: </h3> <%=  %>
-                    <h3>Transmission Type: </h3> <%=  %>
-                    <h3>Charge: </h3> <%=  %>
+                    <h3>ID: </h3><%= c.getChannel_id() %>
+                    <h3>Name: </h3> <%= c.getChannel_name() %>
+                    <h3>Band: </h3> <%= c.getChannel_band() %>
+                    <h3>VCF: </h3> <%= c.getChannel_vcf() %>
+                    <h3>ACF: </h3> <%= c.getChannel_acf() %>
+                    <h3>Charge Type: </h3> <%= c.getChannel_change_type() %>
+                    <h3>Transmission Type: </h3> <%= c.getTransmission_type() %>
+                    <h3>Charge: </h3> <%= c.getChannel_change() %>
                 </div>
+            <% } %>
             </div>
         </div>
     </div>

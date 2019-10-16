@@ -43,7 +43,7 @@ public class MainServlet extends HttpServlet {
 				session.setAttribute("stb", stb);
 				session.setAttribute("operation", "searchSTB");
 				getServletContext().setAttribute("session", session);
-				getServletContext().getRequestDispatcher("SetTopBox.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/SetTopBoxView.jsp").forward(request, response);
 			}
 			catch(ClassNotFoundException | SQLException | NumberFormatException e)
 			{
@@ -54,6 +54,11 @@ public class MainServlet extends HttpServlet {
 		else if(operation.contentEquals("editSTB"))
 		{
 			String stbId=request.getParameter("stb_id");
+			HttpSession session = request.getSession();
+			session.setAttribute("operation", "editSTB");
+			session.setAttribute("stb_id", stbId);
+			getServletContext().setAttribute("session", session);
+			getServletContext().getRequestDispatcher("/SetTopBoxUpdate.jsp").forward(request, response);
 			try
 			{
 				ml.viewSTB(Integer.parseInt(stbId));
@@ -72,7 +77,7 @@ public class MainServlet extends HttpServlet {
 				HttpSession session=request.getSession();
 				session.setAttribute("operation", "viewAll");
 				getServletContext().setAttribute("session", session);
-				getServletContext().getRequestDispatcher("SetTopBox.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/SetTopBox.jsp").forward(request, response);
 			}
 			catch(ClassNotFoundException | SQLException | NumberFormatException e)
 			{
@@ -258,7 +263,36 @@ public class MainServlet extends HttpServlet {
 			STB stb=new STB(stb_id, stb_type, stb_features, stb_length, stb_breadth, stb_width, stb_price, stb_installation_charges, stb_upgradation_charge, stb_discount, stb_billing_type, stb_refundable_deposit_amount, stb_inventory_id);
 			try {
 				ml.createSTB(stb);
+				response.sendRedirect("SetTopBox.jsp");
 			} catch (SQLException | ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(option.contentEquals("STBUpdate"))
+		{
+			int stb_id=Integer.parseInt(request.getParameter("stb_id"));
+			String stb_type=request.getParameter("stb_type");
+			String stb_features=request.getParameter("stb_features");
+			int stb_length=Integer.parseInt(request.getParameter("stb_length"));
+			int stb_breadth=Integer.parseInt(request.getParameter("stb_breadth"));
+			int stb_width=Integer.parseInt(request.getParameter("stb_width"));
+			double stb_price=Double.parseDouble(request.getParameter("stb_price"));
+			double stb_installation_charges=Double.parseDouble(request.getParameter("stb_installation_charges"));
+			double stb_upgradation_charge=Double.parseDouble(request.getParameter("stb_upgradation_charge"));
+			double stb_discount=Double.parseDouble(request.getParameter("stb_discount"));
+			String stb_billing_type=request.getParameter("stb_billing_type");
+			double stb_refundable_deposit_amount=Double.parseDouble(request.getParameter("stb_refundable_deposit_amount"));
+			int stb_inventory_id=Integer.parseInt(request.getParameter("stb_inventory_id"));
+			
+			STB stb=new STB(stb_id, stb_type, stb_features, stb_length, stb_breadth, stb_width, stb_price, stb_installation_charges, stb_upgradation_charge, stb_discount, stb_billing_type, stb_refundable_deposit_amount, stb_inventory_id);
+			try {
+				ml.updateSTB(stb);
+				response.sendRedirect("SetTopBox.jsp");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

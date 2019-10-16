@@ -17,10 +17,10 @@
             <h1>Infinity</h1>
         </div>
         <div class="navLinks">
-            <a href="SetTopBox.html">Set Top Box</a> |
-            <a href="Channel.html">Channel</a> |
-            <a href="Package.html">Packages</a> |
-            <a href="homepage.html">Logout</a>
+            <a href="SetTopBox.jsp">Set Top Box</a> |
+            <a href="Channel.jsp">Channel</a> |
+            <a href="Package.jsp">Packages</a> |
+            <a href="homepage.jsp">Logout</a>
         </div>
     </div>
     <div class="mainConatiner">
@@ -30,7 +30,7 @@
                     <h2>Set Top Box Inventory</h2>
                 </div>
                 <div class="innerHeadingLink">
-                    <a href="SetTopBoxDetails.html">Add a STB</a>
+                    <a href="SetTopBoxDetails.jsp">Add a STB</a>
                 </div>
             </div>
             <div class="searchContainer">
@@ -42,15 +42,25 @@
                 </form>
             </div>
             <div class="innerList">
+                <%
+            MainLogic ml=new MainLogic();
+            ServletContext sc=request.getServletContext();
+        	HttpSession sess=(HttpSession) sc.getAttribute("session");
+			String operation=(String)sess.getAttribute("operation");
+            if(operation.equals("Search"))
+            {
+            	STB_Inventory s = m1.viewSTB_Inventory(request.getParameter("inventory_id"));
+            %>
                 <div class="innerListItem">
-                    <h3>ID: </h3><%=  %>
-                    <h3>Type: </h3><%=  %>
-                    <h3>Serial Number: </h3><%=  %>
-                    <h3>MAC ID: </h3><%=  %>
-                    <h3>Remote Asset ID: </h3><%=  %>
-                    <h3>Dish Asset ID: </h3><%=  %>
-                    <h3>Status: </h3><%=  %>
+                    <h3>ID: </h3><%= s.getStb_inventory_id() %>
+                    <h3>Type: </h3><%= s.getStb_type() %>
+                    <h3>Serial Number: </h3><%= s.getStb_serial_number() %>
+                    <h3>MAC ID: </h3><%= s.getStb_mac_id() %>
+                    <h3>Remote Asset ID: </h3><%= s.getRemote_asset_id() %>
+                    <h3>Dish Asset ID: </h3><%= s.getDish_asset_id() %>
+                    <h3>Status: </h3><%= s.getStatus() %>
                 </div>
+                <% } %>
             </div>
         </div>
     </div>

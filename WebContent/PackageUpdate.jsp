@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="POJO.Package" %>
+<%@ page import="Logic.MainLogic" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +17,7 @@
             <h1>Infinity</h1>
         </div>
         <div class="navLinks">
-            <a href="Package.html">Package</a>
+            <a href="Package.jsp">Package</a>
         </div>
     </div>
     <div class="mainContainer">
@@ -27,21 +28,31 @@
                 </div>
             </div>
             <div class="innerForm">
+             <%
+            MainLogic ml=new MainLogic();
+            ServletContext sc=request.getServletContext();
+        	HttpSession sess=(HttpSession) sc.getAttribute("session");
+			String operation=(String)sess.getAttribute("operation");
+            if(operation.equals("editPkg"))
+            {
+            	Package p = m1.viewChannelPackage(request.getParameter("pkg_id"));
+            %>
                 <form action="MainServlet" method="post" value ="hidden">
-                    ID: <input type="text" name="package_id" value=<%= %> readonly><br>
-                    Name: <input type="text" name="package_name"value=<%= %>><br>
-                    Category: <input type="text" name="package_category"value=<%= %>> <br>
-                    Charging Type: <input type="text" name="package_charging_type"value=<%= %>> <br>
-                    Transmission Type: <input type="text" name="package_transmission_type"value=<%= %>> <br>
-                    Cost: <input type="text" name="package_cost"value=<%= %>> <br>
-                    Available From: <input type="text" name="package_available_from"value=<%= %>> <br>
-                    Available To: <input type="text" name="package_available_to"value=<%= %>> <br>
-                    Package Default: <input type="text" name="package_default"value=<%= %>> <br>
-                    Channel Id: <input type="text" name="channel_id"value=<%= %>><br>
+                    ID: <input type="text" name="package_id" value=<%= p.getPackage_id()%> readonly><br>
+                    Name: <input type="text" name="package_name"value=<%= p.getPackage_name()%>><br>
+                    Category: <input type="text" name="package_category"value=<%= p.getPackage_category()%>> <br>
+                    Charging Type: <input type="text" name="package_charging_type"value=<%= p.getPackage_charging_type()%>> <br>
+                    Transmission Type: <input type="text" name="package_transmission_type"value=<%= p.getTransmission_type()%>> <br>
+                    Cost: <input type="text" name="package_cost"value=<%= p.getPackage_cost()%>> <br>
+                    Available From: <input type="text" name="package_available_from"value=<%= p.getPackage_available_from()%>> <br>
+                    Available To: <input type="text" name="package_available_to"value=<%= p.getPackage_available_to()%>> <br>
+                    Package Default: <input type="text" name="package_default"value=<%= p.getPackage_default()%>> <br>
+                    Channel Id: <input type="text" name="channel_id"value=<%= p.getChannel_id()%>><br>
                            
                     <input type="submit" value="Save">
                    <input type="hidden" name="option" value="StbPackage">
                </form>
+             <% } %>
             </div>
         </div>
     </div>
