@@ -474,6 +474,19 @@ public class MainLogic {
 		
 		return i;
 	}
+	public ArrayList<Feature> viewAllFeatures() throws ClassNotFoundException, SQLException
+	{
+		ArrayList<Feature> list = new ArrayList<Feature>();
+		conn = JDBCUtility.getConnection();
+		String sql = "";
+		ps = conn.prepareStatement(sql);
+		rs = ps.executeQuery();
+		while(rs.next())
+		{
+			
+		}
+		return list;
+	}
 	public int addCategory(String s, Package p) throws ClassNotFoundException, SQLException
 	{
 		conn = JDBCUtility.getConnection();
@@ -483,5 +496,18 @@ public class MainLogic {
 		int i = ps.executeUpdate();
 		
 		return i;
+	}
+	public ArrayList<Category> viewAllCategories() throws ClassNotFoundException, SQLException
+	{
+		ArrayList<Feature> list = new ArrayList<Feature>();
+		conn = JDBCUtility.getConnection();
+		String sql = "";
+		ps = conn.prepareStatement(sql);
+		rs = ps.executeQuery();
+		while(rs.next())
+		{
+			
+		}
+		return list;
 	}
 }
