@@ -477,16 +477,17 @@ public class MainLogic {
 		
 		return i;
 	}
-	public ArrayList<Feature> viewAllFeatures() throws ClassNotFoundException, SQLException
+	public ArrayList<String> viewAllFeatures(int id) throws ClassNotFoundException, SQLException
 	{
-		ArrayList<Feature> list = new ArrayList<Feature>();
+		ArrayList<String> list = new ArrayList<String>();
 		conn = JDBCUtility.getConnection();
-		String sql = "";
+		String sql = "SELECT * FROM Feature WHERE stb_id = ?";
 		ps = conn.prepareStatement(sql);
+		ps.setInt(1, id);
 		rs = ps.executeQuery();
 		while(rs.next())
 		{
-			
+			list.add(rs.getString("stb_features"));
 		}
 		return list;
 	}
@@ -500,16 +501,15 @@ public class MainLogic {
 		
 		return i;
 	}
-	public ArrayList<Category> viewAllCategories() throws ClassNotFoundException, SQLException
+	public ArrayList<String> viewAllCategories() throws ClassNotFoundException, SQLException
 	{
-		ArrayList<Feature> list = new ArrayList<Feature>();
+		ArrayList<String> list = new ArrayList<String>();
 		conn = JDBCUtility.getConnection();
-		String sql = "";
+		String sql = "SELECT * FROM Category";
 		ps = conn.prepareStatement(sql);
 		rs = ps.executeQuery();
 		while(rs.next())
 		{
-			
 		}
 		return list;
 	}
