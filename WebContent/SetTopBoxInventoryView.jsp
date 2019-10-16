@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="POJO.STB" %>
-<%! STB s = session.getAttribute("") %>
+<%@ page import="POJO.STB_Inventory" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +27,7 @@
         <div class="innerContainer">
             <div class="innerHeading">
                 <div class="innerHeadingLogo">
-                    <h2>Set Top Boxes</h2>
+                    <h2>Set Top Box Inventory</h2>
                 </div>
                 <div class="innerHeadingLink">
                     <a href="SetTopBoxDetails.html">Add a STB</a>
@@ -44,18 +43,13 @@
             </div>
             <div class="innerList">
                 <div class="innerListItem">
-                    <h3>ID: </h3><%= s.id %>
-                    <h3>Features: </h3><%= s.id %>
-                    <h4>Length: </h4><%= s.id %>
-                    <h4>Breadth: </h4><%= s.id %>
-                    <h4>Width: </h4><%= s.id %>
-                    <h3>Price: </h3><%= s.id %>
-                    <h3>Installation Charge: </h3><%= s.id %>
-                    <h3>Upgrade Charge: </h3><%= s.id %>
-                    <h3>Discount: </h3><%= s.id %>
-                    <h3>Billing Type: </h3><%= s.id %>
-                    <h3>Refundable Deposit Amount: </h3><%= s.id %>
-                    <h3>Inventory ID: </h3><%= s.id %>
+                    <h3>ID: </h3><%=  %>
+                    <h3>Type: </h3><%=  %>
+                    <h3>Serial Number: </h3><%=  %>
+                    <h3>MAC ID: </h3><%=  %>
+                    <h3>Remote Asset ID: </h3><%=  %>
+                    <h3>Dish Asset ID: </h3><%=  %>
+                    <h3>Status: </h3><%=  %>
                 </div>
             </div>
         </div>

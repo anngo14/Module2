@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="POJO.STB" %>
-<%! STB s = session.getAttribute("") %>
+<%@ page import="POJO.Package" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <title>Set Top Box Management</title>
+    <title>Package Management</title>
 </head>
 <body>
     <div class="navBar">
@@ -28,15 +27,15 @@
         <div class="innerContainer">
             <div class="innerHeading">
                 <div class="innerHeadingLogo">
-                    <h2>Set Top Boxes</h2>
+                    <h2>Packages</h2>
                 </div>
                 <div class="innerHeadingLink">
-                    <a href="SetTopBoxDetails.html">Add a STB</a>
+                    <a href="PackageDetails.html">Add a Package</a>
                 </div>
             </div>
             <div class="searchContainer">
                 <form action="MainServlet" method="get">
-                    <span>STB ID: </span><input type="text">
+                    <span>Package ID: </span><input type="text">
                     <input type="submit" value="Search" disabled>
                     <input type="submit" value="Edit" disabled>
                     <input type="submit" value="Delete" disabled>
@@ -44,18 +43,16 @@
             </div>
             <div class="innerList">
                 <div class="innerListItem">
-                    <h3>ID: </h3><%= s.id %>
-                    <h3>Features: </h3><%= s.id %>
-                    <h4>Length: </h4><%= s.id %>
-                    <h4>Breadth: </h4><%= s.id %>
-                    <h4>Width: </h4><%= s.id %>
-                    <h3>Price: </h3><%= s.id %>
-                    <h3>Installation Charge: </h3><%= s.id %>
-                    <h3>Upgrade Charge: </h3><%= s.id %>
-                    <h3>Discount: </h3><%= s.id %>
-                    <h3>Billing Type: </h3><%= s.id %>
-                    <h3>Refundable Deposit Amount: </h3><%= s.id %>
-                    <h3>Inventory ID: </h3><%= s.id %>
+                    <h3>ID: </h3><%=  %>
+                    <h3>Name: </h3><%=  %>
+                    <h3>Category: </h3><%=  %>
+                    <h3>Charging Type: </h3><%=  %>
+                    <h3>Transmission TYpe: </h3><%=  %>
+                    <h3>Cost: </h3><%=  %>
+                    <h3>Available From: </h3><%=  %>
+                    <h3>Available To: </h3><%=  %>
+                    <h3>Package default: </h3><%=  %>
+                    <h3>Channel Id</h3><%=  %>
                 </div>
             </div>
         </div>
