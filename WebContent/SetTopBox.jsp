@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<%@ page import="Logic.MainLogic" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="POJO.STB" %>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -31,55 +35,56 @@
             </div>
             <div class="searchContainer">
                 <form action="MainServlet" method="get">
-                    <span>STB ID: </span><input type="text">
-                    <input type="submit" value="Search">
-                    <input type="submit" value="Edit">
-                    <input type="submit" value="Delete">
+                    <span>STB ID: </span><input type="text" name="stb_id">
+                    <input type="submit" name="operation" value="searchSTB">
+                    <input type="submit" name="operation" value="editSTB">
+                    <input type="submit" name="opertaion" value="deleteSTB">
                 </form>
             </div>
             <div class="innerList">
+            <%
+            MainLogic ml=new MainLogic();
+            ServletContext sc=request.getServletContext();
+        	HttpSession sess=(HttpSession) sc.getAttribute("session");
+			String operation=(String)sess.getAttribute("operation");
+            if(operation.equals("") || operation.equals("viewAll") || operation ==null)
+            {
+            ArrayList<STB> result=ml.viewAllSTB();
+            for(int i=0;i<result.size();i++)
+            {
+            %>
                 <div class="innerListItem">
-                    <h3>ID: </h3>
-                    <h3>Features: </h3>
-                    <h4>Length: </h4>
-                    <h4>Breadth: </h4>
-                    <h4>Width: </h4>
-                    <h3>Price: </h3>
-                    <h3>Installation Charge: </h3>
-                    <h3>Upgrade Charge: </h3>
-                    <h3>Discount: </h3>
-                    <h3>Billing Type: </h3>
-                    <h3>Refundable Deposit Amount: </h3>
-                    <h3>Inventory ID: </h3>
+                    <h3>ID: <%=result.get(i).getStb_id() %></h3>
+                    <h3>Features: <%=result.get(i).getStb_features() %></h3>
+                    <h4>Length: <%=result.get(i).getStb_length() %></h4>
+                    <h4>Breadth: <%=result.get(i).getStb_breadth() %></h4>
+                    <h4>Width: <%=result.get(i).getStb_width() %></h4>
+                    <h3>Price: <%=result.get(i).getStb_price() %></h3>
+                    <h3>Installation Charge: <%=result.get(i).getStb_installation_charges() %></h3>
+                    <h3>Upgrade Charge: <%=result.get(i).getStb_upgradation_charge() %></h3>
+                    <h3>Discount: <%=result.get(i).getStb_discount() %></h3>
+                    <h3>Billing Type: <%=result.get(i).getStb_billing_type() %></h3>
+                    <h3>Refundable Deposit Amount: <%=result.get(i).getStb_refundable_deposit_amount() %></h3>
+                    <h3>Inventory ID:<%=result.get(i).getStb_inventory_id() %> </h3>
                 </div>
-                <div class="innerListItem">
-                    <h3>ID: </h3>
-                    <h3>Features: </h3>
-                    <h4>Length: </h4>
-                    <h4>Breadth: </h4>
-                    <h4>Width: </h4>
-                    <h3>Price: </h3>
-                    <h3>Installation Charge: </h3>
-                    <h3>Upgrade Charge: </h3>
-                    <h3>Discount: </h3>
-                    <h3>Billing Type: </h3>
-                    <h3>Refundable Deposit Amount: </h3>
-                    <h3>Inventory ID: </h3>
+            <%}}else{ 
+            	STB stb=(STB)sess.getAttribute("stb");
+			%>
+            <div class="innerListItem">
+                    <h3>ID: <%=stb.getStb_id() %></h3>
+                    <h3>Features: <%=stb.getStb_features() %></h3>
+                    <h4>Length: <%=stb.getStb_length() %></h4>
+                    <h4>Breadth: <%=stb.getStb_breadth() %></h4>
+                    <h4>Width: <%=stb.getStb_width() %></h4>
+                    <h3>Price: <%=stb.getStb_price() %></h3>
+                    <h3>Installation Charge: <%=stb.getStb_installation_charges() %></h3>
+                    <h3>Upgrade Charge: <%=stb.getStb_upgradation_charge() %></h3>
+                    <h3>Discount: <%=stb.getStb_discount() %></h3>
+                    <h3>Billing Type: <%=stb.getStb_billing_type() %></h3>
+                    <h3>Refundable Deposit Amount: <%=stb.getStb_refundable_deposit_amount() %></h3>
+                    <h3>Inventory ID:<%=stb.getStb_inventory_id() %> </h3>
                 </div>
-                <div class="innerListItem">
-                        <h3>ID: </h3>
-                        <h3>Features: </h3>
-                        <h4>Length: </h4>
-                        <h4>Breadth: </h4>
-                        <h4>Width: </h4>
-                        <h3>Price: </h3>
-                        <h3>Installation Charge: </h3>
-                        <h3>Upgrade Charge: </h3>
-                        <h3>Discount: </h3>
-                        <h3>Billing Type: </h3>
-                        <h3>Refundable Deposit Amount: </h3>
-                        <h3>Inventory ID: </h3>
-                </div>
+                <%} %>    
             </div>
         </div>
     </div>

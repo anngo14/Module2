@@ -45,6 +45,7 @@ public class MainLogic {
 		conn.close();
 		return i;
 	}
+	
 	public STB viewSTB(int id) throws SQLException, ClassNotFoundException
 	{
 		conn = JDBCUtility.getConnection();
@@ -426,6 +427,7 @@ public class MainLogic {
 		conn.close();
 		return i;
 	}
+	/*
 	public double calculateCost(Customer c)
 	{
 		conn = JDBCUtility.getConnection();
@@ -444,6 +446,7 @@ public class MainLogic {
 		conn.close();
 		return cost;
 	}
+	*/
 	public int selectPackage(int cid, Package p) throws ClassNotFoundException, SQLException
 	{
 		conn = JDBCUtility.getConnection();

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import POJO.Channel;
 import POJO.STB;
@@ -15,12 +16,14 @@ import POJO.STB_Inventory;
 import POJO.Package;
 
 import JDBC.JDBCUtility;
+import Logic.MainLogic;
 
 
 @WebServlet("/MainServlet")
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	MainLogic ml=new MainLogic();
     
     public MainServlet() {
         // TODO Auto-generated constructor stub
@@ -28,8 +31,54 @@ public class MainServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String operation=request.getParameter("Operation");
+		if(operation.contentEquals("searchSTB"))
+		{
+			String stbId=request.getParameter("stb_id");
+			try
+			{
+				STB stb=ml.viewSTB(Integer.parseInt(stbId));
+				HttpSession session=request.getSession();
+				session.setAttribute("stb", stb);
+				session.setAttribute("operation", "searchSTB");
+				getServletContext().setAttribute("session", session);
+				getServletContext().getRequestDispatcher("SetTopBox.jsp").forward(request, response);
+			}
+			catch(ClassNotFoundException | SQLException | NumberFormatException e)
+			{
+				//do something
+			}
+			
+		}
+		else if(operation.contentEquals("editSTB"))
+		{
+			String stbId=request.getParameter("stb_id");
+			try
+			{
+				//ml.viewSTB(Integer.parseInt(stbId));
+			}
+			catch(ClassNotFoundException | SQLException | NumberFormatException e)
+			{
+				//do something
+			}
+		}
+		else if(operation.contentEquals("deleteSTB"))
+		{
+			String stbId=request.getParameter("stb_id");
+			try
+			{
+				ml.deleteSTB(Integer.parseInt(stbId));
+				HttpSession session=request.getSession();
+				session.setAttribute("operation", "viewAll");
+				getServletContext().setAttribute("session", session);
+				getServletContext().getRequestDispatcher("SetTopBox.jsp").forward(request, response);
+			}
+			catch(ClassNotFoundException | SQLException | NumberFormatException e)
+			{
+				//do something
+			}
+		}
 	}
 
 	
