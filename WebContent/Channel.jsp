@@ -78,6 +78,7 @@
             %>
                 <div class="innerListItem">
                     <h3>ID: <%=result.get(i).getChannel_id() %></h3>
+                    <h3>Package ID: <%=result.get(i).getPackage_id() %></h3>
                     <h3>Name: <%=result.get(i).getChannel_name() %></h3> 
                     <h3>Band: <%=result.get(i).getChannel_band() %></h3> 
                     <h3>VCF: <%=result.get(i).getChannel_vcf() %> Mhz</h3> 
@@ -85,6 +86,7 @@
                     <h3>Charge Type: <%=result.get(i).getChannel_change_type() %></h3> 
                     <h3>Transmission Type: <%=result.get(i).getTransmission_type() %></h3> 
                     <h3>Charge: <%=result.get(i).getChannel_change() %></h3> 
+                	<h3>Status: <%=result.get(i).getChannel_status() %></h3>
                 </div>
             <%}}else{ 
             	Channel channel=(Channel)sess.getAttribute("channel");

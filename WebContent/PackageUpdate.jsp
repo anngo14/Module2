@@ -64,11 +64,11 @@
                     <label class="formLabel">Available To: </label><input type="date" name="package_available_to"value=<%= p.getPackage_available_to()%> required> <br>
                     <label class="formLabel">Package Default: </label><!-- <input type="text" name="package_default"value=<%= p.getPackage_default()%> required> <br> -->
                     <%if(p.getPackage_default().equals("Yes")){ %>
-                    <input type="radio" name="package_default" value="Yes" checked>Yes
-                    <input type="radio" name="package_default" value="No">No
+                    <input type="radio" name="package_default" value="Yes" checked> Yes
+                    <input type="radio" name="package_default" value="No"> No
                     <%}else{ %>
-                    <input type="radio" name="package_default" value="Yes">Yes
-                    <input type="radio" name="package_default" value="No" checked>No
+                    <input type="radio" name="package_default" value="Yes"> Yes
+                    <input type="radio" name="package_default" value="No" checked> No
                     <% } %><br>
                     <label class="formLabel">Channel Id: </label><input type="text" name="channel_id"value=<%= p.getChannel_id()%> required><br>
                            

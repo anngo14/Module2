@@ -318,14 +318,14 @@ public class MainServlet extends HttpServlet {
 			int dish_asset_id=Integer.parseInt(request.getParameter("dish_asset_id"));
 			String status=request.getParameter("stb_status");
 			
-			STB_Inventory stbInventory=new STB_Inventory(stb_type, stb_inventory_id, stb_serial_number, stb_mac_id, remote_asset_id, dish_asset_id, status);
+			/*STB_Inventory stbInventory=new STB_Inventory(stb_type, stb_inventory_id, stb_serial_number, stb_mac_id, remote_asset_id, dish_asset_id, status);
 			try {
 				ml.createSTB_Inventory(stbInventory);
 			} catch (SQLException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				response.sendRedirect("404Error.jsp");
-			}
+			}*/
 		}
 		else if(option.contentEquals("STB"))
 		{
@@ -388,15 +388,17 @@ public class MainServlet extends HttpServlet {
 		else if(option.contentEquals("StbChannel"))
 		{
 			int channel_id=Integer.parseInt(request.getParameter("channel_id"));
+			int package_id=Integer.parseInt(request.getParameter("package_id"));
 			String channel_name=request.getParameter("channel_name");
-			int channel_band=Integer.parseInt(request.getParameter("channel_band"));;
-			double channel_vcf=Double.parseDouble(request.getParameter("channel_vcf"));
-			double channel_acf=Double.parseDouble(request.getParameter("channel_acf"));
+			String channel_band=request.getParameter("channel_band");
+			String channel_vcf=request.getParameter("channel_vcf");
+			String channel_acf=request.getParameter("channel_acf");
 			String channel_chargetype=request.getParameter("channel_chargetype");
 			String channel_transmission_type=request.getParameter("channel_transmission_type");
 			double channel_change=Double.parseDouble(request.getParameter("channel_change"));
+			String channel_status = request.getParameter("channel_status");
 			
-			Channel channel=new Channel(channel_id, channel_name, channel_band, channel_vcf, channel_acf, channel_chargetype, channel_transmission_type, channel_change);
+			Channel channel = new Channel(channel_id, package_id, channel_name, channel_band, channel_vcf, channel_acf, channel_chargetype, channel_transmission_type, channel_change, channel_status);
 			try {
 				ml.createChannel(channel);
 				response.sendRedirect("Channel.jsp");
@@ -409,15 +411,17 @@ public class MainServlet extends HttpServlet {
 		else if(option.contentEquals("ChannelUpdate"))
 		{
 			int channel_id=Integer.parseInt(request.getParameter("channel_id"));
+			int package_id=Integer.parseInt(request.getParameter("package_id"));
 			String channel_name=request.getParameter("channel_name");
-			int channel_band=Integer.parseInt(request.getParameter("channel_band"));;
-			double channel_vcf=Double.parseDouble(request.getParameter("channel_vcf"));
-			double channel_acf=Double.parseDouble(request.getParameter("channel_acf"));
+			String channel_band=request.getParameter("channel_band");
+			String channel_vcf=request.getParameter("channel_vcf");
+			String channel_acf=request.getParameter("channel_acf");
 			String channel_chargetype=request.getParameter("channel_chargetype");
 			String channel_transmission_type=request.getParameter("channel_transmission_type");
 			double channel_change=Double.parseDouble(request.getParameter("channel_change"));
+			String channel_status = request.getParameter("channel_status");
 			
-			Channel channel=new Channel(channel_id, channel_name, channel_band, channel_vcf, channel_acf, channel_chargetype, channel_transmission_type, channel_change);
+			Channel channel = new Channel(channel_id, package_id, channel_name, channel_band, channel_vcf, channel_acf, channel_chargetype, channel_transmission_type, channel_change, channel_status);
 			try {
 				ml.updateChannel(channel);
 				response.sendRedirect("Channel.jsp");
@@ -439,10 +443,9 @@ public class MainServlet extends HttpServlet {
 			String package_available_from=request.getParameter("package_available_from");
 			String package_available_to=request.getParameter("package_available_to");
 			String package_default=request.getParameter("package_default");
-			int channel_id=Integer.parseInt(request.getParameter("channel_id"));
 			
 			Package pkg=new Package(package_id, package_name, package_category, package_charging_type, 
-					package_transmission_type, package_cost, package_available_from, package_available_to, package_default, channel_id);
+					package_transmission_type, package_cost, package_available_from, package_available_to, package_default);
 			try {
 				ml.createChannelPackage(pkg);
 				response.sendRedirect("Package.jsp");
@@ -466,7 +469,7 @@ public class MainServlet extends HttpServlet {
 			int channel_id=Integer.parseInt(request.getParameter("channel_id"));
 			
 			Package pkg=new Package(package_id, package_name, package_category, package_charging_type, 
-					package_transmission_type, package_cost, package_available_from, package_available_to, package_default, channel_id);
+					package_transmission_type, package_cost, package_available_from, package_available_to, package_default);
 			try {
 				ml.updateChannelPackage(pkg);
 				response.sendRedirect("Package.jsp");

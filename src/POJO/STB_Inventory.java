@@ -3,15 +3,16 @@ package POJO;
 public class STB_Inventory {
 	int stb_inventory_id;
 	String stb_type;
-	int stb_serial_number;
+	String stb_serial_number;
 	int stb_mac_id;
 	int remote_asset_id;
 	int dish_asset_id;
 	String status;
+	int retailer_id;
 	
 	
-	public STB_Inventory(int stb_inventory_id, String stb_type, int stb_serial_number, int stb_mac_id,
-			int remote_asset_id, int dish_asset_id, String status) {
+	public STB_Inventory(int stb_inventory_id, String stb_type, String stb_serial_number, int stb_mac_id,
+			int remote_asset_id, int dish_asset_id, String status, int retailer_id) {
 		super();
 		this.stb_inventory_id = stb_inventory_id;
 		this.stb_type = stb_type;
@@ -20,8 +21,25 @@ public class STB_Inventory {
 		this.remote_asset_id = remote_asset_id;
 		this.dish_asset_id = dish_asset_id;
 		this.status = status;
+		this.retailer_id = retailer_id;
 	}
 	
+	public int getRetailer_id() {
+		return retailer_id;
+	}
+
+	public void setRetailer_id(int retailer_id) {
+		this.retailer_id = retailer_id;
+	}
+
+	public void setStb_serial_number(String stb_serial_number) {
+		this.stb_serial_number = stb_serial_number;
+	}
+
+	public String getStb_serial_number() {
+		return stb_serial_number;
+	}
+
 	public int getStb_inventory_id() {
 		return stb_inventory_id;
 	}
@@ -33,12 +51,6 @@ public class STB_Inventory {
 	}
 	public void setStb_type(String stb_type) {
 		this.stb_type = stb_type;
-	}
-	public int getStb_serial_number() {
-		return stb_serial_number;
-	}
-	public void setStb_serial_number(int stb_serial_number) {
-		this.stb_serial_number = stb_serial_number;
 	}
 	public int getStb_mac_id() {
 		return stb_mac_id;
@@ -64,13 +76,13 @@ public class STB_Inventory {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
 	@Override
 	public String toString() {
 		return "STB_Inventory [stb_inventory_id=" + stb_inventory_id + ", stb_type=" + stb_type + ", stb_serial_number="
 				+ stb_serial_number + ", stb_mac_id=" + stb_mac_id + ", remote_asset_id=" + remote_asset_id
-				+ ", dish_asset_id=" + dish_asset_id + ", status=" + status + "]";
+				+ ", dish_asset_id=" + dish_asset_id + ", status=" + status + ", retailer_id=" + retailer_id + "]";
 	}
-	
 	
 
 }

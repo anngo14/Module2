@@ -71,7 +71,6 @@
                     <h3>Available From: <%= p.getPackage_available_from() %></h3>
                     <h3>Available To: <%= p.getPackage_available_to() %></h3>
                     <h3>Package default: <%= p.getPackage_default() %></h3>
-                    <h3>Channel Id: <%= p.getChannel_id() %></h3>
                 </div>
                <% } %>
             </div>

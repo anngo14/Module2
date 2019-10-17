@@ -27,7 +27,7 @@
     		left: 50%;
     		transform: translate(-50%, -50%);
     	}
-    	.innerContainer{
+    	.innerContainer h1{
     		margin-top: 20px;
     	}
     </style>

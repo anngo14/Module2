@@ -39,8 +39,8 @@
                     <input type="radio" name="channel_chargetype" value="FTA" checked>FTA
                     <input type="radio" name="channel_chargetype" value="Paid">Paid <br>
                     <label class="formLabel">Transmission type:</label> <!--<input type="text" name="channel_transmission_type" required> <br> -->
-                    <input type="radio" name="channel_transmission_type" value="Standard" checked>Standard
-                    <input type="radio" name="channel_transmission_type" value="HD">HD <br>
+                    <input type="radio" name="channel_transmission_type" value="Standard" checked> Standard
+                    <input type="radio" name="channel_transmission_type" value="HD"> HD <br>
                     <label class="formLabel">charge:</label> <input type="text" name="channel_change" required> <br>
                             
                     <input type="submit" value="Submit">

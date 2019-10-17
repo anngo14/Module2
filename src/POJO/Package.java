@@ -10,12 +10,11 @@ public class Package {
 	String package_available_from;
 	String package_available_to;
 	String package_default;
-	int channel_id;
 	
 	
 	public Package(int package_id, String package_name, String package_category, String package_charging_type,
 			String transmission_type, double package_cost, String package_available_from, String package_available_to,
-			String package_default, int channel_id) {
+			String package_default) {
 		super();
 		this.package_id = package_id;
 		this.package_name = package_name;
@@ -26,7 +25,6 @@ public class Package {
 		this.package_available_from = package_available_from;
 		this.package_available_to = package_available_to;
 		this.package_default = package_default;
-		this.channel_id = channel_id;
 	}
 	
 	public int getPackage_id() {
@@ -83,19 +81,14 @@ public class Package {
 	public void setPackage_default(String package_default) {
 		this.package_default = package_default;
 	}
-	public int getChannel_id() {
-		return channel_id;
-	}
-	public void setChannel_id(int channel_id) {
-		this.channel_id = channel_id;
-	}
+
 	@Override
 	public String toString() {
 		return "Package [package_id=" + package_id + ", package_name=" + package_name + ", package_category="
 				+ package_category + ", package_charging_type=" + package_charging_type + ", transmission_type="
 				+ transmission_type + ", package_cost=" + package_cost + ", package_available_from="
 				+ package_available_from + ", package_available_to=" + package_available_to + ", package_default="
-				+ package_default + ", channel_id=" + channel_id + "]";
+				+ package_default + ", channel_id=" + "]";
 	}
 	
 	

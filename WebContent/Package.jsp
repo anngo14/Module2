@@ -86,7 +86,6 @@
                     <h3>Available From: <%=result.get(i).getPackage_available_from() %></h3>
                     <h3>Available To: <%=result.get(i).getPackage_available_to() %></h3>
                     <h3>Package default: <%=result.get(i).getPackage_available_to() %></h3>
-                    <h3>Channel Id : <%=result.get(i).getChannel_id() %></h3>
                 </div>
              <% } }else{ 
             	Package pkg=(Package)sess.getAttribute("pkg");
@@ -101,7 +100,6 @@
                     <h3>Available From: <%=pkg.getPackage_available_from() %></h3>
                     <h3>Available To: <%=pkg.getPackage_available_to() %></h3>
                     <h3>Package default: <%=pkg.getPackage_available_to() %></h3>
-                    <h3>Channel Id : <%=pkg.getChannel_id() %></h3>
                 </div>
                 <%} %>
             </div>

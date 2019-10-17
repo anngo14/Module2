@@ -46,7 +46,9 @@
                     <label class="formLabel">Installation charge: </label><input type="text" name="stb_installation_charges" required> <br>
                     <label class="formLabel">Upgrade charge: </label><input type="text" name="stb_upgradation_charge" required> <br>
                     <label class="formLabel">Discount: </label><input type="text" name="stb_discount" required> <br>
-                    <label class="formLabel">Billing type: </label><input type="text" name="stb_billing_type" required> <br>
+                    <label class="formLabel">Billing type: </label> <!-- <input type="text" name="stb_billing_type" required> <br> -->
+                    <input type="radio" name="stb_billing_type" value="PrePaid"> PrePaid
+                    <input type="radio" name="stb_billing_type" value="PostPaid"> PostPaid <br>
                     <label class="formLabel">Refundable deposit amount: </label><input type="text" name="stb_refundable_deposit_amount" required> <br>
                     <label class="formLabel">Inventory ID: </label><input type="text" name="stb_inventory_id" required> <br>
                            

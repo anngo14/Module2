@@ -55,11 +55,11 @@
                     <% } %><br>
                     <label class="formLabel">Transmission type:</label> <!-- <input type="text" name="channel_transmission_type"value= c.getTransmission_type() required> <br> -->
                     <% if(c.getTransmission_type().equals("Standard")) {%>
-                    <input type="radio" name="channel_transmission_type" value="Standard" checked>Standard
-                    <input type="radio" name="channel_transmission_type" value="HD">HD
+                    <input type="radio" name="channel_transmission_type" value="Standard" checked> Standard
+                    <input type="radio" name="channel_transmission_type" value="HD"> HD
                     <%}else{ %>
-                    <input type="radio" name="channel_transmission_type" value="Standard">Standard
-                    <input type="radio" name="channel_transmission_type" value="HD" checked>HD
+                    <input type="radio" name="channel_transmission_type" value="Standard"> Standard
+                    <input type="radio" name="channel_transmission_type" value="HD" checked> HD
                     <%} %><br>
                     <label class="formLabel">charge: </label><input type="text" name="channel_change"value=<%= c.getChannel_change()%> required> <br>
                             

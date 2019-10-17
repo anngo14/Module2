@@ -43,9 +43,8 @@
                     <label class="formLabel">Available From: </label><input type="date" name="package_available_from" required> <br>
                     <label class="formLabel">Available To: </label><input type="date" name="package_available_to" required> <br>
                     <label class="formLabel">Package Default: </label><!-- <input type="text" name="package_default" required> <br> -->
-                    <input type="radio" name="package_default" value="Yes" checked>Yes
-                    <input type="radio" name="package_default" value="No">No <br>
-                    <label class="formLabel">Channel Id: </label><input type="text" name="channel_id" required><br>
+                    <input type="radio" name="package_default" value="Yes" checked> Yes
+                    <input type="radio" name="package_default" value="No"> No <br>
                            
                     <input type="submit" value="Submit">
                    <input type="hidden" name="option" value="StbPackage">

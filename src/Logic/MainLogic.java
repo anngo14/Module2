@@ -125,15 +125,16 @@ public class MainLogic {
 	public int createSTB_Inventory(STB_Inventory box) throws SQLException, ClassNotFoundException
 	{
 		conn = JDBCUtility.getConnection();
-		String sql = "INSERT INTO stb_inventory VALUES(?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO stb_inventory VALUES(?,?,?,?,?,?,?,?)";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, box.getStb_inventory_id());
 		ps.setString(2, box.getStb_type());
-		ps.setInt(3, box.getStb_serial_number());
+		ps.setString(3, box.getStb_serial_number());
 		ps.setInt(4, box.getStb_mac_id());
 		ps.setInt(5, box.getRemote_asset_id());
 		ps.setInt(6, box.getDish_asset_id());
 		ps.setString(7, box.getStatus());
+		ps.setInt(8, box.getRetailer_id());
 
 		int i = ps.executeUpdate();
 		
@@ -151,7 +152,7 @@ public class MainLogic {
 		
 		while(rs.next())
 		{
-			STB_Inventory temp = new STB_Inventory(id, rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getString(7));
+			STB_Inventory temp = new STB_Inventory(id, rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getString(7), rs.getInt(8));
 			System.out.println(temp);
 			rs.close();
 			ps.close();
@@ -173,7 +174,7 @@ public class MainLogic {
 		
 		while(rs.next())
 		{
-			STB_Inventory temp = new STB_Inventory(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getString(7));
+			STB_Inventory temp = new STB_Inventory(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getInt(5), rs.getInt(6), rs.getString(7), rs.getInt(8));
 			System.out.println(temp);
 			list.add(temp);
 		}
@@ -185,15 +186,16 @@ public class MainLogic {
 	public int updateSTB_Inventory(STB_Inventory box) throws SQLException, ClassNotFoundException
 	{
 		conn = JDBCUtility.getConnection();
-		String sql = "UPDATE stb_inventory SET stb_type=?, stb_serial_number=?, stb_mac_id=?, remote_asset_id=?, dish_asset_id=?, stb_status=? WHERE stb_inventory_id=?";
+		String sql = "UPDATE stb_inventory SET stb_type=?, stb_serial_number=?, stb_mac_id=?, remote_asset_id=?, dish_asset_id=?, stb_status=?, retailer_id=? WHERE stb_inventory_id=?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, box.getStb_type());
-		ps.setInt(2, box.getStb_serial_number());
+		ps.setString(2, box.getStb_serial_number());
 		ps.setInt(3, box.getStb_mac_id());
 		ps.setInt(4, box.getRemote_asset_id());
 		ps.setInt(5, box.getDish_asset_id());
 		ps.setString(6, box.getStatus());
-		ps.setInt(7, box.getStb_inventory_id());
+		ps.setInt(7, box.getRetailer_id());
+		ps.setInt(8, box.getStb_inventory_id());
 
 		int i = ps.executeUpdate();
 		
@@ -216,16 +218,18 @@ public class MainLogic {
 	public int createChannel(Channel c) throws SQLException, ClassNotFoundException
 	{
 		conn = JDBCUtility.getConnection();
-		String sql = "INSERT INTO channel VALUES(?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO channel VALUES(?,?,?,?,?,?,?,?,?,?)";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, c.getChannel_id());
-		ps.setString(2, c.getChannel_name());
-		ps.setInt(3, c.getChannel_band());
-		ps.setDouble(4, c.getChannel_vcf());
-		ps.setDouble(5, c.getChannel_acf());
-		ps.setString(6, c.getChannel_change_type());
-		ps.setString(7, c.getTransmission_type());
-		ps.setDouble(8, c.getChannel_change());
+		ps.setInt(2, c.getPackage_id());
+		ps.setString(3, c.getChannel_name());
+		ps.setString(4, c.getChannel_band());
+		ps.setString(5, c.getChannel_vcf());
+		ps.setString(6, c.getChannel_acf());
+		ps.setString(7, c.getChannel_change_type());
+		ps.setString(8, c.getTransmission_type());
+		ps.setDouble(9, c.getChannel_change());
+		ps.setString(10, c.getChannel_status());
 
 		int i = ps.executeUpdate();
 		
@@ -243,8 +247,7 @@ public class MainLogic {
 		
 		while(rs.next())
 		{
-			Channel temp = new Channel(id, rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5), rs.getString(6), rs.getString(7), rs.getDouble(8));
-			System.out.println(temp);
+			Channel temp = new Channel(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getString(10));
 			rs.close();
 			ps.close();
 			conn.close();
@@ -265,8 +268,7 @@ public class MainLogic {
 		
 		while(rs.next())
 		{
-			Channel temp = new Channel(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5), rs.getString(6), rs.getString(7), rs.getDouble(8));
-			System.out.println(temp);
+			Channel temp = new Channel(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getString(10));
 			list.add(temp);
 		}
 		rs.close();
@@ -277,16 +279,17 @@ public class MainLogic {
 	public int updateChannel(Channel c) throws SQLException, ClassNotFoundException
 	{
 		conn = JDBCUtility.getConnection();
-		String sql = "UPDATE channel SET channel_name=?, channel_band=?, channel_vcf=?, channel_acf=?, channel_chargetype=?, channel_transmission_type=?, channel_charge=? WHERE channel_id=?";
+		String sql = "UPDATE channel SET channel_name=?, channel_band=?, channel_vcf=?, channel_acf=?, channel_chargetype_paid=?, channel_transmission_type=?, channel_charge=?, channel_status=? WHERE channel_id=?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, c.getChannel_name());
-		ps.setInt(2, c.getChannel_band());
-		ps.setDouble(3, c.getChannel_vcf());
-		ps.setDouble(4, c.getChannel_acf());
+		ps.setString(2, c.getChannel_band());
+		ps.setString(3, c.getChannel_vcf());
+		ps.setString(4, c.getChannel_acf());
 		ps.setString(5, c.getChannel_change_type());
 		ps.setString(6, c.getTransmission_type());
 		ps.setDouble(7, c.getChannel_change());
-		ps.setInt(8, c.getChannel_id());
+		ps.setString(8, c.getChannel_status());
+		ps.setInt(9, c.getChannel_id());
 
 		int i = ps.executeUpdate();
 		
@@ -322,7 +325,7 @@ public class MainLogic {
 	public int createChannelPackage(Package cp) throws SQLException, ClassNotFoundException
 	{
 		conn = JDBCUtility.getConnection();
-		String sql = "INSERT INTO package VALUES(?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO package VALUES(?,?,?,?,?,?,?,?,?)";
 		ps = conn.prepareStatement(sql);
 		ps.setInt(1, cp.getPackage_id());
 		ps.setString(2, cp.getPackage_name());
@@ -333,7 +336,6 @@ public class MainLogic {
 		ps.setDate(7, java.sql.Date.valueOf(cp.getPackage_available_from()));
 		ps.setDate(8, java.sql.Date.valueOf(cp.getPackage_available_to()));
 		ps.setString(9, cp.getPackage_default());
-		ps.setInt(10, cp.getChannel_id());
 
 		int i = ps.executeUpdate();
 		
@@ -351,7 +353,7 @@ public class MainLogic {
 		
 		while(rs.next())
 		{
-			Package temp = new Package(id, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10));
+			Package temp = new Package(id, rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getString(7), rs.getString(8), rs.getString(9));
 			System.out.println(temp);
 			rs.close();
 			ps.close();
@@ -373,7 +375,7 @@ public class MainLogic {
 		
 		while(rs.next())
 		{
-			Package temp = new Package(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10));
+			Package temp = new Package(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getString(7), rs.getString(8), rs.getString(9));
 			System.out.println(temp);
 			list.add(temp);
 		}
@@ -415,18 +417,19 @@ public class MainLogic {
 		conn.close();
 		return i;
 	}
-	/*
-	public double calculateCost(Customer c)
+	
+	public double calculateCost(Package p) throws ClassNotFoundException, SQLException
 	{
 		conn = JDBCUtility.getConnection();
 		//sql query depends on how package relates to the Customer
-		String sql = "SELECT package_cost FROM ";
+		String sql = "SELECT SUM(channel_charge) FROM Channel WHERE package_id = ?";
 		ps = conn.prepareStatement(sql);
+		ps.setInt(1, p.getPackage_id());
 		rs = ps.executeQuery();
 		double cost = 0.0;
 		while(rs.next())
 		{
-			cost += rs.getDouble("package_cost");
+			cost += rs.getDouble(1);
 		}
 		
 		rs.close();
@@ -434,7 +437,7 @@ public class MainLogic {
 		conn.close();
 		return cost;
 	}
-	*/
+	
 	public int selectPackage(int cid, Package p) throws ClassNotFoundException, SQLException
 	{
 		conn = JDBCUtility.getConnection();
@@ -518,5 +521,42 @@ public class MainLogic {
 		
 		
 		return null;
+	}
+	public void writeInventory(ArrayList<String[]> data) throws ClassNotFoundException, SQLException
+	{
+		for(int i=0;i<data.size();i++)
+		{
+			String[] temp=data.get(i);
+			//System.out.println(Arrays.toString(temp));
+			int stb_inventory_id=Integer.parseInt(temp[0]);
+			String stb_type=temp[1];
+			String stb_serial_number=temp[2];
+			int stb_mac_id=Integer.parseInt(temp[3]);
+			int remote_asset_id=Integer.parseInt(temp[4]);
+			int dish_asset_id=Integer.parseInt(temp[5]);
+			String status=temp[6];
+			int retailer_id=Integer.parseInt(temp[7]);
+			STB_Inventory stbInventory=new STB_Inventory(stb_inventory_id, stb_type, 
+					stb_serial_number, stb_mac_id, remote_asset_id, dish_asset_id, status, retailer_id);
+			createSTB_Inventory(stbInventory);
+		}
+		
+	}
+
+	public ArrayList<String> fetchInventoryData() throws ClassNotFoundException, SQLException {
+		ArrayList<String> list = new ArrayList<String>();
+		conn = JDBCUtility.getConnection();
+		String sql="SELECT * FROM STB_INVENTORY";
+		ps=conn.prepareStatement(sql);
+		rs=ps.executeQuery();
+		
+		while(rs.next())
+		{
+			String record=rs.getString(1)+", "+rs.getString(2)+", "+rs.getString(3)+", "+rs.getString(4)+", "+rs.getString(5)+", "+
+					rs.getString(6)+", "+rs.getString(7)+", "+rs.getString(8);
+			list.add(record);
+		}
+		
+		return list;
 	}
 }
