@@ -39,6 +39,11 @@ public class MainServlet extends HttpServlet {
 			try
 			{
 				STB stb=ml.viewSTB(Integer.parseInt(stbId));
+				if(stb == null)
+				{
+					response.sendRedirect("404Error.jsp");
+					return;
+				}
 				HttpSession session=request.getSession();
 				session.setAttribute("stb", stb);
 				session.setAttribute("operation", "searchSTB");
@@ -52,15 +57,22 @@ public class MainServlet extends HttpServlet {
 		}
 		else if(operation.contentEquals("editSTB"))
 		{
-			String stbId=request.getParameter("stb_id");
-			HttpSession session = request.getSession();
-			session.setAttribute("operation", "editSTB");
-			session.setAttribute("stb_id", stbId);
-			getServletContext().setAttribute("session", session);
-			getServletContext().getRequestDispatcher("/SetTopBoxUpdate.jsp").forward(request, response);
+			
 			try
 			{
-				ml.viewSTB(Integer.parseInt(stbId));
+				String stbId=request.getParameter("stb_id");
+				STB stb = ml.viewSTB(Integer.parseInt(stbId));
+				if(stb == null)
+				{
+					response.sendRedirect("404Error.jsp");
+					return;
+				}
+				HttpSession session = request.getSession();
+				session.setAttribute("operation", "editSTB");
+				session.setAttribute("stb_id", stbId);
+				getServletContext().setAttribute("session", session);
+				getServletContext().getRequestDispatcher("/SetTopBoxUpdate.jsp").forward(request, response);
+				
 			}
 			catch(ClassNotFoundException | SQLException | NumberFormatException e)
 			{
@@ -73,6 +85,12 @@ public class MainServlet extends HttpServlet {
 			String stbId=request.getParameter("stb_id");
 			try
 			{
+				STB stb = ml.viewSTB(Integer.parseInt(stbId));
+				if(stb == null)
+				{
+					response.sendRedirect("404Error.jsp");
+					return;
+				}
 				ml.deleteSTB(Integer.parseInt(stbId));
 				HttpSession session=request.getSession();
 				session.setAttribute("operation", "viewAll");
@@ -90,6 +108,11 @@ public class MainServlet extends HttpServlet {
 			try
 			{
 				Channel channel=ml.viewChannel(Integer.parseInt(channelId));
+				if(channel == null)
+				{
+					response.sendRedirect("404Error.jsp");
+					return;
+				}
 				HttpSession session=request.getSession();
 				session.setAttribute("channel", channel);
 				session.setAttribute("operation", "searchChannel");
@@ -104,14 +127,20 @@ public class MainServlet extends HttpServlet {
 		else if(operation.contentEquals("editChannel"))
 		{
 			String channelId=request.getParameter("channel_id");
-			HttpSession session = request.getSession();
-			session.setAttribute("operation", "editChannel");
-			session.setAttribute("channel_id", channelId);
-			getServletContext().setAttribute("session", session);
-			getServletContext().getRequestDispatcher("/ChannelUpdate.jsp").forward(request, response);
+			
 			try
 			{
-				ml.viewChannel(Integer.parseInt(channelId));
+				Channel c = ml.viewChannel(Integer.parseInt(channelId));
+				if(c == null)
+				{
+					response.sendRedirect("404Error.jsp");
+					return;
+				}
+				HttpSession session = request.getSession();
+				session.setAttribute("operation", "editChannel");
+				session.setAttribute("channel_id", channelId);
+				getServletContext().setAttribute("session", session);
+				getServletContext().getRequestDispatcher("/ChannelUpdate.jsp").forward(request, response);
 			}
 			catch(ClassNotFoundException | SQLException | NumberFormatException e)
 			{
@@ -123,6 +152,12 @@ public class MainServlet extends HttpServlet {
 			String channelId=request.getParameter("channel_id");
 			try
 			{
+				Channel c = ml.viewChannel(Integer.parseInt(channelId));
+				if(c == null)
+				{
+					response.sendRedirect("404Error.jsp");
+					return;
+				}
 				ml.deleteChannel(Integer.parseInt(channelId));
 				HttpSession session=request.getSession();
 				session.setAttribute("operation", "viewAll");
@@ -140,6 +175,11 @@ public class MainServlet extends HttpServlet {
 			try
 			{
 				Package pkg=ml.viewChannelPackage(Integer.parseInt(pkgId));
+				if(pkg == null)
+				{
+					response.sendRedirect("404Error.jsp");
+					return;
+				}
 				HttpSession session=request.getSession();
 				session.setAttribute("pkg", pkg);
 				session.setAttribute("operation", "searchPkg");
@@ -154,14 +194,20 @@ public class MainServlet extends HttpServlet {
 		else if(operation.contentEquals("editPkg"))
 		{
 			String pkgId=request.getParameter("pkg_id");
-			HttpSession session = request.getSession();
-			session.setAttribute("operation", "editPkg");
-			session.setAttribute("pkg_id", pkgId);
-			getServletContext().setAttribute("session", session);
-			getServletContext().getRequestDispatcher("/PackageUpdate.jsp").forward(request, response);
+			
 			try
 			{
-				ml.viewSTB(Integer.parseInt(pkgId));
+				Package p = ml.viewChannelPackage(Integer.parseInt(pkgId));
+				if(p == null)
+				{
+					response.sendRedirect("404Error.jsp");
+					return;
+				}
+				HttpSession session = request.getSession();
+				session.setAttribute("operation", "editPkg");
+				session.setAttribute("pkg_id", pkgId);
+				getServletContext().setAttribute("session", session);
+				getServletContext().getRequestDispatcher("/PackageUpdate.jsp").forward(request, response);
 			}
 			catch(ClassNotFoundException | SQLException | NumberFormatException e)
 			{
@@ -173,6 +219,12 @@ public class MainServlet extends HttpServlet {
 			String pkgId=request.getParameter("pkg_id");
 			try
 			{
+				Package p = ml.viewChannelPackage(Integer.parseInt(pkgId));
+				if(p == null)
+				{
+					response.sendRedirect("404Error.jsp");
+					return;
+				}
 				ml.deleteChannelPackage(Integer.parseInt(pkgId));
 				HttpSession session=request.getSession();
 				session.setAttribute("operation", "deletePkg");
