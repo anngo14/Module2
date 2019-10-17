@@ -23,7 +23,7 @@
             <a href="SetTopBox.jsp">Set Top Box</a> |
             <a href="Channel.jsp">Channel</a> |
             <a href="Package.jsp">Packages</a> |
-            <a href="login.jsp">Logout</a>
+            <a href="logout.jsp">Logout</a>
         </div>
     </div>
     <div class="mainConatiner">

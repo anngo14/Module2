@@ -5,7 +5,6 @@
 <%@ page import="POJO.STB" %>
 <%@ include file="container.html" %>
 
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,6 +12,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <title>Set Top Box Management</title>
+     <style>
+        .errorMsg{
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
 <body>
     <div class="navBar">
