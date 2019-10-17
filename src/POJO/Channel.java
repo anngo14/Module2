@@ -9,14 +9,14 @@ public class Channel {
 	String channel_acf;
 	String channel_change_type;
 	String transmission_type;
-	double channel_change;
+	String channel_change;
 	String channel_status;
 	
 	
 	
 	
 	public Channel(int channel_id, int package_id, String channel_name, String channel_band, String channel_vcf,
-			String channel_acf, String channel_change_type, String transmission_type, double channel_change,
+			String channel_acf, String channel_change_type, String transmission_type, String channel_change,
 			String channel_status) {
 		super();
 		this.channel_id = channel_id;
@@ -84,10 +84,10 @@ public class Channel {
 	public void setTransmission_type(String transmission_type) {
 		this.transmission_type = transmission_type;
 	}
-	public double getChannel_change() {
+	public String getChannel_change() {
 		return channel_change;
 	}
-	public void setChannel_change(double channel_change) {
+	public void setChannel_change(String channel_change) {
 		this.channel_change = channel_change;
 	}
 	@Override

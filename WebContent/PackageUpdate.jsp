@@ -63,14 +63,13 @@
                     <label class="formLabel">Available From: </label><input type="date" name="package_available_from"value=<%= p.getPackage_available_from()%> required> <br>
                     <label class="formLabel">Available To: </label><input type="date" name="package_available_to"value=<%= p.getPackage_available_to()%> required> <br>
                     <label class="formLabel">Package Default: </label><!-- <input type="text" name="package_default"value=<%= p.getPackage_default()%> required> <br> -->
-                    <%if(p.getPackage_default().equals("Yes")){ %>
-                    <input type="radio" name="package_default" value="Yes" checked> Yes
-                    <input type="radio" name="package_default" value="No"> No
+                    <%if(p.getPackage_default().equals("Y")){ %>
+                    <input type="radio" name="package_default" value="Y" checked> Yes
+                    <input type="radio" name="package_default" value="N"> No
                     <%}else{ %>
-                    <input type="radio" name="package_default" value="Yes"> Yes
-                    <input type="radio" name="package_default" value="No" checked> No
+                    <input type="radio" name="package_default" value="Y"> Yes
+                    <input type="radio" name="package_default" value="N" checked> No
                     <% } %><br>
-                    <label class="formLabel">Channel Id: </label><input type="text" name="channel_id"value=<%= p.getChannel_id()%> required><br>
                            
                     <input type="submit" value="Save">
                    <input type="hidden" name="option" value="StbPackageUpdate">

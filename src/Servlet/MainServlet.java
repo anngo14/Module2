@@ -395,7 +395,7 @@ public class MainServlet extends HttpServlet {
 			String channel_acf=request.getParameter("channel_acf");
 			String channel_chargetype=request.getParameter("channel_chargetype");
 			String channel_transmission_type=request.getParameter("channel_transmission_type");
-			double channel_change=Double.parseDouble(request.getParameter("channel_change"));
+			String channel_change=request.getParameter("channel_change");
 			String channel_status = request.getParameter("channel_status");
 			
 			Channel channel = new Channel(channel_id, package_id, channel_name, channel_band, channel_vcf, channel_acf, channel_chargetype, channel_transmission_type, channel_change, channel_status);
@@ -418,7 +418,7 @@ public class MainServlet extends HttpServlet {
 			String channel_acf=request.getParameter("channel_acf");
 			String channel_chargetype=request.getParameter("channel_chargetype");
 			String channel_transmission_type=request.getParameter("channel_transmission_type");
-			double channel_change=Double.parseDouble(request.getParameter("channel_change"));
+			String channel_change=request.getParameter("channel_change");
 			String channel_status = request.getParameter("channel_status");
 			
 			Channel channel = new Channel(channel_id, package_id, channel_name, channel_band, channel_vcf, channel_acf, channel_chargetype, channel_transmission_type, channel_change, channel_status);
@@ -466,7 +466,6 @@ public class MainServlet extends HttpServlet {
 			String package_available_from=request.getParameter("package_available_from");
 			String package_available_to=request.getParameter("package_available_to");
 			String package_default=request.getParameter("package_default");
-			int channel_id=Integer.parseInt(request.getParameter("channel_id"));
 			
 			Package pkg=new Package(package_id, package_name, package_category, package_charging_type, 
 					package_transmission_type, package_cost, package_available_from, package_available_to, package_default);

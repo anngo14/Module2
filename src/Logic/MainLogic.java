@@ -228,7 +228,7 @@ public class MainLogic {
 		ps.setString(6, c.getChannel_acf());
 		ps.setString(7, c.getChannel_change_type());
 		ps.setString(8, c.getTransmission_type());
-		ps.setDouble(9, c.getChannel_change());
+		ps.setString(9, c.getChannel_change());
 		ps.setString(10, c.getChannel_status());
 
 		int i = ps.executeUpdate();
@@ -247,7 +247,7 @@ public class MainLogic {
 		
 		while(rs.next())
 		{
-			Channel temp = new Channel(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getString(10));
+			Channel temp = new Channel(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
 			rs.close();
 			ps.close();
 			conn.close();
@@ -268,7 +268,7 @@ public class MainLogic {
 		
 		while(rs.next())
 		{
-			Channel temp = new Channel(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getInt(9), rs.getString(10));
+			Channel temp = new Channel(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10));
 			list.add(temp);
 		}
 		rs.close();
@@ -279,7 +279,7 @@ public class MainLogic {
 	public int updateChannel(Channel c) throws SQLException, ClassNotFoundException
 	{
 		conn = JDBCUtility.getConnection();
-		String sql = "UPDATE channel SET channel_name=?, channel_band=?, channel_vcf=?, channel_acf=?, channel_chargetype_paid=?, channel_transmission_type=?, channel_charge=?, channel_status=? WHERE channel_id=?";
+		String sql = "UPDATE channel SET channel_name=?, channel_band=?, channel_vcf=?, channel_acf=?, channel_chargetype_paid=?, channel_transmission_type_st=?, channel_charge=?, channel_status_enabled=? WHERE channel_id=?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, c.getChannel_name());
 		ps.setString(2, c.getChannel_band());
@@ -287,7 +287,7 @@ public class MainLogic {
 		ps.setString(4, c.getChannel_acf());
 		ps.setString(5, c.getChannel_change_type());
 		ps.setString(6, c.getTransmission_type());
-		ps.setDouble(7, c.getChannel_change());
+		ps.setString(7, c.getChannel_change());
 		ps.setString(8, c.getChannel_status());
 		ps.setInt(9, c.getChannel_id());
 

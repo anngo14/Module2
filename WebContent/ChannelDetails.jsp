@@ -31,17 +31,20 @@
             <div class="innerForm">
                 <form action="MainServlet" method="post" value ="hidden">
                     <label class="formLabel">Id: </label><input type="text" name="channel_id" required><br>
+                    <label class="formLabel">Package Id: </label><input type="text" name="package_id" required><br>
                     <label class="formLabel">Name: </label><input type="text" name="channel_name" required><br>
                     <label class="formLabel">Band: </label><input type="text" name="channel_band" required> <br>
                     <label class="formLabel">VCF: </label><input type="text" name="channel_vcf" min="40" max="225" required> <br>
                     <label class="formLabel">ACF: </label><input type="text" name="channel_acf" min="45" max="230" required> <br>
                     <label class="formLabel">Charge Type:</label> <!--  <input type="text" name="channel_chargetype" required> <br> -->
-                    <input type="radio" name="channel_chargetype" value="FTA" checked>FTA
-                    <input type="radio" name="channel_chargetype" value="Paid">Paid <br>
+                    <input type="radio" name="channel_chargetype" value="N" checked>FTA
+                    <input type="radio" name="channel_chargetype" value="Y">Paid <br>
                     <label class="formLabel">Transmission type:</label> <!--<input type="text" name="channel_transmission_type" required> <br> -->
-                    <input type="radio" name="channel_transmission_type" value="Standard" checked> Standard
-                    <input type="radio" name="channel_transmission_type" value="HD"> HD <br>
-                    <label class="formLabel">charge:</label> <input type="text" name="channel_change" required> <br>
+                    <input type="radio" name="channel_transmission_type" value="Y" checked> Standard
+                    <input type="radio" name="channel_transmission_type" value="N"> HD <br>
+                    <label class="formLabel">charge: </label> <input type="text" name="channel_change" required> <br>
+                   	<label class="formLabel">Status: </label> <input type="text" name="channel_status" required> <br>
+                    
                             
                     <input type="submit" value="Submit">
                    <input type="hidden" name="option" value="StbChannel">

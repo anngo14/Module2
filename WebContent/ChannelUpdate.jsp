@@ -41,27 +41,29 @@
             %>
                 <form action="MainServlet" method="post" value ="hidden">
                     <label class="formLabel">Id: </label><input type="text" name="channel_id" value=<%= c.getChannel_id()%> readonly><br>
+                    <label class="formLabel">Package Id: </label><input type="text" name="package_id" value=<%= c.getPackage_id() %> readonly><br>
                     <label class="formLabel">Name: </label><input type="text" name="channel_name" value=<%= c.getChannel_name()%> required><br>
                     <label class="formLabel">Band: </label><input type="text" name="channel_band"value=<%= c.getChannel_band()%> required> <br>
                     <label class="formLabel">VCF: </label><input type="text" name="channel_vcf"value=<%= c.getChannel_vcf()%> min="40" max="225" required> <br>
                     <label class="formLabel">ACF: </label><input type="text" name="channel_acf"value=<%= c.getChannel_acf()%> min="45" max="230" required> <br>
                     <label class="formLabel">Charge Type: </label><!--  <input type="text" name="channel_chargetype"value= c.getChannel_change_type() required> <br> -->
-                    <% if(c.getChannel_change_type().equals("FTA")) {%>
-                    <input type="radio" name="channel_chargetype" value="FTA" checked>FTA
-                    <input type="radio" name="channel_chargetype" value="Paid">Paid
+                    <% if(c.getChannel_change_type().equals("N")) {%>
+                    <input type="radio" name="channel_chargetype" value="N" checked>FTA
+                    <input type="radio" name="channel_chargetype" value="Y">Paid
                     <% }else { %>
-                    <input type="radio" name="channel_chargetype" value="FTA">FTA
-                    <input type="radio" name="channel_chargetype" value="Paid" checked>Paid
+                    <input type="radio" name="channel_chargetype" value="N">FTA
+                    <input type="radio" name="channel_chargetype" value="Y" checked>Paid
                     <% } %><br>
                     <label class="formLabel">Transmission type:</label> <!-- <input type="text" name="channel_transmission_type"value= c.getTransmission_type() required> <br> -->
-                    <% if(c.getTransmission_type().equals("Standard")) {%>
-                    <input type="radio" name="channel_transmission_type" value="Standard" checked> Standard
-                    <input type="radio" name="channel_transmission_type" value="HD"> HD
+                    <% if(c.getTransmission_type().equals("Y")) {%>
+                    <input type="radio" name="channel_transmission_type" value="Y" checked> Standard
+                    <input type="radio" name="channel_transmission_type" value="N"> HD
                     <%}else{ %>
-                    <input type="radio" name="channel_transmission_type" value="Standard"> Standard
-                    <input type="radio" name="channel_transmission_type" value="HD" checked> HD
+                    <input type="radio" name="channel_transmission_type" value="Y"> Standard
+                    <input type="radio" name="channel_transmission_type" value="N" checked> HD
                     <%} %><br>
                     <label class="formLabel">charge: </label><input type="text" name="channel_change"value=<%= c.getChannel_change()%> required> <br>
+                    <label class="formLabel">Status: </label><input type="text" name="channel_status"value=<%= c.getChannel_status()%> required> <br>
                             
                     <input type="submit" value="Save">
                    <input type="hidden" name="option" value="ChannelUpdate">
