@@ -43,24 +43,24 @@
                 </form>
             </div>
             <div class="innerList">
+            <%! MainLogic m1 = new MainLogic(); %>
                <%
-            MainLogic ml=new MainLogic();
             ServletContext sc=request.getServletContext();
         	HttpSession sess=(HttpSession) sc.getAttribute("session");
 			String operation=(String)sess.getAttribute("operation");
             if(operation.equals("searchChannel"))
             {
-            	Channel c = m1.viewChannel(request.getParameter("channel_id"));
+            	Channel c = m1.viewChannel(Integer.parseInt(request.getParameter("channel_id")));
             %>
                 <div class="innerListItem">
-                    <h3>ID: </h3><%= c.getChannel_id() %>
-                    <h3>Name: </h3> <%= c.getChannel_name() %>
-                    <h3>Band: </h3> <%= c.getChannel_band() %>
-                    <h3>VCF: </h3> <%= c.getChannel_vcf() %>
-                    <h3>ACF: </h3> <%= c.getChannel_acf() %>
-                    <h3>Charge Type: </h3> <%= c.getChannel_change_type() %>
-                    <h3>Transmission Type: </h3> <%= c.getTransmission_type() %>
-                    <h3>Charge: </h3> <%= c.getChannel_change() %>
+                    <h3>ID: <%= c.getChannel_id() %></h3>
+                    <h3>Name: <%= c.getChannel_name() %></h3> 
+                    <h3>Band: <%= c.getChannel_band() %></h3> 
+                    <h3>VCF: <%= c.getChannel_vcf() %> Mhz</h3> 
+                    <h3>ACF: <%= c.getChannel_acf() %> Mhz</h3> 
+                    <h3>Charge Type: <%= c.getChannel_change_type() %></h3> 
+                    <h3>Transmission Type:  <%= c.getTransmission_type() %></h3>
+                    <h3>Charge: <%= c.getChannel_change() %></h3> 
                 </div>
             <% } %>
             </div>

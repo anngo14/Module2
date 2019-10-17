@@ -39,17 +39,40 @@
             %>
                 <form action="MainServlet" method="post" value ="hidden">
                     ID: <input type="text" name="stb_id" value=<%= s.getStb_id() %> readonly><br>
-                    Select box type: <input type="text" name="stb_type" value=<%= s.getStb_type() %>><br>
-                    Features: <input type="text" name="stb_features" value=<%= s.getStb_features() %>> <br>
-                    Length: <input type="text" name="stb_length" value=<%= s.getStb_length() %>> <br>
-                    Breadth: <input type="text" name="stb_breadth" value=<%= s.getStb_breadth() %>> <br>
-                    Width: <input type="text" name="stb_width" value=<%= s.getStb_width() %>> <br>
-                    Price: <input type="text" name="stb_price" value=<%= s.getStb_price() %>> <br>
-                    Installation charge: <input type="text" name="stb_installation_charges" value=<%= s.getStb_installation_charges() %>> <br>
-                    Upgrade charge: <input type="text" name="stb_upgradation_charge" value=<%= s.getStb_upgradation_charge() %>> <br>
-                    Discount: <input type="text" name="stb_discount" value=<%= s.getStb_discount() %>> <br>
-                    Billing type: <input type="text" name="stb_billing_type" value=<%= s.getStb_billing_type() %>> <br>
-                    Refundable deposit amount: <input type="text" name="stb_refundable_deposit_amount" value=<%= s.getStb_refundable_deposit_amount() %>> <br>
+                    Select box type: <!--  <input type="text" name="stb_type" value= s.getStb_type() required><br> -->
+                    <select name="stb_type">
+                    <% if(s.getStb_type().equals("Standard")){ %>
+                    	<option value="Standard" >Standard</option>
+                    	<option value="HD">HD</option>
+                    	<option value="HD+">HD+</option>
+                    	<option value="IPTV">IPTV</option>
+                    <% }else if(s.getStb_type().equals("HD")){ %>
+                    	<option value="Standard" >Standard</option>
+                    	<option value="HD" selected>HD</option>
+                    	<option value="HD+">HD+</option>
+                    	<option value="IPTV">IPTV</option>
+                   	<% }else if(s.getStb_type().equals("HD+")) {%>
+                   		<option value="Standard" >Standard</option>
+                    	<option value="HD" >HD</option>
+                    	<option value="HD+" selected>HD+</option>
+                    	<option value="IPTV">IPTV</option>
+                    <% }else { %>
+                    	<option value="Standard" >Standard</option>
+                    	<option value="HD" >HD</option>
+                    	<option value="HD+" >HD+</option>
+                    	<option value="IPTV" selected>IPTV</option>
+                    <% } %>
+                    </select><br>
+                    Features: <input type="text" name="stb_features" value=<%= s.getStb_features() %> required> <br>
+                    Length: <input type="text" name="stb_length" value=<%= s.getStb_length() %> required> <br>
+                    Breadth: <input type="text" name="stb_breadth" value=<%= s.getStb_breadth() %> required> <br>
+                    Width: <input type="text" name="stb_width" value=<%= s.getStb_width() %> required> <br>
+                    Price: <input type="text" name="stb_price" value=<%= s.getStb_price() %> required> <br>
+                    Installation charge: <input type="text" name="stb_installation_charges" value=<%= s.getStb_installation_charges() %> required> <br>
+                    Upgrade charge: <input type="text" name="stb_upgradation_charge" value=<%= s.getStb_upgradation_charge() %> required> <br>
+                    Discount: <input type="text" name="stb_discount" value=<%= s.getStb_discount() %> required> <br>
+                    Billing type: <input type="text" name="stb_billing_type" value=<%= s.getStb_billing_type() %> required> <br>
+                    Refundable deposit amount: <input type="text" name="stb_refundable_deposit_amount" value=<%= s.getStb_refundable_deposit_amount() %> required> <br>
                     Inventory ID: <input type="text" name="stb_inventory_id" value=<%=s.getStb_inventory_id() %> readonly> <br>
               
                     <input type="submit" value="Save">

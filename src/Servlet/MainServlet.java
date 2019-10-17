@@ -49,7 +49,6 @@ public class MainServlet extends HttpServlet {
 			{
 				//do something
 			}
-			
 		}
 		else if(operation.contentEquals("editSTB"))
 		{
@@ -66,6 +65,7 @@ public class MainServlet extends HttpServlet {
 			catch(ClassNotFoundException | SQLException | NumberFormatException e)
 			{
 				//do something
+				
 			}
 		}
 		else if(operation.contentEquals("deleteSTB"))
@@ -94,7 +94,7 @@ public class MainServlet extends HttpServlet {
 				session.setAttribute("channel", channel);
 				session.setAttribute("operation", "searchChannel");
 				getServletContext().setAttribute("session", session);
-				getServletContext().getRequestDispatcher("Channel.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/ChannelView.jsp").forward(request, response);
 			}
 			catch(ClassNotFoundException | SQLException | NumberFormatException e)
 			{
@@ -104,6 +104,11 @@ public class MainServlet extends HttpServlet {
 		else if(operation.contentEquals("editChannel"))
 		{
 			String channelId=request.getParameter("channel_id");
+			HttpSession session = request.getSession();
+			session.setAttribute("operation", "editChannel");
+			session.setAttribute("channel_id", channelId);
+			getServletContext().setAttribute("session", session);
+			getServletContext().getRequestDispatcher("/ChannelUpdate.jsp").forward(request, response);
 			try
 			{
 				ml.viewChannel(Integer.parseInt(channelId));
@@ -122,7 +127,7 @@ public class MainServlet extends HttpServlet {
 				HttpSession session=request.getSession();
 				session.setAttribute("operation", "viewAll");
 				getServletContext().setAttribute("session", session);
-				getServletContext().getRequestDispatcher("Channel.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/Channel.jsp").forward(request, response);
 			}
 			catch(ClassNotFoundException | SQLException | NumberFormatException e)
 			{
@@ -139,7 +144,7 @@ public class MainServlet extends HttpServlet {
 				session.setAttribute("pkg", pkg);
 				session.setAttribute("operation", "searchPkg");
 				getServletContext().setAttribute("session", session);
-				getServletContext().getRequestDispatcher("Package.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/PackageView.jsp").forward(request, response);
 			}
 			catch(ClassNotFoundException | SQLException | NumberFormatException e)
 			{
@@ -149,6 +154,11 @@ public class MainServlet extends HttpServlet {
 		else if(operation.contentEquals("editPkg"))
 		{
 			String pkgId=request.getParameter("pkg_id");
+			HttpSession session = request.getSession();
+			session.setAttribute("operation", "editPkg");
+			session.setAttribute("pkg_id", pkgId);
+			getServletContext().setAttribute("session", session);
+			getServletContext().getRequestDispatcher("/PackageUpdate.jsp").forward(request, response);
 			try
 			{
 				ml.viewSTB(Integer.parseInt(pkgId));
@@ -167,7 +177,7 @@ public class MainServlet extends HttpServlet {
 				HttpSession session=request.getSession();
 				session.setAttribute("operation", "deletePkg");
 				getServletContext().setAttribute("session", session);
-				getServletContext().getRequestDispatcher("Package.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/Package.jsp").forward(request, response);
 			}
 			catch(ClassNotFoundException | SQLException | NumberFormatException e)
 			{
@@ -225,7 +235,6 @@ public class MainServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String option=request.getParameter("option");
-		
 		if(option.contentEquals("STB_Inventory"))
 		{
 			String stb_inventory_id=request.getParameter("stb_inventory_id");
@@ -242,12 +251,15 @@ public class MainServlet extends HttpServlet {
 			} catch (SQLException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				response.sendRedirect("404Error.jsp");
 			}
 		}
 		else if(option.contentEquals("STB"))
 		{
 			int stb_id=Integer.parseInt(request.getParameter("stb_id"));
+			//String stb_type=request.getParameter("stb_type");
 			String stb_type=request.getParameter("stb_type");
+			System.out.println(stb_type);
 			String stb_features=request.getParameter("stb_features");
 			int stb_length=Integer.parseInt(request.getParameter("stb_length"));
 			int stb_breadth=Integer.parseInt(request.getParameter("stb_breadth"));
@@ -267,6 +279,7 @@ public class MainServlet extends HttpServlet {
 			} catch (SQLException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				response.sendRedirect("404Error.jsp");
 			}
 		}
 		else if(option.contentEquals("STBUpdate"))
@@ -292,12 +305,14 @@ public class MainServlet extends HttpServlet {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				response.sendRedirect("404Error.jsp");
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				response.sendRedirect("404Error.jsp");
 			}
 		}
-		else if(option.contentEquals("channel"))
+		else if(option.contentEquals("StbChannel"))
 		{
 			int channel_id=Integer.parseInt(request.getParameter("channel_id"));
 			String channel_name=request.getParameter("channel_name");
@@ -311,10 +326,34 @@ public class MainServlet extends HttpServlet {
 			Channel channel=new Channel(channel_id, channel_name, channel_band, channel_vcf, channel_acf, channel_chargetype, channel_transmission_type, channel_change);
 			try {
 				ml.createChannel(channel);
+				response.sendRedirect("Channel.jsp");
 			} catch (SQLException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				response.sendRedirect("404Error.jsp");
 			}
+		}
+		else if(option.contentEquals("ChannelUpdate"))
+		{
+			int channel_id=Integer.parseInt(request.getParameter("channel_id"));
+			String channel_name=request.getParameter("channel_name");
+			int channel_band=Integer.parseInt(request.getParameter("channel_band"));;
+			double channel_vcf=Double.parseDouble(request.getParameter("channel_vcf"));
+			double channel_acf=Double.parseDouble(request.getParameter("channel_acf"));
+			String channel_chargetype=request.getParameter("channel_chargetype");
+			String channel_transmission_type=request.getParameter("channel_transmission_type");
+			double channel_change=Double.parseDouble(request.getParameter("channel_change"));
+			
+			Channel channel=new Channel(channel_id, channel_name, channel_band, channel_vcf, channel_acf, channel_chargetype, channel_transmission_type, channel_change);
+			try {
+				ml.updateChannel(channel);
+				response.sendRedirect("Channel.jsp");
+			} catch (SQLException | ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				response.sendRedirect("404Error.jsp");
+			}
+			
 		}
 		else if(option.contentEquals("StbPackage"))
 		{
@@ -333,9 +372,35 @@ public class MainServlet extends HttpServlet {
 					package_transmission_type, package_cost, package_available_from, package_available_to, package_default, channel_id);
 			try {
 				ml.createChannelPackage(pkg);
+				response.sendRedirect("Package.jsp");
 			} catch (SQLException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				response.sendRedirect("404Error.jsp");
+			}
+		}
+		else if(option.contentEquals("StbPackageUpdate"))
+		{
+			int package_id=Integer.parseInt(request.getParameter("package_id"));
+			String package_name=request.getParameter("package_name");
+			String package_category=request.getParameter("package_category");
+			String package_charging_type=request.getParameter("package_charging_type");
+			String package_transmission_type=request.getParameter("package_transmission_type");
+			double package_cost=Double.parseDouble(request.getParameter("package_cost"));
+			String package_available_from=request.getParameter("package_available_from");
+			String package_available_to=request.getParameter("package_available_to");
+			String package_default=request.getParameter("package_default");
+			int channel_id=Integer.parseInt(request.getParameter("channel_id"));
+			
+			Package pkg=new Package(package_id, package_name, package_category, package_charging_type, 
+					package_transmission_type, package_cost, package_available_from, package_available_to, package_default, channel_id);
+			try {
+				ml.updateChannelPackage(pkg);
+				response.sendRedirect("Package.jsp");
+			} catch (SQLException | ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				response.sendRedirect("404Error.jsp");
 			}
 		}
 	}

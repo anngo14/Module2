@@ -28,19 +28,25 @@
             </div>
             <div class="innerForm">
                 <form action="MainServlet" method="post" value ="hidden">
-                    ID: <input type="text" name="stb_id"><br>
-                    Select box type: <input type="text" name="stb_type"><br>
-                    Features: <input type="text" name="stb_features"> <br>
-                    Length: <input type="text" name="stb_length"> <br>
-                    Breadth: <input type="text" name="stb_breadth"> <br>
-                    Width: <input type="text" name="stb_width"> <br>
-                    Price: <input type="text" name="stb_price"> <br>
-                    Installation charge: <input type="text" name="stb_installation_charges"> <br>
-                    Upgrade charge: <input type="text" name="stb_upgradation_charge"> <br>
-                    Discount: <input type="text" name="stb_discount"> <br>
-                    Billing type: <input type="text" name="stb_billing_type"> <br>
-                    Refundable deposit amount: <input type="text" name="stb_refundable_deposit_amount"> <br>
-                    Inventory ID: <input type="text" name="stb_inventory_id"> <br>
+                    ID: <input type="text" name="stb_id" required><br>
+                    Select box type: <!--<input type="text" name="stb_type" required><br> -->
+                    <select name="stb_type">
+                    	<option value="Standard">Standard</option>
+                    	<option value="HD">HD</option>
+                    	<option value="HD+">HD+</option>
+                    	<option value="IPTV">IPTV</option>
+                    </select><br>
+                    Features: <input type="text" name="stb_features" required> <br>
+                    Length: <input type="text" name="stb_length" required> <br>
+                    Breadth: <input type="text" name="stb_breadth" required> <br>
+                    Width: <input type="text" name="stb_width" required> <br>
+                    Price: <input type="text" name="stb_price" required> <br>
+                    Installation charge: <input type="text" name="stb_installation_charges" required> <br>
+                    Upgrade charge: <input type="text" name="stb_upgradation_charge" required> <br>
+                    Discount: <input type="text" name="stb_discount" required> <br>
+                    Billing type: <input type="text" name="stb_billing_type" required> <br>
+                    Refundable deposit amount: <input type="text" name="stb_refundable_deposit_amount" required> <br>
+                    Inventory ID: <input type="text" name="stb_inventory_id" required> <br>
                            
                     <input type="submit" value="Submit">
                    <input type="hidden" name="option" value="STB">

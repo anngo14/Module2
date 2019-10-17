@@ -52,18 +52,19 @@
             	STB s = m1.viewSTB(Integer.parseInt(request.getParameter("stb_id")));
             %>
                 <div class="innerListItem">
-                    <h3>ID: </h3><%= s.getStb_id() %>
-                    <h3>Features: </h3><%= s.getStb_features() %>
-                    <h4>Length: </h4><%= s.getStb_length() %>
-                    <h4>Breadth: </h4><%= s.getStb_breadth() %>
-                    <h4>Width: </h4><%= s.getStb_width() %>
-                    <h3>Price: </h3><%= s.getStb_price() %>
-                    <h3>Installation Charge: </h3><%= s.getStb_installation_charges() %>
-                    <h3>Upgrade Charge: </h3><%= s.getStb_upgradation_charge() %>
-                    <h3>Discount: </h3><%= s.getStb_discount() %>
-                    <h3>Billing Type: </h3><%= s.getStb_billing_type() %>
-                    <h3>Refundable Deposit Amount: </h3><%= s.getStb_refundable_deposit_amount() %>
-                    <h3>Inventory ID: </h3><%= s.getStb_inventory_id() %>
+                    <h3>ID: <%= s.getStb_id() %></h3>
+                    <h3>Type: <%= s.getStb_type()%></h3>
+                    <h3>Features: <%= s.getStb_features() %></h3>
+                    <h3>Length: <%= s.getStb_length() %></h3>
+                    <h3>Breadth: <%= s.getStb_breadth() %></h3>
+                    <h3>Width: <%= s.getStb_width() %></h3>
+                    <h3>Price: $<%= s.getStb_price() %></h3>
+                    <h3>Installation Charge: $<%= s.getStb_installation_charges() %></h3>
+                    <h3>Upgrade Charge: $<%= s.getStb_upgradation_charge() %></h3>
+                    <h3>Discount: <%= s.getStb_discount() %> %</h3>
+                    <h3>Billing Type: <%= s.getStb_billing_type() %></h3>
+                    <h3>Refundable Deposit Amount: $<%= s.getStb_refundable_deposit_amount() %></h3>
+                    <h3>Inventory ID: <%= s.getStb_inventory_id() %></h3>
                 </div>
                 <% } %>
             </div>

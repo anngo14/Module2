@@ -58,16 +58,17 @@
             %>
                 <div class="innerListItem">
                     <h3>ID: <%=result.get(i).getStb_id() %></h3>
+                    <h3>Type: <%=result.get(i).getStb_type() %></h3>
                     <h3>Features: <%=result.get(i).getStb_features() %></h3>
                     <h4>Length: <%=result.get(i).getStb_length() %></h4>
                     <h4>Breadth: <%=result.get(i).getStb_breadth() %></h4>
                     <h4>Width: <%=result.get(i).getStb_width() %></h4>
-                    <h3>Price: <%=result.get(i).getStb_price() %></h3>
-                    <h3>Installation Charge: <%=result.get(i).getStb_installation_charges() %></h3>
-                    <h3>Upgrade Charge: <%=result.get(i).getStb_upgradation_charge() %></h3>
-                    <h3>Discount: <%=result.get(i).getStb_discount() %></h3>
+                    <h3>Price: $<%=result.get(i).getStb_price() %></h3>
+                    <h3>Installation Charge: $<%=result.get(i).getStb_installation_charges() %></h3>
+                    <h3>Upgrade Charge: $<%=result.get(i).getStb_upgradation_charge() %></h3>
+                    <h3>Discount: <%=result.get(i).getStb_discount() %> %</h3>
                     <h3>Billing Type: <%=result.get(i).getStb_billing_type() %></h3>
-                    <h3>Refundable Deposit Amount: <%=result.get(i).getStb_refundable_deposit_amount() %></h3>
+                    <h3>Refundable Deposit Amount: $<%=result.get(i).getStb_refundable_deposit_amount() %></h3>
                     <h3>Inventory ID:<%=result.get(i).getStb_inventory_id() %> </h3>
                 </div>
             <%}}else{ 
@@ -75,10 +76,11 @@
 			%>
             <div class="innerListItem">
                     <h3>ID: <%=stb.getStb_id() %></h3>
+                    <h3>Type: <%=stb.getStb_type() %></h3>
                     <h3>Features: <%=stb.getStb_features() %></h3>
-                    <h4>Length: <%=stb.getStb_length() %></h4>
-                    <h4>Breadth: <%=stb.getStb_breadth() %></h4>
-                    <h4>Width: <%=stb.getStb_width() %></h4>
+                    <h3>Length: <%=stb.getStb_length() %></h3>
+                    <h3>Breadth: <%=stb.getStb_breadth() %></h3>
+                    <h3>Width: <%=stb.getStb_width() %></h3>
                     <h3>Price: <%=stb.getStb_price() %></h3>
                     <h3>Installation Charge: <%=stb.getStb_installation_charges() %></h3>
                     <h3>Upgrade Charge: <%=stb.getStb_upgradation_charge() %></h3>

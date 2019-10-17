@@ -268,9 +268,6 @@ public class MainLogic {
 			Channel temp = new Channel(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getDouble(4), rs.getDouble(5), rs.getString(6), rs.getString(7), rs.getDouble(8));
 			System.out.println(temp);
 			list.add(temp);
-			rs.close();
-			ps.close();
-			conn.close();
 		}
 		rs.close();
 		ps.close();
@@ -280,7 +277,7 @@ public class MainLogic {
 	public int updateChannel(Channel c) throws SQLException, ClassNotFoundException
 	{
 		conn = JDBCUtility.getConnection();
-		String sql = "UPDATE channel SET channel_name=?, channel_band=?, channel_vcf=?, channel_acf=?, channel_change_type=?, channel_transmission_type=?, channel_change=? WHERE channel_id=?";
+		String sql = "UPDATE channel SET channel_name=?, channel_band=?, channel_vcf=?, channel_acf=?, channel_chargetype=?, channel_transmission_type=?, channel_charge=? WHERE channel_id=?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, c.getChannel_name());
 		ps.setInt(2, c.getChannel_band());
@@ -379,9 +376,6 @@ public class MainLogic {
 			Package temp = new Package(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getDouble(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10));
 			System.out.println(temp);
 			list.add(temp);
-			rs.close();
-			ps.close();
-			conn.close();
 		}
 		rs.close();
 		ps.close();
@@ -391,7 +385,7 @@ public class MainLogic {
 	public int updateChannelPackage(Package cp) throws SQLException, ClassNotFoundException
 	{
 		conn = JDBCUtility.getConnection();
-		String sql = "UPDATE package SET package_name=?, package_category=?, package_charging_type=?, transmission_type=?, package_cost=?, package_available_from=?, package_available_to=?, package_default=? WHERE package_id = ?";
+		String sql = "UPDATE package SET package_name=?, package_category=?, package_charging_type=?, package_transmission_type=?, package_cost=?, package_available_from=?, package_available_to=?, package_default=? WHERE package_id = ?";
 		ps = conn.prepareStatement(sql);
 		ps.setString(1, cp.getPackage_name());
 		ps.setString(2, cp.getPackage_category());

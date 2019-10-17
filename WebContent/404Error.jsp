@@ -1,29 +1,34 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css"> 
-    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .errorMsg{
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <title>404 Error</title>
 </head>
 <body>
     <div class="navBar">
         <div class="logo">
-            <h1>Infinity</h1>
-        </div>
-        <div class="navLinks">
-            <a href="SetTopBox.jsp">Set Top Box</a> | 
-            <a href="Channel.jsp">Channel</a> |
-            <a href="Package.jsp">Packages</a> | 
-            <a href="#">Logout</a>
+            <h1>Inifinity</h1>
         </div>
     </div>
     <div class="mainContainer">
         <div class="innerContainer">
-        
+            <div class="errorMsg">
+                <h1>404 Error</h1>
+                <h3>Resource Not Found!</h3>
+                <a href="homepage.jsp">Back to Home</a>
+            </div>
         </div>
     </div>
     <footer>

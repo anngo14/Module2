@@ -54,13 +54,15 @@
 .searchContainer{
     height: 40px;
     position: relative;
+    width: 100%;
+    text-align: center;
 }
 .searchContainer form{
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
+    width: 100%;
 }
 .innerList{
     height: 510px;

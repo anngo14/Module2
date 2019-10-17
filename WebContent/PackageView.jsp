@@ -43,26 +43,26 @@
                 </form>
             </div>
             <div class="innerList">
+            <%! MainLogic m1 = new MainLogic(); %>
                <%
-            MainLogic ml=new MainLogic();
             ServletContext sc=request.getServletContext();
         	HttpSession sess=(HttpSession) sc.getAttribute("session");
 			String operation=(String)sess.getAttribute("operation");
             if(operation.equals("searchPkg"))
             {
-            	Package p = m1.viewChannelPackage(request.getParameter("pkg_id"));
+            	Package p = m1.viewChannelPackage(Integer.parseInt(request.getParameter("pkg_id")));
             %>
                 <div class="innerListItem">
-                    <h3>ID: </h3><%= p.getPackage_id() %>
-                    <h3>Name: </h3><%= p.getPackage_name() %>
-                    <h3>Category: </h3><%= p.getPackage_category() %>
-                    <h3>Charging Type: </h3><%= p.getPackage_charging_type() %>
-                    <h3>Transmission TYpe: </h3><%= p.getTransmission_type() %>
-                    <h3>Cost: </h3><%= p.getPackage_cost() %>
-                    <h3>Available From: </h3><%= p.getPackage_available_from() %>
-                    <h3>Available To: </h3><%= p.getPackage_available_to() %>
-                    <h3>Package default: </h3><%= p.getPackage_default() %>
-                    <h3>Channel Id</h3><%= p.getChannel_id() %>
+                    <h3>ID: <%= p.getPackage_id() %></h3>
+                    <h3>Name: <%= p.getPackage_name() %></h3>
+                    <h3>Category: <%= p.getPackage_category() %>
+                    <h3>Charging Type: <%= p.getPackage_charging_type() %></h3>
+                    <h3>Transmission TYpe: <%= p.getTransmission_type() %></h3>
+                    <h3>Cost: <%= p.getPackage_cost() %></h3>
+                    <h3>Available From: <%= p.getPackage_available_from() %></h3>
+                    <h3>Available To: <%= p.getPackage_available_to() %></h3>
+                    <h3>Package default: <%= p.getPackage_default() %></h3>
+                    <h3>Channel Id: <%= p.getChannel_id() %></h3>
                 </div>
                <% } %>
             </div>

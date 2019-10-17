@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="POJO.Package" %>
@@ -37,9 +38,9 @@
             <div class="searchContainer">
                 <form action="MainServlet" method="get">
                     <span>Package ID: </span><input type="text" name="pkg_id">
-                    <input type="submit" name="operation" value="searchPkg">
-                    <input type="submit" name="operation" value="editPkg">
-                    <input type="submit" name="operation" value="deletePkg">
+                    <input type="submit" name="Operation" value="searchPkg">
+                    <input type="submit" name="Operation" value="editPkg">
+                    <input type="submit" name="Operation" value="deletePkg">
                 </form>
             </div>
             <div class="innerList">
