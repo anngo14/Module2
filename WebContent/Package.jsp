@@ -3,6 +3,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="POJO.Package" %>
 <%@ page import="Logic.MainLogic" %>
+<%@ include file="container.html" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +24,7 @@
             <a href="SetTopBox.jsp">Set Top Box</a> |
             <a href="Channel.jsp">Channel</a> |
             <a href="Package.jsp">Packages</a> |
-            <a href="homepage.jsp">Logout</a>
+            <a href="login.jsp">Logout</a>
         </div>
     </div>
     <div class="mainConatiner">
@@ -32,22 +34,41 @@
                     <h2>Packages</h2>
                 </div>
                 <div class="innerHeadingLink">
+                 <% ServletContext sc=request.getServletContext();
+        	HttpSession sess=(HttpSession) sc.getAttribute("session"); 
+        	String role = (String) sess.getAttribute("role");
+        	if(role.equals("Admin") || role.equals("Operator"))
+        	{
+        	%>
                     <a href="PackageDetails.jsp">Add a Package</a>
+            <%} %>
                 </div>
             </div>
             <div class="searchContainer">
+             <%  sc=request.getServletContext();
+        	 sess=(HttpSession) sc.getAttribute("session"); 
+        	 role = (String)sess.getAttribute("role");
+        	if(role.equals("Admin") || role.equals("Operator"))
+        	{
+        	%>
                 <form action="MainServlet" method="get">
                     <span>Package ID: </span><input type="text" name="pkg_id">
                     <input type="submit" name="Operation" value="searchPkg">
                     <input type="submit" name="Operation" value="editPkg">
                     <input type="submit" name="Operation" value="deletePkg">
                 </form>
+             <%} else if(role.equals("Customer") || role.equals("Retailer") ){ %>
+             <form action="MainServlet" method="get">
+                    <span>Package ID: </span><input type="text" name="pkg_id">
+                    <input type="submit" name="Operation" value="searchPkg">
+                </form>
+             <% } %>
             </div>
             <div class="innerList">
             <%
-            MainLogic ml=new MainLogic();
-            ServletContext sc=request.getServletContext();
-        	HttpSession sess=(HttpSession) sc.getAttribute("session");
+             MainLogic ml=new MainLogic();
+             sc=request.getServletContext();
+        	 sess=(HttpSession) sc.getAttribute("session");
 			//String operation=(String)sess.getAttribute("operation");
 			session.setAttribute("operation", "");
             if(session.getAttribute("operation").equals("") || session.getAttribute("operation").equals("viewAll") || session.getAttribute("operation") ==null)

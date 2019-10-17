@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="POJO.Package" %>
+<%@ include file="container.html" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,22 +30,22 @@
             </div>
             <div class="innerForm">
                 <form action="MainServlet" method="post" value ="hidden">
-                    ID: <input type="text" name="package_id" required><br>
-                    Name: <input type="text" name="package_name" required><br>
-                    Category: <input type="text" name="package_category" required> <br>
-                    Charging Type: <!-- <input type="text" name="package_charging_type" required> <br> -->
+                    <label class="formLabel">ID: </label><input type="text" name="package_id" required><br>
+                    <label class="formLabel">Name: </label><input type="text" name="package_name" required><br>
+                    <label class="formLabel">Category: </label><input type="text" name="package_category" required> <br>
+                    <label class="formLabel">Charging Type: </label><!-- <input type="text" name="package_charging_type" required> <br> -->
                     <input type="radio" name="package_charging_type" value="Paid" checked>Paid
                     <input type="radio" name="package_charging_type" value="FTA">FTA <br> 
-                    Transmission Type: <!-- <input type="text" name="package_transmission_type" required> <br> -->
+                    <label class="formLabel">Transmission Type: </label><!-- <input type="text" name="package_transmission_type" required> <br> -->
                     <input type="radio" name="package_transmission_type" value="HD" checked>HD
                     <input type="radio" name="package_transmission_type" value="Standard">Standard <br>
-                    Cost: <input type="text" name="package_cost" required> <br>
-                    Available From: <input type="date" name="package_available_from" required> <br>
-                    Available To: <input type="date" name="package_available_to" required> <br>
-                    Package Default: <!-- <input type="text" name="package_default" required> <br> -->
+                    <label class="formLabel">Cost: </label><input type="text" name="package_cost" required> <br>
+                    <label class="formLabel">Available From: </label><input type="date" name="package_available_from" required> <br>
+                    <label class="formLabel">Available To: </label><input type="date" name="package_available_to" required> <br>
+                    <label class="formLabel">Package Default: </label><!-- <input type="text" name="package_default" required> <br> -->
                     <input type="radio" name="package_default" value="Yes" checked>Yes
                     <input type="radio" name="package_default" value="No">No <br>
-                    Channel Id: <input type="text" name="channel_id" required><br>
+                    <label class="formLabel">Channel Id: </label><input type="text" name="channel_id" required><br>
                            
                     <input type="submit" value="Submit">
                    <input type="hidden" name="option" value="StbPackage">

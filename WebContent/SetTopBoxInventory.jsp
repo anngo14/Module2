@@ -3,6 +3,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="POJO.STB_Inventory" %>
 <%@ page import="Logic.MainLogic" %>
+<%@ include file="container.html" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>

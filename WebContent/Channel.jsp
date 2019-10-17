@@ -3,6 +3,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="POJO.Channel" %>
 <%@ page import="Logic.MainLogic" %>
+<%@ include file="container.html" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +24,7 @@
             <a href="SetTopBox.jsp">Set Top Box</a> |
             <a href="Channel.jsp">Channel</a> |
             <a href="Package.jsp">Packages</a> |
-            <a href="homepage.jsp">Logout</a>
+            <a href="login.jsp">Logout</a>
         </div>
     </div>
     <div class="mainConatiner">
@@ -32,22 +34,40 @@
                     <h2>Channels</h2>
                 </div>
                 <div class="innerHeadingLink">
+                <% ServletContext sc=request.getServletContext();
+        	HttpSession sess=(HttpSession) sc.getAttribute("session"); 
+        	String role = (String) sess.getAttribute("role");
+        	if(role.equals("Admin") || role.equals("Operator"))
+        	{
+        	%>
                     <a href="ChannelDetails.jsp">Add a Channel</a>
+                    <% } %>
                 </div>
             </div>
             <div class="searchContainer">
+                <%  sc=request.getServletContext();
+        	 sess=(HttpSession) sc.getAttribute("session"); 
+        	 role = (String)sess.getAttribute("role");
+        	if(role.equals("Admin") || role.equals("Operator"))
+        	{ %>
                 <form action="MainServlet" method="get">
                     <span>Channel ID: </span><input type="text" name="channel_id">
                     <input type="submit" name="Operation" value="searchChannel">
                     <input type="submit" name="Operation" value="editChannel">
                     <input type="submit" name="Operation" value="deleteChannel">
                 </form>
+             <%} else if(role.equals("Customer") || role.equals("Retailer") ){ %>
+             <form action="MainServlet" method="get">
+             <span>Channel ID </span><input type="text" name="channel_id">
+             <input type="submit" name="Operation" value="searchChannel">
+        	 </form>
+       	  <%} %>
             </div>
             <div class="innerList">
             <%
             MainLogic ml=new MainLogic();
-            ServletContext sc=request.getServletContext();
-        	HttpSession sess=(HttpSession) sc.getAttribute("session");
+             sc=request.getServletContext();
+        	 sess=(HttpSession) sc.getAttribute("session");
         	session.setAttribute("operation", "");
 			String operation= session.getAttribute("operation").toString();
             if(operation.equals("") || operation.equals("viewAll") || operation ==null)

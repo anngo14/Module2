@@ -501,4 +501,22 @@ public class MainLogic {
 		}
 		return list;
 	}
+	public String validateLogin(String username, String password) throws ClassNotFoundException, SQLException
+	{
+		conn=JDBCUtility.getConnection();
+		String sql="SELECT ROLE FROM USERS WHERE USERNAME=? AND PASSWORD=?";
+		ps=conn.prepareStatement(sql);
+		ps.setString(1, username);
+		ps.setString(2, password);
+		
+		rs=ps.executeQuery();
+		if(rs.next())
+		{
+			String role=rs.getString(1);
+			return role;
+		}
+		
+		
+		return null;
+	}
 }

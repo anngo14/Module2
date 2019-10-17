@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="POJO.Channel" %>
+<%@ include file="container.html" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,18 +30,18 @@
             </div>
             <div class="innerForm">
                 <form action="MainServlet" method="post" value ="hidden">
-                    Id: <input type="text" name="channel_id" required><br>
-                    Name: <input type="text" name="channel_name" required><br>
-                    Band: <input type="text" name="channel_band" required> <br>
-                    VCF: <input type="text" name="channel_vcf" min="40" max="225" required> <br>
-                    ACF: <input type="text" name="channel_acf" min="45" max="230" required> <br>
-                    Charge Type: <!--  <input type="text" name="channel_chargetype" required> <br> -->
+                    <label class="formLabel">Id: </label><input type="text" name="channel_id" required><br>
+                    <label class="formLabel">Name: </label><input type="text" name="channel_name" required><br>
+                    <label class="formLabel">Band: </label><input type="text" name="channel_band" required> <br>
+                    <label class="formLabel">VCF: </label><input type="text" name="channel_vcf" min="40" max="225" required> <br>
+                    <label class="formLabel">ACF: </label><input type="text" name="channel_acf" min="45" max="230" required> <br>
+                    <label class="formLabel">Charge Type:</label> <!--  <input type="text" name="channel_chargetype" required> <br> -->
                     <input type="radio" name="channel_chargetype" value="FTA" checked>FTA
                     <input type="radio" name="channel_chargetype" value="Paid">Paid <br>
-                    Transmission type: <!--<input type="text" name="channel_transmission_type" required> <br> -->
+                    <label class="formLabel">Transmission type:</label> <!--<input type="text" name="channel_transmission_type" required> <br> -->
                     <input type="radio" name="channel_transmission_type" value="Standard" checked>Standard
                     <input type="radio" name="channel_transmission_type" value="HD">HD <br>
-                    charge: <input type="text" name="channel_change" required> <br>
+                    <label class="formLabel">charge:</label> <input type="text" name="channel_change" required> <br>
                             
                     <input type="submit" value="Submit">
                    <input type="hidden" name="option" value="StbChannel">

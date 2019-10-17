@@ -3,6 +3,8 @@
 <%@ page import="Logic.MainLogic" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="POJO.STB" %>
+<%@ include file="container.html" %>
+
 
 <html lang="en">
 <head>
@@ -21,7 +23,7 @@
             <a href="SetTopBox.jsp">Set Top Box</a> |
             <a href="Channel.jsp">Channel</a> |
             <a href="Package.jsp">Packages</a> |
-            <a href="homepage.jsp">Logout</a>
+            <a href="login.jsp">Logout</a>
         </div>
     </div>
     <div class="mainConatiner">
@@ -31,22 +33,41 @@
                     <h2>Set Top Boxes</h2>
                 </div>
                 <div class="innerHeadingLink">
+                <% ServletContext sc=request.getServletContext();
+        	HttpSession sess=(HttpSession) sc.getAttribute("session"); 
+        	String role = (String) sess.getAttribute("role");
+        	if(role.equals("Admin") || role.equals("Operator"))
+        	{
+        	%>
                     <a href="SetTopBoxDetails.jsp">Add a STB</a>
+            <%} %>
                 </div>
             </div>
             <div class="searchContainer">
+            <%  sc=request.getServletContext();
+        	 sess=(HttpSession) sc.getAttribute("session"); 
+        	 role = (String)sess.getAttribute("role");
+        	if(role.equals("Admin") || role.equals("Operator"))
+        	{
+        	%>
                 <form action="MainServlet" method="get">
                     <span>STB ID: </span><input type="text" name="stb_id">
                     <input type="submit" name="Operation" value="searchSTB">
                     <input type="submit" name="Operation" value="editSTB">
                     <input type="submit" name="Operation" value="deleteSTB">
                 </form>
+               <%} else if(role.equals("Customer") || role.equals("Retailer") ){ %>
+                 <form action="MainServlet" method="get">
+                    <span>STB ID: </span><input type="text" name="stb_id">
+                    <input type="submit" name="Operation" value="searchSTB">
+                </form>
+                <%} %>
             </div>
             <div class="innerList">
             <%
             MainLogic ml=new MainLogic();
-            ServletContext sc=request.getServletContext();
-        	HttpSession sess=(HttpSession) sc.getAttribute("session");
+             sc=request.getServletContext();
+        	 sess=(HttpSession) sc.getAttribute("session");
 			//String operation=(String)sess.getAttribute("operation");
 			session.setAttribute("operation", "");
 			String operation= session.getAttribute("operation").toString();
@@ -60,9 +81,9 @@
                     <h3>ID: <%=result.get(i).getStb_id() %></h3>
                     <h3>Type: <%=result.get(i).getStb_type() %></h3>
                     <h3>Features: <%=result.get(i).getStb_features() %></h3>
-                    <h4>Length: <%=result.get(i).getStb_length() %></h4>
-                    <h4>Breadth: <%=result.get(i).getStb_breadth() %></h4>
-                    <h4>Width: <%=result.get(i).getStb_width() %></h4>
+                    <h3>Length: <%=result.get(i).getStb_length() %></h3>
+                    <h3>Breadth: <%=result.get(i).getStb_breadth() %></h3>
+                    <h3>Width: <%=result.get(i).getStb_width() %></h3>
                     <h3>Price: $<%=result.get(i).getStb_price() %></h3>
                     <h3>Installation Charge: $<%=result.get(i).getStb_installation_charges() %></h3>
                     <h3>Upgrade Charge: $<%=result.get(i).getStb_upgradation_charge() %></h3>

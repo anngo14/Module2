@@ -32,6 +32,7 @@ public class MainServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		String operation=request.getParameter("Operation");
 		if(operation.contentEquals("searchSTB"))
 		{
@@ -287,7 +288,27 @@ public class MainServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String option=request.getParameter("option");
-		if(option.contentEquals("STB_Inventory"))
+		if(option.contentEquals("stblogin"))
+		{
+			System.out.println("validating login");
+			
+			String username=request.getParameter("username");
+			String password=request.getParameter("password");
+			
+			try {
+				String role=ml.validateLogin(username, password);
+				HttpSession session=request.getSession();
+				session.setAttribute("role", role);
+				getServletContext().setAttribute("session", session);
+				getServletContext().getRequestDispatcher("/homepage.jsp").forward(request, response);
+				
+			} catch (ClassNotFoundException | SQLException e) {
+				// login failed
+				e.printStackTrace();
+			}
+			
+		}
+		else if(option.contentEquals("STB_Inventory"))
 		{
 			String stb_inventory_id=request.getParameter("stb_inventory_id");
 			int stb_type=Integer.parseInt(request.getParameter("stb_type"));

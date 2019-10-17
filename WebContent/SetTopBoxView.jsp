@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="POJO.STB, Logic.MainLogic" %>
+<%@ include file="container.html" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +22,7 @@
             <a href="SetTopBox.jsp">Set Top Box</a> |
             <a href="Channel.jsp">Channel</a> |
             <a href="Package.jsp">Packages</a> |
-            <a href="homepage.jsp">Logout</a>
+            <a href="login.jsp">Logout</a>
         </div>
     </div>
     <div class="mainConatiner">
@@ -30,7 +32,14 @@
                     <h2>Set Top Boxes</h2>
                 </div>
                 <div class="innerHeadingLink">
-                    <a href="SetTopBoxDetails.html">Add a STB</a>
+                  <% ServletContext sc=request.getServletContext();
+        	HttpSession sess=(HttpSession) sc.getAttribute("session"); 
+        	String role = (String) sess.getAttribute("role");
+        	if(role.equals("Admin") || role.equals("Operator"))
+        	{
+        	%>
+                    <a href="SetTopBoxDetails.jsp">Add a STB</a>
+            <%} %>
                 </div>
             </div>
             <div class="searchContainer">
@@ -44,8 +53,8 @@
             <div class="innerList">
             <%! MainLogic m1 = new MainLogic(); %>
               <%
-            ServletContext sc=request.getServletContext();
-        	HttpSession sess=(HttpSession) sc.getAttribute("session");
+             sc=request.getServletContext();
+        	 sess=(HttpSession) sc.getAttribute("session");
 			String operation=(String)sess.getAttribute("operation");
             if(operation.equals("searchSTB"))
             {

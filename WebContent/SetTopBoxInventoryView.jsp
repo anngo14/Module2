@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="POJO.STB_Inventory" %>
+<%@ include file="container.html" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +22,7 @@
             <a href="SetTopBox.jsp">Set Top Box</a> |
             <a href="Channel.jsp">Channel</a> |
             <a href="Package.jsp">Packages</a> |
-            <a href="homepage.jsp">Logout</a>
+            <a href="login.jsp">Logout</a>
         </div>
     </div>
     <div class="mainConatiner">
