@@ -7,7 +7,8 @@
 
     <style>
         table {
-            width: 70%;
+        	margin-left: 20px;
+            width: 95%;
             font: 17px Calibri;
         }
         table, th, td {
@@ -16,24 +17,49 @@
             padding: 2px 3px;
             text-align: center;
         }
+        .innerContainer{
+        	position: relative;
+        }
     </style>
+    <link rel="stylesheet" href="style.css">
     
-<%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.Statement"%>
+<%@page import="JDBC.JDBCUtility"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
+<%@ include file="container.html" %>
 </head>
 <body onload="createTable()">
-
-	<p>
-        <input type="button" id="addRow" value="Add New Row" onclick="addRow()" />
-    </p>
-
-    <!--THE CONTAINER WHERE WE'll ADD THE DYNAMIC TABLE-->
-    <div id="cont"></div>
-
-    <p><input type="button" id="bt" value="Submit Data" onclick="submit()" /></p>
+	<div class="navBar">
+		<div class="logo">
+			<h1>Infinity</h1>
+		</div> 	
+	</div>
+	<div class="mainContainer">
+		<div class="innerContainer">
+			<div class="innerHeading">
+                <div class="innerHeadingLogo">
+                    <h2>Categories</h2>
+                </div>
+                <div class="innerHeadingLink">
+                    <a href="Package.jsp">Back to Packages</a>
+                </div>
+            </div>
+			<div class="innerTable">
+				<p><input type="button" id="addRow" value="Add New Row" onclick="addRow()" style="margin-top: 15px"/></p>
+	
+			    <!--THE CONTAINER WHERE WE'll ADD THE DYNAMIC TABLE-->
+			    <div id="cont"></div>
+			
+			    <p><input type="button" id="bt" value="Submit Data" onclick="submit()" /></p>
+		    </div>
+		</div>
+	</div>
+	<footer>
+		<div class="credit">
+			<h3> Team 1 &copy;</h3>
+		</div>
+	</footer>
 </body>
 
 <script>
@@ -63,24 +89,17 @@
         //GET DATA FROM DB
         var tab = document.getElementById('table');
 <%
-      //String id = request.getParameter("userId");
-        String driverName = "oracle.jdbc.driver.OracleDriver";
-        String connectionUrl = "jdbc:oracle:thin:@localhost:1521:";
-        String dbName = "xe";
-        String userId = "system";
-        String password = "12345";
-        
+     
+    //int package_id = (int) session.getAttribute("Package_ID");    
     try{ 
-        Class.forName(driverName);
         Connection connection = null;
-        Statement statement = null;
+        PreparedStatement statement = null;
         ResultSet resultSet = null;
 
-
-			connection = DriverManager.getConnection(connectionUrl+dbName, userId, password);
-			statement=connection.createStatement();
-			String sql ="SELECT * FROM category";
-			
+			connection = JDBCUtility.getConnection();
+			String sql ="SELECT * FROM categories where package_id = ?";
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, 1234);
 			resultSet = statement.executeQuery(sql);
 			while(resultSet.next()){
 %>
@@ -110,21 +129,21 @@
 		                // CREATE AND ADD TEXTBOX WITH VALUE THAT FEACHED FROM DB
 		                var ele = document.createElement('input');
 		                ele.setAttribute('type', 'text');
-		                ele.setAttribute('value', '<%= resultSet.getString("name")%>');
+		                ele.setAttribute('value', '<%= resultSet.getString("category_description")%>');
 		                td.appendChild(ele);
 		            }
 		            if(c == 2) {
 		                // CREATE AND ADD TEXTBOX WITH VALUE THAT FEACHED FROM DB
 		                var ele = document.createElement('input');
 		                ele.setAttribute('type', 'text');
-		                ele.setAttribute('value', '<%= resultSet.getInt("max")%>');
+		                ele.setAttribute('value', '<%= resultSet.getInt("max_channel")%>');
 		                td.appendChild(ele);
 		            }
 		            if(c == 3) {
 		                // CREATE AND ADD TEXTBOX WITH VALUE THAT FEACHED FROM DB
 		                var ele = document.createElement('input');
 		                ele.setAttribute('type', 'text');
-		                ele.setAttribute('value', '<%= resultSet.getInt("min")%>');
+		                ele.setAttribute('value', '<%= resultSet.getInt("min_channel")%>');
 		                td.appendChild(ele);
 		            }
 		        }
@@ -134,7 +153,6 @@
 	exception.printStackTrace();
 	}
 %>
-    }
 
     // ADD A NEW ROW TO THE TABLE.s
     function addRow() {

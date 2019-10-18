@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="POJO.STB_Inventory" %>
+<%@ page import="POJO.STB_Inventory, Logic.MainLogic" %>
 <%@ include file="container.html" %>
 
 <!DOCTYPE html>
@@ -20,6 +20,7 @@
         </div>
         <div class="navLinks">
             <a href="SetTopBox.jsp">Set Top Box</a> |
+            <a href="SetTopBoxInventory.jsp">STB Inventory</a> |
             <a href="Channel.jsp">Channel</a> |
             <a href="Package.jsp">Packages</a> |
             <a href="login.jsp">Logout</a>
@@ -32,7 +33,7 @@
                     <h2>Set Top Box Inventory</h2>
                 </div>
                 <div class="innerHeadingLink">
-                    <a href="SetTopBoxDetails.jsp">Add a STB</a>
+                    <a href="SetTopBoxInventoryDetails.jsp">Add a STB Inventory</a>
                 </div>
             </div>
             <div class="searchContainer">
@@ -44,25 +45,24 @@
                 </form>
             </div>
             <div class="innerList">
-                <%
-            MainLogic ml=new MainLogic();
-            ServletContext sc=request.getServletContext();
-        	HttpSession sess=(HttpSession) sc.getAttribute("session");
-			String operation=(String)sess.getAttribute("operation");
-            if(operation.equals("Search"))
-            {
-            	STB_Inventory s = m1.viewSTB_Inventory(request.getParameter("inventory_id"));
+            <%! MainLogic m1 = new MainLogic(); 
+            %>
+            <%
+           	 	//ServletContext sc=request.getServletContext();
+        		//HttpSession sess=(HttpSession) sc.getAttribute("session");
+            	int inventory_id = (int) session.getAttribute("STB_Inventory_ID");
+            	STB_Inventory s = m1.viewSTB_Inventory(inventory_id);
             %>
                 <div class="innerListItem">
-                    <h3>ID: </h3><%= s.getStb_inventory_id() %>
-                    <h3>Type: </h3><%= s.getStb_type() %>
-                    <h3>Serial Number: </h3><%= s.getStb_serial_number() %>
-                    <h3>MAC ID: </h3><%= s.getStb_mac_id() %>
-                    <h3>Remote Asset ID: </h3><%= s.getRemote_asset_id() %>
-                    <h3>Dish Asset ID: </h3><%= s.getDish_asset_id() %>
-                    <h3>Status: </h3><%= s.getStatus() %>
+                    <h3>ID: <%= s.getStb_inventory_id() %></h3>
+                    <h3>Type: <%= s.getStb_type() %></h3>
+                    <h3>Serial Number: <%= s.getStb_serial_number() %></h3>
+                    <h3>MAC ID: <%= s.getStb_mac_id() %></h3>
+                    <h3>Remote Asset ID: <%= s.getRemote_asset_id() %></h3>
+                    <h3>Dish Asset ID: <%= s.getDish_asset_id() %></h3>
+                    <h3>Status: <%= s.getStatus() %></h3>
+                	<h3>Retailer ID: <%= s.getRetailer_id() %></h3>
                 </div>
-                <% } %>
             </div>
         </div>
     </div>

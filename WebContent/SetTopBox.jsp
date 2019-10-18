@@ -84,11 +84,14 @@
             ArrayList<STB> result=ml.viewAllSTB();
             for(int i=0;i<result.size();i++)
             {
+    			ArrayList<String> features = ml.viewAllFeatures(result.get(i).getStb_id());
+
             %>
                 <div class="innerListItem">
                     <h3>ID: <%=result.get(i).getStb_id() %></h3>
                     <h3>Type: <%=result.get(i).getStb_type() %></h3>
-                    <h3>Features: <%=result.get(i).getStb_features() %></h3>
+                    <h3>Features: <%for(int j = 0; j < features.size(); j++) { %>
+                    <%= features.get(j) + " "%> <% } %></h3>
                     <h3>Length: <%=result.get(i).getStb_length() %></h3>
                     <h3>Breadth: <%=result.get(i).getStb_breadth() %></h3>
                     <h3>Width: <%=result.get(i).getStb_width() %></h3>

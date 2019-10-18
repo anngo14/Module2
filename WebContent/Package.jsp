@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="POJO.Package" %>
+<%@ page import="POJO.Package, POJO.Category" %>
 <%@ page import="Logic.MainLogic" %>
 <%@ include file="container.html" %>
 
@@ -75,11 +75,14 @@
             {
             ArrayList<Package> result=ml.viewChannelPackage();
             for(int i=0;i<result.size();i++)
-            {%>
+            {
+            	ArrayList<Category> category = ml.viewAllCategories(result.get(i).getPackage_id());
+            %>
                 <div class="innerListItem">
                     <h3>ID: <%=result.get(i).getPackage_id() %></h3>
                     <h3>Name: <%=result.get(i).getPackage_name() %> </h3>
-                    <h3>Category: <%=result.get(i).getPackage_category() %></h3>
+                    <h3>Category: <%for(int j = 0; j < category.size(); j++) { %>
+                    <%= category.get(j).getCategory_description() + " "%> <% } %></h3>
                     <h3>Charging Type: <%=result.get(i).getPackage_charging_type() %></h3>
                     <h3>Transmission Type: <%=result.get(i).getTransmission_type() %></h3>
                     <h3>Cost: <%=result.get(i).getPackage_cost() %></h3>

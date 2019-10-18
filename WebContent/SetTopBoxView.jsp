@@ -63,7 +63,7 @@
                 <div class="innerListItem">
                     <h3>ID: <%= s.getStb_id() %></h3>
                     <h3>Type: <%= s.getStb_type()%></h3>
-                    <h3>Features: <%= s.getStb_features() %></h3>
+                    <h3>Features: <% session.setAttribute("STB_ID", Integer.parseInt(request.getParameter("stb_id"))); %><a href="features.jsp">Features</a></h3>
                     <h3>Length: <%= s.getStb_length() %></h3>
                     <h3>Breadth: <%= s.getStb_breadth() %></h3>
                     <h3>Width: <%= s.getStb_width() %></h3>
@@ -73,7 +73,14 @@
                     <h3>Discount: <%= s.getStb_discount() %> %</h3>
                     <h3>Billing Type: <%= s.getStb_billing_type() %></h3>
                     <h3>Refundable Deposit Amount: $<%= s.getStb_refundable_deposit_amount() %></h3>
-                    <h3>Inventory ID: <%= s.getStb_inventory_id() %></h3>
+                    <h3>Inventory ID: <%= s.getStb_inventory_id() %></h3> 
+                    <% session.setAttribute("STB_Inventory_ID", s.getStb_inventory_id()); %>
+                    <form action="MainServlet" method="get">
+                    	<input type="file" name="csvFile" accept=".csv"><br>
+                    	<input type="submit" name="Operation" value="Upload File"><br><br>
+                    	<input type="submit" name="Operation" value="View STB Inventory"><br><br>
+                    	<input type="submit" name="Operation" value="Download File"><br><br>
+                    </form>
                 </div>
                 <% } %>
             </div>

@@ -80,9 +80,9 @@
                     <h3>ID: <%=result.get(i).getChannel_id() %></h3>
                     <h3>Package ID: <%=result.get(i).getPackage_id() %></h3>
                     <h3>Name: <%=result.get(i).getChannel_name() %></h3> 
-                    <h3>Band: <%=result.get(i).getChannel_band() %></h3> 
-                    <h3>VCF: <%=result.get(i).getChannel_vcf() %> Mhz</h3> 
-                    <h3>ACF: <%=result.get(i).getChannel_acf() %> Mhz</h3> 
+                    <h3>Band: <%= result.get(i).getChannel_band() %></h3> 
+                    <h3>VCF: <%=result.get(i).getChannel_vcf() %> </h3> 
+                    <h3>ACF: <%=result.get(i).getChannel_acf() %></h3> 
                     <h3>Charge Type: <%=result.get(i).getChannel_change_type() %></h3> 
                     <h3>Transmission Type: <%=result.get(i).getTransmission_type() %></h3> 
                     <h3>Charge: <%=result.get(i).getChannel_change() %></h3> 
@@ -92,15 +92,16 @@
             	Channel channel=(Channel)sess.getAttribute("channel");
 			%>
 				<div class="innerListItem">
-                    <h3>ID: <%=channel.getChannel_id() %></h3>
-                    <h3>Name: <%=channel.getChannel_id() %></h3> 
-                    <h3>Band: <%=channel.getChannel_id() %></h3> 
-                    <h3>VCF: <%=channel.getChannel_id() %></h3> 
-                    <h3>ACF: <%=channel.getChannel_id() %></h3> 
-                    <h3>Charge Type: <%=channel.getChannel_id() %></h3> 
-                    <h3>Transmission Type: <%=channel.getChannel_id() %></h3> 
-                    <h3>Charge: <%=channel.getChannel_id() %></h3> 
-                </div>
+ 					<h3>ID: <%=channel.getChannel_id() %></h3>
+                    <h3>Package ID: <%=channel.getPackage_id() %></h3>
+                    <h3>Name: <%=channel.getChannel_name() %></h3> 
+                    <h3>Band: <%=channel.getChannel_band() %></h3> 
+                    <h3>VCF: <%=channel.getChannel_vcf() %> </h3> 
+                    <h3>ACF: <%=channel.getChannel_acf() %> </h3> 
+                    <h3>Charge Type: <%=channel.getChannel_change_type() %></h3> 
+                    <h3>Transmission Type: <%=channel.getTransmission_type() %></h3> 
+                    <h3>Charge: <%=channel.getChannel_change() %></h3> 
+                	<h3>Status: <%=channel.getChannel_status() %></h3>                </div>
                 <%} %> 
             </div>
         </div>

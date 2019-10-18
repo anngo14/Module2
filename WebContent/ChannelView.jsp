@@ -63,13 +63,15 @@
             %>
                 <div class="innerListItem">
                     <h3>ID: <%= c.getChannel_id() %></h3>
+                    <h3>Package ID <%= c.getPackage_id() %></h3>
                     <h3>Name: <%= c.getChannel_name() %></h3> 
                     <h3>Band: <%= c.getChannel_band() %></h3> 
-                    <h3>VCF: <%= c.getChannel_vcf() %> Mhz</h3> 
-                    <h3>ACF: <%= c.getChannel_acf() %> Mhz</h3> 
+                    <h3>VCF: <%= c.getChannel_vcf() %></h3> 
+                    <h3>ACF: <%= c.getChannel_acf() %></h3> 
                     <h3>Charge Type: <%= c.getChannel_change_type() %></h3> 
                     <h3>Transmission Type:  <%= c.getTransmission_type() %></h3>
                     <h3>Charge: <%= c.getChannel_change() %></h3> 
+                    <h3>Status: <%= c.getChannel_status() %></h3>
                 </div>
             <% } %>
             </div>

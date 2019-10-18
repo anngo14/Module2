@@ -64,13 +64,14 @@
                 <div class="innerListItem">
                     <h3>ID: <%= p.getPackage_id() %></h3>
                     <h3>Name: <%= p.getPackage_name() %></h3>
-                    <h3>Category: <%= p.getPackage_category() %>
+                    <h3>Category: <% session.setAttribute("Package_ID", Integer.parseInt(request.getParameter("pkg_id"))); %><a href="category.jsp">Categories</a></h3>
                     <h3>Charging Type: <%= p.getPackage_charging_type() %></h3>
                     <h3>Transmission TYpe: <%= p.getTransmission_type() %></h3>
                     <h3>Cost: <%= p.getPackage_cost() %></h3>
                     <h3>Available From: <%= p.getPackage_available_from() %></h3>
                     <h3>Available To: <%= p.getPackage_available_to() %></h3>
                     <h3>Package default: <%= p.getPackage_default() %></h3>
+                    <h3>Add Channels: <a href="addChannel.jsp">Add Channels</a></h3>
                 </div>
                <% } %>
             </div>

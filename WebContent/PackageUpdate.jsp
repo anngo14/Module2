@@ -42,7 +42,7 @@
                 <form action="MainServlet" method="post" value ="hidden">
                     <label class="formLabel">ID: </label><input type="text" name="package_id" value=<%= p.getPackage_id()%> readonly><br>
                     <label class="formLabel">Name: </label><input type="text" name="package_name"value=<%= p.getPackage_name()%> required><br>
-                    <label class="formLabel">Category: </label><input type="text" name="package_category"value=<%= p.getPackage_category()%> required> <br>
+                    <label class="formLabel">Category: </label><% session.setAttribute("Package_ID", Integer.parseInt(request.getParameter("pkg_id"))); %><a href="category.jsp">Categories</a> <br>
                     <label class="formLabel">Charging Type: </label><!-- <input type="text" name="package_charging_type"value=<%= p.getPackage_charging_type()%> required> <br> -->
                     <%if(p.getPackage_charging_type().equals("Paid")){ %>
                     <input type="radio" name="package_charging_type" value="Paid" checked>Paid
@@ -70,7 +70,7 @@
                     <input type="radio" name="package_default" value="Y"> Yes
                     <input type="radio" name="package_default" value="N" checked> No
                     <% } %><br>
-                           
+                    <label class="formLabel">Add Channels: </label>Add Channels: <a href="addChannel.jsp">Add Channels</a><br>
                     <input type="submit" value="Save">
                    <input type="hidden" name="option" value="StbPackageUpdate">
                </form>

@@ -11,6 +11,15 @@
         <meta http-equiv="Refresh" content="1;url=login.jsp">
     <link rel="stylesheet" href="style.css"> 
     <title>Logout</title>
+    <style>
+        .errorMsg{
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
 <body>
     <div class="navBar">

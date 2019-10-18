@@ -20,6 +20,7 @@
         </div>
         <div class="navLinks">
             <a href="SetTopBox.jsp">Set Top Box</a> |
+            <a href="SetTopBoxInventory.jsp">STB Inventory</a> |
             <a href="Channel.jsp">Channel</a> |
             <a href="Package.jsp">Packages</a> |
             <a href="logout.jsp">Logout</a>
@@ -32,15 +33,15 @@
                     <h2>Set Top Box Inventory</h2>
                 </div>
                 <div class="innerHeadingLink">
-                    <a href="SetTopBoxDetails.jsp">Add a STB</a>
+                    <a href="SetTopBoxInventoryDetails.jsp">Add a STB Inventory</a>
                 </div>
             </div>
             <div class="searchContainer">
                 <form action="MainServlet" method="get">
-                    <span>STB ID: </span><input type="text" name="inventory_id">
-                    <input type="submit" value="Search">
-                    <input type="submit" value="Edit">
-                    <input type="submit" value="Delete">
+                    <span>STB Inventory ID: </span><input type="text" name="inventory_id">
+                    <input type="submit" name="Operation" value="Search Inventory">
+                    <input type="submit" name="Operation" value="Edit Inventory">
+                    <input type="submit" name="Operation" value="Delete Inventory">
                 </form>
             </div>
             <div class="innerList">
@@ -64,6 +65,7 @@
                     <h3>Remote Asset ID: <%=result.get(i).getRemote_asset_id() %></h3>
                     <h3>Dish Asset ID: <%=result.get(i).getDish_asset_id() %></h3>
                     <h3>Status: <%=result.get(i).getStatus() %></h3>
+                    <h3>Retailer ID: <%=result.get(i).getRetailer_id() %></h3>
                 </div>
             <%}}else{ 
             	STB_Inventory stbInventory=(STB_Inventory)sess.getAttribute("stbInventory");

@@ -90,6 +90,20 @@
 .formLabel{
 	width: 150px;
 }
+.featureItem{
+    width: 100%;
+}
+.featureItem input{
+    width: 100%;
+    text-align: center;
+}
+.categoryItem{
+	width: 100%;
+}
+.categoryItem input{
+	width: 100%;
+	text-align: center;
+}
 footer{
     height: 52px;
     width: 100%;

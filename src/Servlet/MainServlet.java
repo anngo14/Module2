@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import POJO.Category;
 import POJO.Channel;
 import POJO.STB;
 import POJO.STB_Inventory;
@@ -34,7 +35,72 @@ public class MainServlet extends HttpServlet {
 		
 		
 		String operation=request.getParameter("Operation");
-		if(operation.contentEquals("searchSTB"))
+		
+		if(operation.contentEquals("Add Channels"))
+		{
+			HttpSession session = request.getSession(false);
+			int pid = (int) session.getAttribute("Package_ID");
+			String[] c = request.getParameterValues("availablechannel");
+			for(String s: c)
+			{
+				try {
+					Channel channel = ml.viewChannel(Integer.parseInt(s));
+					channel.setPackage_id(pid);
+					ml.updateChannel(channel);
+				} catch (NumberFormatException | ClassNotFoundException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					response.sendRedirect("404Error.jsp");
+					return;
+				}
+			}
+			response.sendRedirect("Package.jsp");
+		}
+		else if(operation.contentEquals("Save Categories"))
+		{
+			HttpSession session = request.getSession(false);
+			int pid = (int) session.getAttribute("Package_ID");
+			String[] d = request.getParameterValues("newcategory");
+			String[] m = request.getParameterValues("minchannel");
+			String[] ma = request.getParameterValues("maxchannel");
+			for(int i = 0; i < d.length; i++)
+			{
+				Category temp = new Category(0, pid, Integer.parseInt(m[i]), Integer.parseInt(ma[i]), d[i]);
+				try {
+					ml.addCategory(temp);
+				} catch (ClassNotFoundException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					response.sendRedirect("404Error.jsp");
+					return;
+				}
+			}
+			response.sendRedirect("category.jsp");
+		}
+		else if(operation.contentEquals("Save Features"))
+		{
+			String[] features = request.getParameterValues("newfeature");
+			HttpSession session = request.getSession(false);
+			for(String s: features)
+			{
+				try {
+					ml.addFeature(s, (int) session.getAttribute("STB_ID"));
+				} catch (ClassNotFoundException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					response.sendRedirect("404Error.jsp");
+					return;
+				}
+			}
+			response.sendRedirect("features.jsp");
+		}
+		else if(operation.contentEquals("View STB Inventory"))
+		{
+			HttpSession session = request.getSession(false);
+			int id = (int) session.getAttribute("STB_Inventory_ID");
+			response.sendRedirect("SetTopBoxInventoryView.jsp");
+		}
+		else if(operation.contentEquals("searchSTB"))
 		{
 			String stbId=request.getParameter("stb_id");
 			try
@@ -237,45 +303,65 @@ public class MainServlet extends HttpServlet {
 				//do something
 			}
 		}
-		else if(operation.contentEquals("searchSTBInventory"))
+		else if(operation.contentEquals("Search Inventory"))
 		{
 			String inventoryId=request.getParameter("inventory_id");
 			try
 			{
 				STB_Inventory stbInventory =ml.viewSTB_Inventory(Integer.parseInt(inventoryId));
+				if(stbInventory == null)
+				{
+					response.sendRedirect("404Error.jsp");
+					return;
+				}
 				HttpSession session=request.getSession();
-				session.setAttribute("stbInventory", stbInventory);
+				session.setAttribute("STB_Inventory_ID", Integer.parseInt(inventoryId));
 				session.setAttribute("operation", "searchInventory");
 				getServletContext().setAttribute("session", session);
-				getServletContext().getRequestDispatcher("SetTopBoxInventory.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/SetTopBoxInventoryView.jsp").forward(request, response);
 			}
 			catch(ClassNotFoundException | SQLException | NumberFormatException e)
 			{
 				//do something
 			}
 		}
-		else if(operation.contentEquals("editSTBInventory"))
+		else if(operation.contentEquals("Edit Inventory"))
 		{
 			String inventoryId=request.getParameter("inventory_id");
 			try
 			{
-				ml.viewSTB_Inventory(Integer.parseInt(inventoryId));
+				STB_Inventory stbInventory =ml.viewSTB_Inventory(Integer.parseInt(inventoryId));
+				if(stbInventory == null)
+				{
+					response.sendRedirect("404Error.jsp");
+					return;
+				}		
+				HttpSession session=request.getSession();
+				session.setAttribute("STB_Inventory_ID", Integer.parseInt(inventoryId));
+				getServletContext().setAttribute("session", session);
+				getServletContext().getRequestDispatcher("/SetTopBoxInventoryUpdate.jsp").forward(request, response);
 			}
 			catch(ClassNotFoundException | SQLException | NumberFormatException e)
 			{
 				//do something
 			}
 		}
-		else if(operation.contentEquals("deleteSTBInventory"))
+		else if(operation.contentEquals("Delete Inventory"))
 		{
-			String inventoryId=request.getParameter("inventory_id");
+			int inventoryId=Integer.parseInt(request.getParameter("inventory_id"));
 			try
 			{
-				ml.deleteChannelPackage(Integer.parseInt(inventoryId));
+				STB_Inventory stbInventory =ml.viewSTB_Inventory(inventoryId);
+				if(stbInventory == null)
+				{
+					response.sendRedirect("404Error.jsp");
+					return;
+				}		
+				ml.deleteSTB_Inventory(inventoryId);
 				HttpSession session=request.getSession();
 				session.setAttribute("operation", "deleteInventory");
 				getServletContext().setAttribute("session", session);
-				getServletContext().getRequestDispatcher("SetTopBoxInventory.jsp").forward(request, response);
+				getServletContext().getRequestDispatcher("/SetTopBoxInventory.jsp").forward(request, response);
 			}
 			catch(ClassNotFoundException | SQLException | NumberFormatException e)
 			{
@@ -308,24 +394,47 @@ public class MainServlet extends HttpServlet {
 			}
 			
 		}
-		else if(option.contentEquals("STB_Inventory"))
+		else if(option.contentEquals("StbInventory"))
 		{
-			String stb_inventory_id=request.getParameter("stb_inventory_id");
-			int stb_type=Integer.parseInt(request.getParameter("stb_type"));
-			int stb_serial_number=Integer.parseInt(request.getParameter("stb_serial_number"));
-			int stb_mac_id=Integer.parseInt(request.getParameter("stb_mac_id"));
-			int remote_asset_id=Integer.parseInt(request.getParameter("remote_asset_id"));
-			int dish_asset_id=Integer.parseInt(request.getParameter("dish_asset_id"));
+			int stb_inventory_id=Integer.parseInt(request.getParameter("stb_inventory_id"));
+			String stb_type=request.getParameter("stb_type");
+			String stb_serial_number=request.getParameter("stb_serial_number");
+			long stb_mac_id=Long.parseLong(request.getParameter("stb_mac_id"));
+			long remote_asset_id=Long.parseLong(request.getParameter("remote_asset_id"));
+			long dish_asset_id=Long.parseLong(request.getParameter("dish_asset_id"));
 			String status=request.getParameter("stb_status");
+			int retailer_id = Integer.parseInt(request.getParameter("retailer_id"));
 			
-			/*STB_Inventory stbInventory=new STB_Inventory(stb_type, stb_inventory_id, stb_serial_number, stb_mac_id, remote_asset_id, dish_asset_id, status);
+			STB_Inventory s = new STB_Inventory(stb_inventory_id, stb_type, stb_serial_number, stb_mac_id, remote_asset_id, dish_asset_id, status, retailer_id);
 			try {
-				ml.createSTB_Inventory(stbInventory);
-			} catch (SQLException | ClassNotFoundException e) {
+				ml.createSTB_Inventory(s);
+				response.sendRedirect("SetTopBoxInventory.jsp");
+			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 				response.sendRedirect("404Error.jsp");
-			}*/
+			}
+		}
+		else if(option.contentEquals("StbInventoryUpdate"))
+		{
+			int stb_inventory_id=Integer.parseInt(request.getParameter("stb_inventory_id"));
+			String stb_type=request.getParameter("stb_type");
+			String stb_serial_number=request.getParameter("stb_serial_number");
+			long stb_mac_id=Long.parseLong(request.getParameter("stb_mac_id"));
+			long remote_asset_id=Long.parseLong(request.getParameter("remote_asset_id"));
+			long dish_asset_id=Long.parseLong(request.getParameter("dish_asset_id"));
+			String status=request.getParameter("stb_status");
+			int retailer_id = Integer.parseInt(request.getParameter("retailer_id"));
+			
+			STB_Inventory s = new STB_Inventory(stb_inventory_id, stb_type, stb_serial_number, stb_mac_id, remote_asset_id, dish_asset_id, status, retailer_id);
+			try {
+				ml.updateSTB_Inventory(s);
+				response.sendRedirect("SetTopBoxInventory.jsp");
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				response.sendRedirect("404Error.jsp");
+			} 
 		}
 		else if(option.contentEquals("STB"))
 		{

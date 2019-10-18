@@ -18,7 +18,7 @@
             <h1>Infinity</h1>
         </div>
         <div class="navLinks">
-            <a href="Package.jsp">Package</a>
+            <a href="SetTopBoxInventory.jsp">Set Top Box Inventory</a>
         </div>
     </div>
     <div class="mainContainer">
@@ -30,14 +30,14 @@
             </div>
             <div class="innerForm">
                 <form action="MainServlet" method="post">
-                    Inventory ID: <input type="text" name="stb_inventory_id"><br>
-                    Type: <input type="text" name="stb_type"><br>
-                    Serial Number: <input type="text" name="stb_serial_number"> <br>
-                    MAC ID: <input type="text" name="stb_mac_id"> <br>
-                    Remote Asset ID: <input type="text" name="remote_asset_id"> <br>
-                    Dish Asset ID: <input type="text" name="dish_asset_id"> <br>
-                    Status: <input type="text" name="stb_status"> <br>
-                                
+                    <label class="formLabel">Inventory ID: </label><input type="text" name="stb_inventory_id"><br>
+                    <label class="formLabel">Type: </label><input type="text" name="stb_type"><br>
+                    <label class="formLabel">Serial Number: </label><input type="text" name="stb_serial_number"> <br>
+                    <label class="formLabel"> MAC ID: </label><input type="text" name="stb_mac_id"> <br>
+                    <label class="formLabel">Remote Asset ID: </label><input type="text" name="remote_asset_id"> <br>
+                    <label class="formLabel">Dish Asset ID: </label><input type="text" name="dish_asset_id"> <br>
+                    <label class="formLabel">Status: </label><input type="text" name="stb_status"> <br>
+                    <label class="formLabel">Retailer ID: </label><input type="text" name="retailer_id"><br> 
                     <input type="submit" value="Submit">
                    <input type="hidden" name="option" value="StbInventory">
                </form>
