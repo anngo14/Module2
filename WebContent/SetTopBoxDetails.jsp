@@ -30,7 +30,7 @@
             </div>
             <div class="innerForm">
                 <form action="MainServlet" method="post" value ="hidden">
-                    <label class="formLabel">ID: </label><input type="text" name="stb_id" required maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)"><br>
+                    <label class="formLabel">ID: </label><input type="text" name="stb_id" required maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)"><br>
                     <label class="formLabel">Select box type:</label> <!--<input type="text" name="stb_type" required><br> -->
                     <select name="stb_type">
                     	<option value="Standard">Standard</option>
@@ -39,18 +39,18 @@
                     	<option value="IPTV">IPTV</option>
                     </select><br>
                     <label class="formLabel">Features: </label><input type="text" name="stb_features" required> <br>
-                    <label class="formLabel">Length: </label><input type="text" name="stb_length" required maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
-                    <label class="formLabel">Breadth: </label><input type="text" name="stb_breadth" required maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
-                    <label class="formLabel">Width: </label><input type="text" name="stb_width" required maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
-                    <label class="formLabel">Price: </label><input type="text" name="stb_price" required maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
-                    <label class="formLabel">Installation charge: </label><input type="text" name="stb_installation_charges" required maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
-                    <label class="formLabel">Upgrade charge: </label><input type="text" name="stb_upgradation_charge" required maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
-                    <label class="formLabel">Discount: </label><input type="text" name="stb_discount" required maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
+                    <label class="formLabel">Length: </label><input type="text" name="stb_length" required maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
+                    <label class="formLabel">Breadth: </label><input type="text" name="stb_breadth" required maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
+                    <label class="formLabel">Width: </label><input type="text" name="stb_width" required maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
+                    <label class="formLabel">Price: </label><input type="text" name="stb_price" required maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
+                    <label class="formLabel">Installation charge: </label><input type="text" name="stb_installation_charges" required maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
+                    <label class="formLabel">Upgrade charge: </label><input type="text" name="stb_upgradation_charge" required maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
+                    <label class="formLabel">Discount: </label><input type="text" name="stb_discount" required maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
                     <label class="formLabel">Billing type: </label> <!-- <input type="text" name="stb_billing_type" required> <br> -->
                     <input type="radio" name="stb_billing_type" value="PrePaid"> PrePaid
                     <input type="radio" name="stb_billing_type" value="PostPaid"> PostPaid <br>
-                    <label class="formLabel">Refundable Deposit Amount: </label><input type="text" name="stb_refundable_deposit_amount" required maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
-                    <label class="formLabel">Inventory ID: </label><input type="text" name="stb_inventory_id" required maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
+                    <label class="formLabel">Refundable Deposit Amount: </label><input type="text" name="stb_refundable_deposit_amount" required maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
+                    <label class="formLabel">Inventory ID: </label><input type="text" name="stb_inventory_id" required maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
                            
                     <input type="submit" value="Submit">
                    <input type="hidden" name="option" value="STB">

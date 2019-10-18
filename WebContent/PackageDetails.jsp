@@ -30,7 +30,7 @@
             </div>
             <div class="innerForm">
                 <form action="MainServlet" method="post" value ="hidden">
-                    <label class="formLabel">ID: </label><input type="text" name="package_id" required maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)"><br>
+                    <label class="formLabel">ID: </label><input type="text" name="package_id" required maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)"><br>
                     <label class="formLabel">Name: </label><input type="text" name="package_name" required><br>
                     <label class="formLabel">Category: </label><input type="text" name="package_category" required> <br>
                     <label class="formLabel">Charging Type: </label><!-- <input type="text" name="package_charging_type" required> <br> -->
@@ -39,7 +39,7 @@
                     <label class="formLabel">Transmission Type: </label><!-- <input type="text" name="package_transmission_type" required> <br> -->
                     <input type="radio" name="package_transmission_type" value="HD" checked>HD
                     <input type="radio" name="package_transmission_type" value="Standard">Standard <br>
-                    <label class="formLabel">Cost: </label><input type="text" name="package_cost" required maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
+                    <label class="formLabel">Cost: </label><input type="text" name="package_cost" required maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
                     <label class="formLabel">Available From: </label><input type="date" name="package_available_from" required> <br>
                     <label class="formLabel">Available To: </label><input type="date" name="package_available_to" required> <br>
                     <label class="formLabel">Package Default: </label><!-- <input type="text" name="package_default" required> <br> -->

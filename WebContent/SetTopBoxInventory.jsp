@@ -38,7 +38,7 @@
             </div>
             <div class="searchContainer">
                 <form action="MainServlet" method="get">
-                    <span>STB Inventory ID: </span><input type="text" name="inventory_id">
+                    <span>STB Inventory ID: </span><input type="text" name="inventory_id" maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)">
                     <input type="submit" name="Operation" value="Search Inventory">
                     <input type="submit" name="Operation" value="Edit Inventory">
                     <input type="submit" name="Operation" value="Delete Inventory">

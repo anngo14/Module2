@@ -51,14 +51,14 @@
         	if(role.equals("Admin") || role.equals("Operator"))
         	{ %>
                 <form action="MainServlet" method="get">
-                    <span>Channel ID: </span><input type="text" name="channel_id" maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)">
+                    <span>Channel ID: </span><input type="text" name="channel_id" maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)">
                     <input type="submit" name="Operation" value="searchChannel">
                     <input type="submit" name="Operation" value="editChannel">
                     <input type="submit" name="Operation" value="deleteChannel">
                 </form>
              <%} else if(role.equals("Customer") || role.equals("Retailer") ){ %>
              <form action="MainServlet" method="get">
-             <span>Channel ID </span><input type="text" name="channel_id" maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)">
+             <span>Channel ID </span><input type="text" name="channel_id" maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)">
              <input type="submit" name="Operation" value="searchChannel">
         	 </form>
        	  <%} %>

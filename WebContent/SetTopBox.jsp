@@ -59,14 +59,14 @@
         	{
         	%>
                 <form action="MainServlet" method="get">
-                    <span>STB ID: </span><input type="text" name="stb_id" maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)">
+                    <span>STB ID: </span><input type="text" name="stb_id" maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)">
                     <input type="submit" name="Operation" value="searchSTB">
                     <input type="submit" name="Operation" value="editSTB">
                     <input type="submit" name="Operation" value="deleteSTB">
                 </form>
                <%} else if(role.equals("Customer") || role.equals("Retailer") ){ %>
                  <form action="MainServlet" method="get">
-                    <span>STB ID: </span><input type="text" name="stb_id" maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)">
+                    <span>STB ID: </span><input type="text" name="stb_id" maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)">
                     <input type="submit" name="Operation" value="searchSTB">
                 </form>
                 <%} %>

@@ -30,8 +30,8 @@
             </div>
             <div class="innerForm">
                 <form action="MainServlet" method="post" value ="hidden">
-                    <label class="formLabel">Id: </label><input type="text" name="channel_id" required maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)"><br>
-                    <label class="formLabel">Package Id: </label><input type="text" name="package_id" required maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)"><br>
+                    <label class="formLabel">Id: </label><input type="text" name="channel_id" required maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)"><br>
+                    <label class="formLabel">Package Id: </label><input type="text" name="package_id" required maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)"><br>
                     <label class="formLabel">Name: </label><input type="text" name="channel_name" required><br>
                     <label class="formLabel">Band: </label><input type="text" name="channel_band" required> <br>
                     <label class="formLabel">VCF: </label><input type="text" name="channel_vcf" min="40" max="225" required> <br>
@@ -42,7 +42,7 @@
                     <label class="formLabel">Transmission type:</label> <!--<input type="text" name="channel_transmission_type" required> <br> -->
                     <input type="radio" name="channel_transmission_type" value="Y" checked> Standard
                     <input type="radio" name="channel_transmission_type" value="N"> HD <br>
-                    <label class="formLabel">charge: </label> <input type="text" name="channel_change" required maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
+                    <label class="formLabel">charge: </label> <input type="text" name="channel_change" required maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)"> <br>
                    	<label class="formLabel">Status: </label> <input type="text" name="channel_status" required> <br>
                     
                             

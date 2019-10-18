@@ -44,7 +44,7 @@
             </div>
             <div class="searchContainer">
                 <form action="MainServlet" method="get">
-                    <span>STB ID: </span><input type="text">
+                    <span>STB ID: </span><input type="text" maxlength="4" onkeypress="return (event.charCode >=48 && event.charCode <=57)">
                     <input type="submit" value="Search" disabled>
                     <input type="submit" value="Edit" disabled>
                     <input type="submit" value="Delete" disabled>
