@@ -52,14 +52,14 @@
         	{
         	%>
                 <form action="MainServlet" method="get">
-                    <span>Package ID: </span><input type="text" name="pkg_id">
+                    <span>Package ID: </span><input type="text" name="pkg_id" maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)">
                     <input type="submit" name="Operation" value="searchPkg">
                     <input type="submit" name="Operation" value="editPkg">
                     <input type="submit" name="Operation" value="deletePkg">
                 </form>
              <%} else if(role.equals("Customer") || role.equals("Retailer") ){ %>
              <form action="MainServlet" method="get">
-                    <span>Package ID: </span><input type="text" name="pkg_id">
+                    <span>Package ID: </span><input type="text" name="pkg_id" maxlength="3" onkeypress="return (event.charCode >=48 && event.charCode <=57)">
                     <input type="submit" name="Operation" value="searchPkg">
                 </form>
              <% } %>
